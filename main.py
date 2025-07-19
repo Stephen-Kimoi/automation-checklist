@@ -11,8 +11,8 @@ from evaluator import ICPProjectEvaluator
 
 def main():
     parser = argparse.ArgumentParser(description='Evaluate ICP projects from CSV file')
-    parser.add_argument('input_csv', help='Path to input CSV file containing repo URLs')
-    parser.add_argument('output_csv', help='Path to output CSV file for results')
+    parser.add_argument('input_csv', help='Path to input CSV file containing repo URLs (or filename in input_csv folder)')
+    parser.add_argument('output_csv', help='Path to output CSV file for results (or filename in output_csv folder)')
     parser.add_argument('--hackathon-start', default='2024-07-01', 
                        help='Hackathon start date (YYYY-MM-DD)')
     parser.add_argument('--hackathon-end', default='2024-12-31',
@@ -21,6 +21,18 @@ def main():
     args = parser.parse_args()
     
     try:
+        # Handle input/output paths
+        input_path = args.input_csv
+        output_path = args.output_csv
+        
+        # If just filename provided, assume it's in the input_csv folder
+        if not input_path.startswith('/') and not input_path.startswith('./') and not input_path.startswith('../'):
+            input_path = f"input_csv/{input_path}"
+        
+        # If just filename provided, assume it's in the output_csv folder
+        if not output_path.startswith('/') and not output_path.startswith('./') and not output_path.startswith('../'):
+            output_path = f"output_csv/{output_path}"
+        
         # Initialize evaluator
         print("Initializing ICP Project Evaluator...")
         evaluator = ICPProjectEvaluator()
@@ -36,8 +48,8 @@ def main():
         print(f"Hackathon period: {evaluator.hackathon_start.strftime('%Y-%m-%d')} to {evaluator.hackathon_end.strftime('%Y-%m-%d')}")
         
         # Run evaluation
-        print(f"Starting evaluation of projects from: {args.input_csv}")
-        results = evaluator.evaluate_projects_from_csv(args.input_csv, args.output_csv)
+        print(f"Starting evaluation of projects from: {input_path}")
+        results = evaluator.evaluate_projects_from_csv(input_path, output_path)
         
         # Print summary
         print("\n" + "="*50)
@@ -55,7 +67,7 @@ def main():
         for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
             print(f"{idx}. {project['project_name']} - Score: {project['total_score']}")
         
-        print(f"\nResults saved to: {args.output_csv}")
+        print(f"\nResults saved to: {output_path}")
         
     except Exception as e:
         print(f"Error: {e}")

@@ -50,8 +50,13 @@ ehthumbs.db
 Thumbs.db
 
 # Output files
-*.csv
+# *.csv
 !sample_input.csv
+
+# Organized folders
+# input_csv/*.csv
+# !input_csv/sample_input.csv
+# output_csv/*.csv
 
 # Logs
 *.log 
