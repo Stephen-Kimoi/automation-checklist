@@ -17,6 +17,8 @@ def main():
                        help='Hackathon start date (YYYY-MM-DD)')
     parser.add_argument('--hackathon-end', default='2024-12-31',
                        help='Hackathon end date (YYYY-MM-DD)')
+    parser.add_argument('--no-report', action='store_true',
+                       help='Skip generating detailed report (CSV only)')
     
     args = parser.parse_args()
     
@@ -49,7 +51,9 @@ def main():
         
         # Run evaluation
         print(f"Starting evaluation of projects from: {input_path}")
-        results = evaluator.evaluate_projects_from_csv(input_path, output_path)
+        
+        # Run evaluation
+        results = evaluator.evaluate_projects_from_csv(input_path, output_path, generate_report=not args.no_report)
         
         # Print summary
         print("\n" + "="*50)

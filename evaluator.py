@@ -274,8 +274,12 @@ class ICPProjectEvaluator:
             # Calculate total score
             total_score = readme_installation_score + readme_quality_score + commit_score
             
-            # Combine comments
-            all_comments = f"README Installation: {readme_installation_comments} | README Quality: {readme_quality_comments} | Commit Activity: {commit_comments}"
+            # Create structured comments
+            all_comments = f"""README Installation: {readme_installation_comments}
+
+README Quality: {readme_quality_comments}
+
+Commit Activity: {commit_comments}"""
             
             return {
                 'project_name': f"{owner}/{repo_name}",
@@ -299,7 +303,7 @@ class ICPProjectEvaluator:
                 'comments': f"Error during evaluation: {e}"
             }
     
-    def evaluate_projects_from_csv(self, input_csv_path: str, output_csv_path: str):
+    def evaluate_projects_from_csv(self, input_csv_path: str, output_csv_path: str, generate_report: bool = True):
         """Evaluate all projects from input CSV and save results to output CSV."""
         # Read input CSV
         df = pd.read_csv(input_csv_path)
@@ -324,4 +328,79 @@ class ICPProjectEvaluator:
         results_df.to_csv(output_csv_path, index=False)
         print(f"Results saved to: {output_csv_path}")
         
-        return results_df 
+        # Also create a detailed report if requested
+        if generate_report:
+            report_path = output_csv_path.replace('.csv', '_detailed_report.txt')
+            self.create_detailed_report(results_df, report_path)
+        
+        return results_df
+    
+    def create_detailed_report(self, results_df: pd.DataFrame, report_path: str):
+        """Create a detailed, readable report from evaluation results."""
+        with open(report_path, 'w') as f:
+            f.write("=" * 80 + "\n")
+            f.write("ICP PROJECT EVALUATION REPORT\n")
+            f.write("=" * 80 + "\n\n")
+            
+            f.write(f"Evaluation Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"Hackathon Period: {self.hackathon_start.strftime('%Y-%m-%d')} to {self.hackathon_end.strftime('%Y-%m-%d')}\n")
+            f.write(f"Total Projects Evaluated: {len(results_df)}\n\n")
+            
+            # Summary statistics
+            f.write("SUMMARY STATISTICS\n")
+            f.write("-" * 40 + "\n")
+            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/15\n")
+            f.write(f"Average README Installation Score: {results_df['readme_installation_score'].mean():.2f}/5\n")
+            f.write(f"Average README Quality Score: {results_df['readme_quality_score'].mean():.2f}/5\n")
+            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/5\n\n")
+            
+            # Top performers
+            top_projects = results_df.nlargest(5, 'total_score')
+            f.write("TOP 5 PROJECTS BY TOTAL SCORE\n")
+            f.write("-" * 40 + "\n")
+            for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
+                f.write(f"{idx}. {project['project_name']} - Score: {project['total_score']}/15\n")
+                f.write(f"   GitHub: {project['github_link']}\n")
+                f.write(f"   README Installation: {project['readme_installation_score']}/5\n")
+                f.write(f"   README Quality: {project['readme_quality_score']}/5\n")
+                f.write(f"   Commit Activity: {project['commit_activity_score']}/5\n\n")
+            
+            # Detailed project evaluations
+            f.write("DETAILED PROJECT EVALUATIONS\n")
+            f.write("=" * 80 + "\n\n")
+            
+            for idx, (_, project) in enumerate(results_df.iterrows(), 1):
+                f.write(f"PROJECT {idx}: {project['project_name']}\n")
+                f.write("-" * 60 + "\n")
+                f.write(f"GitHub Link: {project['github_link']}\n")
+                f.write(f"Total Score: {project['total_score']}/15\n")
+                f.write(f"README Installation: {project['readme_installation_score']}/5\n")
+                f.write(f"README Quality: {project['readme_quality_score']}/5\n")
+                f.write(f"Commit Activity: {project['commit_activity_score']}/5\n\n")
+                
+                # Parse and format comments
+                comments = project['comments']
+                if 'README Installation:' in comments:
+                    parts = comments.split('README Installation:')
+                    if len(parts) > 1:
+                        readme_install = parts[1].split('README Quality:')[0].strip()
+                        f.write("README Installation Evaluation:\n")
+                        f.write(f"  {readme_install}\n\n")
+                
+                if 'README Quality:' in comments:
+                    parts = comments.split('README Quality:')
+                    if len(parts) > 1:
+                        readme_quality = parts[1].split('Commit Activity:')[0].strip()
+                        f.write("README Quality Evaluation:\n")
+                        f.write(f"  {readme_quality}\n\n")
+                
+                if 'Commit Activity:' in comments:
+                    parts = comments.split('Commit Activity:')
+                    if len(parts) > 1:
+                        commit_activity = parts[1].strip()
+                        f.write("Commit Activity Evaluation:\n")
+                        f.write(f"  {commit_activity}\n\n")
+                
+                f.write("\n" + "=" * 80 + "\n\n")
+        
+        print(f"Detailed report saved to: {report_path}") 
