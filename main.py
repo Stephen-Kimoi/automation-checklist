@@ -23,39 +23,32 @@ def main():
     args = parser.parse_args()
     
     try:
-        # Handle input/output paths
         input_path = args.input_csv
         output_path = args.output_csv
         
-        # If just filename provided, assume it's in the input_csv folder
         if not input_path.startswith('/') and not input_path.startswith('./') and not input_path.startswith('../'):
             input_path = f"input_csv/{input_path}"
         
-        # If just filename provided, assume it's in the output_csv folder
         if not output_path.startswith('/') and not output_path.startswith('./') and not output_path.startswith('../'):
             output_path = f"output_csv/{output_path}"
         
-        # Initialize evaluator
         print("Initializing ICP Project Evaluator...")
         evaluator = ICPProjectEvaluator()
         
-        # Update hackathon dates if provided
+        print("Updating hackathon dates if provided:")
         if args.hackathon_start != '2024-07-01':
             from datetime import datetime
-            evaluator.hackathon_start = datetime.strptime(args.hackathon_start, '%Y-%m-%d')
+            evaluator.hackathon_start = datetime.strptime(args.hackathon_start, '%Y-%m-%d').replace(tzinfo=None)
         if args.hackathon_end != '2024-12-31':
             from datetime import datetime
-            evaluator.hackathon_end = datetime.strptime(args.hackathon_end, '%Y-%m-%d')
+            evaluator.hackathon_end = datetime.strptime(args.hackathon_end, '%Y-%m-%d').replace(tzinfo=None)
         
         print(f"Hackathon period: {evaluator.hackathon_start.strftime('%Y-%m-%d')} to {evaluator.hackathon_end.strftime('%Y-%m-%d')}")
         
-        # Run evaluation
         print(f"Starting evaluation of projects from: {input_path}")
         
-        # Run evaluation
         results = evaluator.evaluate_projects_from_csv(input_path, output_path, generate_report=not args.no_report)
         
-        # Print summary
         print("\n" + "="*50)
         print("EVALUATION SUMMARY")
         print("="*50)
@@ -65,8 +58,8 @@ def main():
         print(f"Average README quality score: {results['readme_quality_score'].mean():.2f}")
         print(f"Average commit activity score: {results['commit_activity_score'].mean():.2f}")
         
-        # Top 3 projects
         print("\nTop 3 Projects by Total Score:")
+        
         top_projects = results.nlargest(3, 'total_score')
         for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
             print(f"{idx}. {project['project_name']} - Score: {project['total_score']}")

@@ -90,8 +90,12 @@ class ICPProjectEvaluator:
             commits = repo.get_commits(sha=branch, since=self.hackathon_start, until=self.hackathon_end)
             commit_data = []
             for commit in commits:
-                # Convert timezone-aware datetime to naive datetime for comparison
-                commit_date = commit.commit.author.date.replace(tzinfo=None)
+                commit_date = commit.commit.author.date
+                if commit_date.tzinfo is not None:
+                    from datetime import timezone
+                    commit_date = commit_date.astimezone(timezone.utc).replace(tzinfo=None)
+                else:
+                    commit_date = commit_date.replace(tzinfo=None)
                 commit_data.append({
                     'sha': commit.sha,
                     'date': commit_date,
@@ -336,7 +340,7 @@ class ICPProjectEvaluator:
     
     def evaluate_projects_from_csv(self, input_csv_path: str, output_csv_path: str, generate_report: bool = True):
         """Evaluate all projects from input CSV and save results to output CSV."""
-        # Read input CSV
+        print('Reading input CSV...')
         df = pd.read_csv(input_csv_path)
         
         if 'repo_url' not in df.columns:
@@ -352,14 +356,14 @@ class ICPProjectEvaluator:
             # Print progress
             print(f"Completed {index + 1}/{len(df)} projects")
         
-        # Create results DataFrame
+        print('Creating results DataFrame...')
         results_df = pd.DataFrame(results)
         
-        # Save to CSV
+        print('Saving results to CSV...')
         results_df.to_csv(output_csv_path, index=False)
         print(f"Results saved to: {output_csv_path}")
         
-        # Also create a detailed report if requested
+        print('Generating detailed report...')
         if generate_report:
             report_path = output_csv_path.replace('.csv', '_detailed_report.txt')
             self.create_detailed_report(results_df, report_path)
@@ -377,7 +381,7 @@ class ICPProjectEvaluator:
             f.write(f"Hackathon Period: {self.hackathon_start.strftime('%Y-%m-%d')} to {self.hackathon_end.strftime('%Y-%m-%d')}\n")
             f.write(f"Total Projects Evaluated: {len(results_df)}\n\n")
             
-            # Summary statistics
+            print('Writing summary statistics...')
             f.write("SUMMARY STATISTICS\n")
             f.write("-" * 40 + "\n")
             f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/15\n")
@@ -385,7 +389,7 @@ class ICPProjectEvaluator:
             f.write(f"Average README Quality Score: {results_df['readme_quality_score'].mean():.2f}/5\n")
             f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/5\n\n")
             
-            # Top performers
+            print('Writing top performers...')
             top_projects = results_df.nlargest(5, 'total_score')
             f.write("TOP 5 PROJECTS BY TOTAL SCORE\n")
             f.write("-" * 40 + "\n")
@@ -396,7 +400,7 @@ class ICPProjectEvaluator:
                 f.write(f"   README Quality: {project['readme_quality_score']}/5\n")
                 f.write(f"   Commit Activity: {project['commit_activity_score']}/5\n\n")
             
-            # Detailed project evaluations
+            print('Writing detailed project evaluations...')
             f.write("DETAILED PROJECT EVALUATIONS\n")
             f.write("=" * 80 + "\n\n")
             
@@ -409,8 +413,8 @@ class ICPProjectEvaluator:
                 f.write(f"README Quality: {project['readme_quality_score']}/5\n")
                 f.write(f"Commit Activity: {project['commit_activity_score']}/5\n\n")
                 
-                # Parse and format comments
-                comments = project['comments']
+                print('Parsing and formatting comments...')
+                comments = project['readme_installation_comments']
                 if 'README Installation:' in comments:
                     parts = comments.split('README Installation:')
                     if len(parts) > 1:
