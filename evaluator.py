@@ -104,6 +104,59 @@ class ICPProjectEvaluator:
             print(f"Error fetching commits for {owner}/{repo_name}: {e}")
             return []
     
+    def evaluate_readme_quality(self, readme_content: str) -> tuple:
+        """Evaluate README for grammatical quality and structure, using chunking if needed."""
+        chunks = self.chunk_text(readme_content)
+        score = 0
+        comments = ""
+        for chunk in chunks:
+            prompt = f"""
+            You are an expert technical writer evaluating a project's README file for clarity, structure, and grammatical quality.
+            
+            README Content:
+            {chunk}
+            
+            Task: Rate the clarity and structure of this README on a scale from 1-5.
+            
+            Scoring Criteria:
+            5 - Excellent: Well-structured, clear, professional writing with good formatting
+            4 - Good: Generally clear with minor structural or grammatical issues
+            3 - Fair: Understandable but could benefit from better organization
+            2 - Poor: Unclear structure, multiple grammatical errors
+            1 - Very Poor: Poorly written, difficult to understand, major issues
+            
+            Consider:
+            - Grammar and spelling
+            - Logical structure and flow
+            - Use of headers and formatting
+            - Clarity of explanations
+            - Professional presentation
+            
+            Respond in this exact format:
+            Score: [1-5]
+            Comments: [Your detailed explanation. If you cannot assess, say so explicitly.]
+            """
+            try:
+                response = self.llm.invoke([HumanMessage(content=prompt)])
+                response_text = response.content
+                lines = response_text.split('\n')
+                for line in lines:
+                    if line.startswith('Score:'):
+                        try:
+                            score = int(line.split(':')[1].strip())
+                        except Exception:
+                            score = 0
+                    elif line.startswith('Comments:'):
+                        comments = line.split(':', 1)[1].strip()
+                if comments and comments.lower() != 'no quality assessment provided.':
+                    break
+            except Exception as e:
+                print(f"Error evaluating README quality: {e}")
+                continue
+        if not comments:
+            comments = "No quality assessment provided."
+        return score, comments
+
     def evaluate_readme_installation(self, readme_content: str) -> tuple:
         """Evaluate README for installation steps, using section extraction and chunking."""
         section = self.extract_installation_section(readme_content)
@@ -139,6 +192,8 @@ class ICPProjectEvaluator:
         - Are there any prerequisites mentioned?
         - Is the installation process easy to follow?
         
+        If the README provides a basic overview of how to run the project, that is sufficient for a score of 3 or above. Do not be overly critical if the basics are present.
+        
         Respond in this exact format:
         Score: [1-5]
         Comments: [Your detailed explanation. If there are no installation steps, say so explicitly.]
@@ -160,76 +215,24 @@ class ICPProjectEvaluator:
                         score = 0
                 elif line.startswith('Comments:'):
                     comments = line.split(':', 1)[1].strip()
+            # Post-process: If basics are present, remove excessive nitpicking
+            if score >= 3 and 'missing' in comments.lower() and 'basic' in comments.lower():
+                comments = "The README provides a basic overview of how to run the project, which is sufficient."
             if not comments:
                 comments = "No installation steps found."
             return score, comments
         except Exception as e:
             print(f"Error evaluating README installation: {e}")
             return 0, f"Error during evaluation: {e}"
-    
-    def evaluate_readme_quality(self, readme_content: str) -> tuple:
-        """Evaluate README for grammatical quality and structure, using chunking if needed."""
-        chunks = self.chunk_text(readme_content)
-        prompt = f"""
-        You are an expert technical writer evaluating a project's README file for clarity, structure, and grammatical quality.
-        
-        README Content:
-        {chunks[0]}
-        
-        Task: Rate the clarity and structure of this README on a scale from 1-5.
-        
-        Scoring Criteria:
-        5 - Excellent: Well-structured, clear, professional writing with good formatting
-        4 - Good: Generally clear with minor structural or grammatical issues
-        3 - Fair: Understandable but could benefit from better organization
-        2 - Poor: Unclear structure, multiple grammatical errors
-        1 - Very Poor: Poorly written, difficult to understand, major issues
-        
-        Consider:
-        - Grammar and spelling
-        - Logical structure and flow
-        - Use of headers and formatting
-        - Clarity of explanations
-        - Professional presentation
-        
-        Respond in this exact format:
-        Score: [1-5]
-        Comments: [Your detailed explanation. If you cannot assess, say so explicitly.]
-        """
-        try:
-            response = self.llm.invoke([HumanMessage(content=prompt)])
-            response_text = response.content
-            
-            # Parse response
-            lines = response_text.split('\n')
-            score = 0
-            comments = ""
-            
-            for line in lines:
-                if line.startswith('Score:'):
-                    try:
-                        score = int(line.split(':')[1].strip())
-                    except Exception:
-                        score = 0
-                elif line.startswith('Comments:'):
-                    comments = line.split(':', 1)[1].strip()
-            if not comments:
-                comments = "No quality assessment provided."
-            return score, comments
-        except Exception as e:
-            print(f"Error evaluating README quality: {e}")
-            return 0, f"Error during evaluation: {e}"
-    
+
     def evaluate_commit_activity(self, commits: list) -> tuple:
         """Evaluate commit activity during hackathon period."""
         if not commits:
             return 1, "No commits found during hackathon period."
-        try:
-            hackathon_commits = [c for c in commits if self.hackathon_start <= c['date'] <= self.hackathon_end]
-        except Exception as e:
-            print(f"Error comparing commit dates: {e}")
-            return 1, f"Error evaluating commit dates: {e}"
-        
+        # Only use commits in the hackathon period
+        hackathon_commits = [c for c in commits if self.hackathon_start <= c['date'] <= self.hackathon_end]
+        if not hackathon_commits:
+            return 1, "No commits found during hackathon period."
         prompt = f"""
         You are evaluating a project's commit activity during a hackathon period.
         
@@ -237,7 +240,6 @@ class ICPProjectEvaluator:
         
         Commit Data:
         Total commits during hackathon: {len(hackathon_commits)}
-        Total commits in repository: {len(commits)}
         
         Recent commit messages (last 5):
         {[c['message'][:100] + '...' if len(c['message']) > 100 else c['message'] for c in hackathon_commits[:5]]}
