@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Tuple
 from github import Github
 from langchain_groq import ChatGroq
@@ -30,9 +30,9 @@ class ICPProjectEvaluator:
             model_name="llama3-8b-8192"
         )
         
-        # Hackathon period (adjust as needed)
-        self.hackathon_start = datetime(2024, 7, 1).replace(tzinfo=None)
-        self.hackathon_end = datetime.now().replace(tzinfo=None)  # Use current date as hackathon end
+        print("Initializing hackathon period...")
+        self.hackathon_start = datetime(2025, 7, 1, tzinfo=timezone.utc)
+        self.hackathon_end = datetime(2025, 7, 21, tzinfo=timezone.utc)
     
     def extract_repo_info(self, repo_url: str) -> Tuple[str, str]:
         """Extract owner and repo name from GitHub URL."""
@@ -90,12 +90,7 @@ class ICPProjectEvaluator:
             commits = repo.get_commits(sha=branch, since=self.hackathon_start, until=self.hackathon_end)
             commit_data = []
             for commit in commits:
-                commit_date = commit.commit.author.date
-                if commit_date.tzinfo is not None:
-                    from datetime import timezone
-                    commit_date = commit_date.astimezone(timezone.utc).replace(tzinfo=None)
-                else:
-                    commit_date = commit_date.replace(tzinfo=None)
+                commit_date = commit.commit.author.date 
                 commit_data.append({
                     'sha': commit.sha,
                     'date': commit_date,

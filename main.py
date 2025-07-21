@@ -8,14 +8,15 @@ This script evaluates ICP projects based on README quality and commit activity.
 import argparse
 import sys
 from evaluator import ICPProjectEvaluator
+from datetime import datetime, timezone
 
 def main():
     parser = argparse.ArgumentParser(description='Evaluate ICP projects from CSV file')
     parser.add_argument('input_csv', help='Path to input CSV file containing repo URLs (or filename in input_csv folder)')
     parser.add_argument('output_csv', help='Path to output CSV file for results (or filename in output_csv folder)')
-    parser.add_argument('--hackathon-start', default='2024-07-01', 
+    parser.add_argument('--hackathon-start', default='2025-07-01', 
                        help='Hackathon start date (YYYY-MM-DD)')
-    parser.add_argument('--hackathon-end', default='2024-12-31',
+    parser.add_argument('--hackathon-end', default='2025-07-21',
                        help='Hackathon end date (YYYY-MM-DD)')
     parser.add_argument('--no-report', action='store_true',
                        help='Skip generating detailed report (CSV only)')
@@ -35,13 +36,11 @@ def main():
         print("Initializing ICP Project Evaluator...")
         evaluator = ICPProjectEvaluator()
         
-        print("Updating hackathon dates if provided:")
-        if args.hackathon_start != '2024-07-01':
-            from datetime import datetime
-            evaluator.hackathon_start = datetime.strptime(args.hackathon_start, '%Y-%m-%d').replace(tzinfo=None)
-        if args.hackathon_end != '2024-12-31':
-            from datetime import datetime
-            evaluator.hackathon_end = datetime.strptime(args.hackathon_end, '%Y-%m-%d').replace(tzinfo=None)
+        print("Always set hackathon period as UTC-aware...")
+        evaluator.hackathon_start = datetime.strptime(args.hackathon_start, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        print("Hackathon start date: ", evaluator.hackathon_start)
+        evaluator.hackathon_end = datetime.strptime(args.hackathon_end, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        print("Hackathon end date: ", evaluator.hackathon_end)
         
         print(f"Hackathon period: {evaluator.hackathon_start.strftime('%Y-%m-%d')} to {evaluator.hackathon_end.strftime('%Y-%m-%d')}")
         
