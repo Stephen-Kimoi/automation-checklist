@@ -6,6 +6,7 @@ from github import Github
 from langchain_groq import ChatGroq
 from langchain.schema import HumanMessage
 from dotenv import load_dotenv
+import re
 
 load_dotenv()
 
@@ -53,29 +54,40 @@ class ICPProjectEvaluator:
         
         return owner, repo_name
     
+    def extract_installation_section(self, readme_content: str) -> str:
+        """Extract the Installation section from the README using regex."""
+        match = re.search(r'(#+\s*Installation[\s\S]+?)(?=\n#+|$)', readme_content, re.IGNORECASE)
+        if match:
+            return match.group(1)
+        return None
+
+    def chunk_text(self, text: str, chunk_size: int = 3500, overlap: int = 500):
+        """Split text into overlapping chunks for LLM processing."""
+        chunks = []
+        start = 0
+        while start < len(text):
+            end = min(start + chunk_size, len(text))
+            chunks.append(text[start:end])
+            start += chunk_size - overlap
+        return chunks
+
     def get_readme_content(self, owner: str, repo_name: str) -> str:
         """Fetch README content from GitHub repository."""
         try:
             repo = self.github.get_repo(f"{owner}/{repo_name}")
             readme = repo.get_readme()
             content = readme.decoded_content.decode('utf-8')
-            
-            # Truncate content if it's too large (to avoid Groq API limits)
-            # Keep first 4000 characters which should be enough for evaluation
-            if len(content) > 4000:
-                content = content[:4000] + "\n\n[Content truncated due to size limits]"
-            
             return content
         except Exception as e:
             print(f"Error fetching README for {owner}/{repo_name}: {e}")
             return ""
     
-    def get_commit_history(self, owner: str, repo_name: str) -> List[Dict]:
-        """Fetch commit history during hackathon period."""
+    def get_commit_history(self, owner: str, repo_name: str) -> list:
+        """Fetch commit history during hackathon period from the default branch only."""
         try:
             repo = self.github.get_repo(f"{owner}/{repo_name}")
-            commits = repo.get_commits(since=self.hackathon_start, until=self.hackathon_end)
-            
+            branch = repo.default_branch
+            commits = repo.get_commits(sha=branch, since=self.hackathon_start, until=self.hackathon_end)
             commit_data = []
             for commit in commits:
                 # Convert timezone-aware datetime to naive datetime for comparison
@@ -92,13 +104,25 @@ class ICPProjectEvaluator:
             print(f"Error fetching commits for {owner}/{repo_name}: {e}")
             return []
     
-    def evaluate_readme_installation(self, readme_content: str) -> Tuple[int, str]:
-        """Evaluate README for installation steps."""
+    def evaluate_readme_installation(self, readme_content: str) -> tuple:
+        """Evaluate README for installation steps, using section extraction and chunking."""
+        section = self.extract_installation_section(readme_content)
+        if section:
+            content_to_evaluate = section
+        else:
+            # Fallback: chunk README and search for installation steps in each chunk
+            chunks = self.chunk_text(readme_content)
+            found = None
+            for chunk in chunks:
+                if re.search(r'install|setup|getting started', chunk, re.IGNORECASE):
+                    found = chunk
+                    break
+            content_to_evaluate = found if found else readme_content[:3500]
         prompt = f"""
         You are an expert technical reviewer evaluating a project's README file for installation instructions.
         
         README Content:
-        {readme_content}
+        {content_to_evaluate}
         
         Task: Evaluate whether this README includes clear installation steps and assign a score from 1-5.
         
@@ -117,9 +141,8 @@ class ICPProjectEvaluator:
         
         Respond in this exact format:
         Score: [1-5]
-        Comments: [Your detailed explanation]
+        Comments: [Your detailed explanation. If there are no installation steps, say so explicitly.]
         """
-        
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
             response_text = response.content
@@ -131,22 +154,27 @@ class ICPProjectEvaluator:
             
             for line in lines:
                 if line.startswith('Score:'):
-                    score = int(line.split(':')[1].strip())
+                    try:
+                        score = int(line.split(':')[1].strip())
+                    except Exception:
+                        score = 0
                 elif line.startswith('Comments:'):
                     comments = line.split(':', 1)[1].strip()
-            
+            if not comments:
+                comments = "No installation steps found."
             return score, comments
         except Exception as e:
             print(f"Error evaluating README installation: {e}")
             return 0, f"Error during evaluation: {e}"
     
-    def evaluate_readme_quality(self, readme_content: str) -> Tuple[int, str]:
-        """Evaluate README for grammatical quality and structure."""
+    def evaluate_readme_quality(self, readme_content: str) -> tuple:
+        """Evaluate README for grammatical quality and structure, using chunking if needed."""
+        chunks = self.chunk_text(readme_content)
         prompt = f"""
         You are an expert technical writer evaluating a project's README file for clarity, structure, and grammatical quality.
         
         README Content:
-        {readme_content}
+        {chunks[0]}
         
         Task: Rate the clarity and structure of this README on a scale from 1-5.
         
@@ -166,9 +194,8 @@ class ICPProjectEvaluator:
         
         Respond in this exact format:
         Score: [1-5]
-        Comments: [Your detailed explanation]
+        Comments: [Your detailed explanation. If you cannot assess, say so explicitly.]
         """
-        
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
             response_text = response.content
@@ -180,21 +207,23 @@ class ICPProjectEvaluator:
             
             for line in lines:
                 if line.startswith('Score:'):
-                    score = int(line.split(':')[1].strip())
+                    try:
+                        score = int(line.split(':')[1].strip())
+                    except Exception:
+                        score = 0
                 elif line.startswith('Comments:'):
                     comments = line.split(':', 1)[1].strip()
-            
+            if not comments:
+                comments = "No quality assessment provided."
             return score, comments
         except Exception as e:
             print(f"Error evaluating README quality: {e}")
             return 0, f"Error during evaluation: {e}"
     
-    def evaluate_commit_activity(self, commits: List[Dict]) -> Tuple[int, str]:
+    def evaluate_commit_activity(self, commits: list) -> tuple:
         """Evaluate commit activity during hackathon period."""
         if not commits:
-            return 1, "No commits found during hackathon period"
-        
-        # Count commits during hackathon period
+            return 1, "No commits found during hackathon period."
         try:
             hackathon_commits = [c for c in commits if self.hackathon_start <= c['date'] <= self.hackathon_end]
         except Exception as e:
@@ -230,9 +259,8 @@ class ICPProjectEvaluator:
         
         Respond in this exact format:
         Score: [1-5]
-        Comments: [Your detailed explanation]
+        Comments: [Your detailed explanation. If there are no commits, say so explicitly.]
         """
-        
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
             response_text = response.content
@@ -244,10 +272,14 @@ class ICPProjectEvaluator:
             
             for line in lines:
                 if line.startswith('Score:'):
-                    score = int(line.split(':')[1].strip())
+                    try:
+                        score = int(line.split(':')[1].strip())
+                    except Exception:
+                        score = 0
                 elif line.startswith('Comments:'):
                     comments = line.split(':', 1)[1].strip()
-            
+            if not comments:
+                comments = "No commits during hackathon period."
             return score, comments
         except Exception as e:
             print(f"Error evaluating commit activity: {e}")
