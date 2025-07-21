@@ -274,13 +274,6 @@ class ICPProjectEvaluator:
             # Calculate total score
             total_score = readme_installation_score + readme_quality_score + commit_score
             
-            # Create structured comments
-            all_comments = f"""README Installation: {readme_installation_comments}
-
-README Quality: {readme_quality_comments}
-
-Commit Activity: {commit_comments}"""
-            
             return {
                 'project_name': f"{owner}/{repo_name}",
                 'github_link': repo_url,
@@ -288,7 +281,9 @@ Commit Activity: {commit_comments}"""
                 'readme_quality_score': readme_quality_score,
                 'commit_activity_score': commit_score,
                 'total_score': total_score,
-                'comments': all_comments
+                'readme_installation_comments': readme_installation_comments,
+                'readme_quality_comments': readme_quality_comments,
+                'commit_activity_comments': commit_comments
             }
             
         except Exception as e:
@@ -300,7 +295,9 @@ Commit Activity: {commit_comments}"""
                 'readme_quality_score': 0,
                 'commit_activity_score': 0,
                 'total_score': 0,
-                'comments': f"Error during evaluation: {e}"
+                'readme_installation_comments': f"Error during evaluation: {e}",
+                'readme_quality_comments': f"Error during evaluation: {e}",
+                'commit_activity_comments': f"Error during evaluation: {e}"
             }
     
     def evaluate_projects_from_csv(self, input_csv_path: str, output_csv_path: str, generate_report: bool = True):
