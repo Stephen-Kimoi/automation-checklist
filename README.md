@@ -22,6 +22,22 @@ GITHUB_TOKEN=your_github_token_here
 
 ### Basic Usage
 
+1. Create a virtual environment: 
+```bash
+python3 -m venv venv 
+```
+
+2. Activate the virtual environment: 
+```bash
+source venv/bin/activate 
+```
+
+3. Install requirements: 
+```bash
+pip3 install -r requirements.txt   
+```
+
+3. Run the script: 
 ```bash
 python main.py input.csv output.csv
 ```
