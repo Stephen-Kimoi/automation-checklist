@@ -316,30 +316,49 @@ class ICPProjectEvaluator:
         """Evaluate a Candid interface using the LLM."""
         if not candid_content:
             return 0, "No Candid (.did) file found in the repository."
+        
+        # Truncate very large Candid files to avoid token limits
+        max_content_length = 3000  # characters
+        if len(candid_content) > max_content_length:
+            candid_content = candid_content[:max_content_length] + "\n\n[Content truncated due to size]"
         prompt = f"""
         You are an expert ICP developer reviewing a Candid interface for a canister.
 
         Candid Interface:
         {candid_content}
 
-        Evaluate the following:
-        - Are the function names and types clear and descriptive?
-        - Are errors handled explicitly?
-        - Is the interface well-documented and minimal?
-        - Are best practices followed for type and method design?
+        Evaluate the following aspects:
+        1. Function naming: Are function names clear and descriptive?
+        2. Type definitions: Are types well-defined and appropriate?
+        3. Error handling: Are errors handled explicitly with proper types?
+        4. Interface design: Is the interface minimal and well-structured?
+        5. Documentation: Are there helpful comments or documentation?
 
-        Rate the API design on a scale from 1-5 and provide detailed comments.
+        Rate the API design on a scale from 1-5:
+        5 - Excellent: Clear, well-documented, follows best practices
+        4 - Good: Generally well-designed with minor issues
+        3 - Fair: Functional but could be improved
+        2 - Poor: Has significant design issues
+        1 - Very Poor: Poorly designed or incomplete
 
-        Respond in this exact format:
-        Score: [1-5]
-        Comments: [Your detailed explanation]
+        You MUST respond in this exact format:
+        Score: [number 1-5]
+        Comments: [detailed explanation of your evaluation, including specific observations about the interface design]
+
+        Example response:
+        Score: 4
+        Comments: The interface shows good design with clear function names like 'transfer' and 'get_balance'. Types are well-defined using 'Nat' for amounts and 'Principal' for addresses. However, error handling could be improved with more specific error types.
         """
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
             response_text = response.content
+            
+
+            
             lines = response_text.split('\n')
             score = 0
             comments = ""
+            
             for line in lines:
                 if line.startswith('Score:'):
                     try:
@@ -348,8 +367,20 @@ class ICPProjectEvaluator:
                         score = 0
                 elif line.startswith('Comments:'):
                     comments = line.split(':', 1)[1].strip()
+            
+            # If we didn't find comments in the expected format, try to extract from the response
             if not comments:
-                comments = "No comments provided."
+                # Look for any text after "Comments:" or try to extract meaningful content
+                if 'Comments:' in response_text:
+                    comments = response_text.split('Comments:', 1)[1].strip()
+                else:
+                    # If no structured response, use the entire response as comments
+                    comments = response_text.strip()
+                    if comments:
+                        comments = f"Evaluation: {comments}"
+                    else:
+                        comments = "No comments provided."
+            
             return score, comments
         except Exception as e:
             print(f"Error evaluating Candid interface: {e}")

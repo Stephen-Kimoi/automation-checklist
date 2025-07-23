@@ -2,31 +2,31 @@
 ICP PROJECT EVALUATION REPORT
 ================================================================================
 
-Evaluation Date: 2025-07-23 23:36:49
+Evaluation Date: 2025-07-23 23:49:10
 Hackathon Period: 2025-07-01 to 2025-07-21
 Total Projects Evaluated: 2
 
 SUMMARY STATISTICS
 ----------------------------------------
-Average Total Score: 13.93/15
+Average Total Score: 14.36/15
 Average README Installation Score: 3.50/5
-Average README Quality Score: 3.00/5
-Average Commit Activity Score: 4.00/5
-Average Candid API Score: 3.43/5
+Average README Quality Score: 4.00/5
+Average Commit Activity Score: 3.50/5
+Average Candid API Score: 3.35/5
 
 TOP 5 PROJECTS BY TOTAL SCORE
 ----------------------------------------
-1. aliscie2/oDoc - Score: 14.86/15
+1. aliscie2/oDoc - Score: 14.71/15
    GitHub: https://github.com/aliscie2/oDoc
    README Installation: 4/5
-   README Quality: 3/5
-   Commit Activity: 5/5
-   Candid API: 2.86/5
+   README Quality: 4/5
+   Commit Activity: 4/5
+   Candid API: 2.71/5
 
-2. ZeyaRabani/BIT10 - Score: 13.0/15
+2. ZeyaRabani/BIT10 - Score: 14.0/15
    GitHub: https://github.com/ZeyaRabani/BIT10
    README Installation: 3/5
-   README Quality: 3/5
+   README Quality: 4/5
    Commit Activity: 3/5
    Candid API: 4.0/5
 
@@ -36,9 +36,9 @@ DETAILED PROJECT EVALUATIONS
 PROJECT 1: ZeyaRabani/BIT10
 ------------------------------------------------------------
 GitHub Link: https://github.com/ZeyaRabani/BIT10
-Total Score: 13.0/15
+Total Score: 14.0/15
 README Installation: 3/5
-README Quality: 3/5
+README Quality: 4/5
 Commit Activity: 3/5
 Candid API: 4.0/5
 
@@ -48,11 +48,11 @@ Candid API: 4.0/5
 PROJECT 2: aliscie2/oDoc
 ------------------------------------------------------------
 GitHub Link: https://github.com/aliscie2/oDoc
-Total Score: 14.86/15
+Total Score: 14.71/15
 README Installation: 4/5
-README Quality: 3/5
-Commit Activity: 5/5
-Candid API: 2.86/5
+README Quality: 4/5
+Commit Activity: 4/5
+Candid API: 2.71/5
 
 
 ================================================================================
