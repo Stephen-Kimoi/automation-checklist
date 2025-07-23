@@ -7,6 +7,7 @@ from langchain_groq import ChatGroq
 from langchain.schema import HumanMessage
 from dotenv import load_dotenv
 import re
+import glob
 
 load_dotenv()
 
@@ -286,8 +287,75 @@ class ICPProjectEvaluator:
             print(f"Error evaluating commit activity: {e}")
             return 0, f"Error during evaluation: {e}"
     
+    def find_candid_file(self, owner: str, repo_name: str) -> str:
+        """Try to find a .did file in the repo using the GitHub API."""
+        try:
+            repo = self.github.get_repo(f"{owner}/{repo_name}")
+            contents = repo.get_contents("")
+            # Search root and common subdirs
+            candidates = [c for c in contents if c.name.endswith('.did')]
+            if not candidates:
+                # Check common subdirs
+                for subdir in ['backend', 'canisters', 'src']:
+                    try:
+                        sub_contents = repo.get_contents(subdir)
+                        candidates += [c for c in sub_contents if c.name.endswith('.did')]
+                    except Exception:
+                        continue
+            if candidates:
+                # Return the content of the first .did file found
+                did_file = candidates[0]
+                return did_file.decoded_content.decode('utf-8')
+            else:
+                return None
+        except Exception as e:
+            print(f"Error finding Candid file for {owner}/{repo_name}: {e}")
+            return None
+
+    def evaluate_candid_interface(self, candid_content: str) -> tuple:
+        """Evaluate a Candid interface using the LLM."""
+        if not candid_content:
+            return 0, "No Candid (.did) file found in the repository."
+        prompt = f"""
+        You are an expert ICP developer reviewing a Candid interface for a canister.
+
+        Candid Interface:
+        {candid_content}
+
+        Evaluate the following:
+        - Are the function names and types clear and descriptive?
+        - Are errors handled explicitly?
+        - Is the interface well-documented and minimal?
+        - Are best practices followed for type and method design?
+
+        Rate the API design on a scale from 1-5 and provide detailed comments.
+
+        Respond in this exact format:
+        Score: [1-5]
+        Comments: [Your detailed explanation]
+        """
+        try:
+            response = self.llm.invoke([HumanMessage(content=prompt)])
+            response_text = response.content
+            lines = response_text.split('\n')
+            score = 0
+            comments = ""
+            for line in lines:
+                if line.startswith('Score:'):
+                    try:
+                        score = int(line.split(':')[1].strip())
+                    except Exception:
+                        score = 0
+                elif line.startswith('Comments:'):
+                    comments = line.split(':', 1)[1].strip()
+            if not comments:
+                comments = "No comments provided."
+            return score, comments
+        except Exception as e:
+            print(f"Error evaluating Candid interface: {e}")
+            return 0, f"Error during evaluation: {e}"
+
     def evaluate_project(self, repo_url: str) -> Dict:
-        """Evaluate a single project and return results."""
         print(f"Evaluating: {repo_url}")
         
         try:
@@ -296,6 +364,7 @@ class ICPProjectEvaluator:
             # Get project data
             readme_content = self.get_readme_content(owner, repo_name)
             commits = self.get_commit_history(owner, repo_name)
+            candid_content = self.find_candid_file(owner, repo_name)
             
             # Evaluate README
             readme_installation_score, readme_installation_comments = self.evaluate_readme_installation(readme_content)
@@ -304,8 +373,11 @@ class ICPProjectEvaluator:
             # Evaluate commit activity
             commit_score, commit_comments = self.evaluate_commit_activity(commits)
             
-            # Calculate total score
-            total_score = readme_installation_score + readme_quality_score + commit_score
+            # Evaluate Candid interface
+            candid_api_score, candid_api_comments = self.evaluate_candid_interface(candid_content)
+            
+            # Calculate total score (add candid_api_score)
+            total_score = readme_installation_score + readme_quality_score + commit_score + candid_api_score
             
             return {
                 'project_name': f"{owner}/{repo_name}",
@@ -313,10 +385,12 @@ class ICPProjectEvaluator:
                 'readme_installation_score': readme_installation_score,
                 'readme_quality_score': readme_quality_score,
                 'commit_activity_score': commit_score,
+                'candid_api_score': candid_api_score,
                 'total_score': total_score,
                 'readme_installation_comments': readme_installation_comments,
                 'readme_quality_comments': readme_quality_comments,
-                'commit_activity_comments': commit_comments
+                'commit_activity_comments': commit_comments,
+                'candid_api_comments': candid_api_comments
             }
             
         except Exception as e:
@@ -327,10 +401,12 @@ class ICPProjectEvaluator:
                 'readme_installation_score': 0,
                 'readme_quality_score': 0,
                 'commit_activity_score': 0,
+                'candid_api_score': 0,
                 'total_score': 0,
                 'readme_installation_comments': f"Error during evaluation: {e}",
                 'readme_quality_comments': f"Error during evaluation: {e}",
-                'commit_activity_comments': f"Error during evaluation: {e}"
+                'commit_activity_comments': f"Error during evaluation: {e}",
+                'candid_api_comments': f"Error during evaluation: {e}"
             }
     
     def evaluate_projects_from_csv(self, input_csv_path: str, output_csv_path: str, generate_report: bool = True):
@@ -382,7 +458,8 @@ class ICPProjectEvaluator:
             f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/15\n")
             f.write(f"Average README Installation Score: {results_df['readme_installation_score'].mean():.2f}/5\n")
             f.write(f"Average README Quality Score: {results_df['readme_quality_score'].mean():.2f}/5\n")
-            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/5\n\n")
+            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/5\n")
+            f.write(f"Average Candid API Score: {results_df['candid_api_score'].mean():.2f}/5\n\n")
             
             print('Writing top performers...')
             top_projects = results_df.nlargest(5, 'total_score')
@@ -393,7 +470,8 @@ class ICPProjectEvaluator:
                 f.write(f"   GitHub: {project['github_link']}\n")
                 f.write(f"   README Installation: {project['readme_installation_score']}/5\n")
                 f.write(f"   README Quality: {project['readme_quality_score']}/5\n")
-                f.write(f"   Commit Activity: {project['commit_activity_score']}/5\n\n")
+                f.write(f"   Commit Activity: {project['commit_activity_score']}/5\n")
+                f.write(f"   Candid API: {project['candid_api_score']}/5\n\n")
             
             print('Writing detailed project evaluations...')
             f.write("DETAILED PROJECT EVALUATIONS\n")
@@ -406,7 +484,8 @@ class ICPProjectEvaluator:
                 f.write(f"Total Score: {project['total_score']}/15\n")
                 f.write(f"README Installation: {project['readme_installation_score']}/5\n")
                 f.write(f"README Quality: {project['readme_quality_score']}/5\n")
-                f.write(f"Commit Activity: {project['commit_activity_score']}/5\n\n")
+                f.write(f"Commit Activity: {project['commit_activity_score']}/5\n")
+                f.write(f"Candid API: {project['candid_api_score']}/5\n\n")
                 
                 print('Parsing and formatting comments...')
                 comments = project['readme_installation_comments']
@@ -430,6 +509,13 @@ class ICPProjectEvaluator:
                         commit_activity = parts[1].strip()
                         f.write("Commit Activity Evaluation:\n")
                         f.write(f"  {commit_activity}\n\n")
+                
+                if 'Candid API:' in comments:
+                    parts = comments.split('Candid API:')
+                    if len(parts) > 1:
+                        candid_api = parts[1].strip()
+                        f.write("Candid API Evaluation:\n")
+                        f.write(f"  {candid_api}\n\n")
                 
                 f.write("\n" + "=" * 80 + "\n\n")
         
