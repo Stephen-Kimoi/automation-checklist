@@ -257,7 +257,6 @@ class ICPProjectEvaluator:
         - Number of commits during hackathon period
         - Quality of commit messages
         - Consistency of development activity
-        - Whether commits show actual project development
         
         Respond in this exact format:
         Score: [1-5]
@@ -332,7 +331,6 @@ class ICPProjectEvaluator:
         2. Type definitions: Are types well-defined and appropriate?
         3. Error handling: Are errors handled explicitly with proper types?
         4. Interface design: Is the interface minimal and well-structured?
-        5. Documentation: Are there helpful comments or documentation?
 
         Rate the API design on a scale from 1-5:
         5 - Excellent: Clear, well-documented, follows best practices
@@ -343,7 +341,7 @@ class ICPProjectEvaluator:
 
         You MUST respond in this exact format:
         Score: [number 1-5]
-        Comments: [detailed explanation of your evaluation, including specific observations about the interface design]
+        Comments: [small explanation of your evaluation]
 
         Example response:
         Score: 4
