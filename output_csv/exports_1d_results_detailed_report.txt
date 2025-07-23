@@ -1,0 +1,655 @@
+================================================================================
+ICP PROJECT EVALUATION REPORT
+================================================================================
+
+Evaluation Date: 2025-07-23 15:05:57
+Hackathon Period: 2025-07-01 to 2025-07-21
+Total Projects Evaluated: 55
+
+SUMMARY STATISTICS
+----------------------------------------
+Average Total Score: 4.71/15
+Average README Installation Score: 1.65/5
+Average README Quality Score: 1.73/5
+Average Commit Activity Score: 1.33/5
+
+TOP 5 PROJECTS BY TOTAL SCORE
+----------------------------------------
+1. TheoJustin/sunshinev2 - Score: 12/15
+   GitHub: https://github.com/TheoJustin/sunshinev2
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 4/5
+
+2. petrakol/blockxpand-icp - Score: 12/15
+   GitHub: https://github.com/petrakol/blockxpand-icp
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 4/5
+
+3. aliscie2/oDoc - Score: 12/15
+   GitHub: https://github.com/aliscie2/oDoc
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 4/5
+
+4. FLUX-APP-LAB/flux - Score: 12/15
+   GitHub: https://github.com/FLUX-APP-LAB/flux
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 4/5
+
+5. Infoundr/infoundr-site - Score: 12/15
+   GitHub: https://github.com/Infoundr/infoundr-site
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 4/5
+
+DETAILED PROJECT EVALUATIONS
+================================================================================
+
+PROJECT 1: https://github.com/Beetrace-Ke
+------------------------------------------------------------
+GitHub Link: https://github.com/Beetrace-Ke
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 2: tomasz2001/voyager
+------------------------------------------------------------
+GitHub Link: https://github.com/tomasz2001/voyager
+Total Score: 9/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 2/5
+
+
+================================================================================
+
+PROJECT 3: Harshit457/QRewards
+------------------------------------------------------------
+GitHub Link: https://github.com/Harshit457/QRewards
+Total Score: 10/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 2/5
+
+
+================================================================================
+
+PROJECT 4: https://www.github.com/rhinospider
+------------------------------------------------------------
+GitHub Link: https://www.github.com/rhinospider
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 5: metapay-creator/MetaPayP2P-Clean
+------------------------------------------------------------
+GitHub Link: https://github.com/metapay-creator/MetaPayP2P-Clean
+Total Score: 11/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 6: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 7: TABBY-ARUH/cybersec-Ai-Agent
+------------------------------------------------------------
+GitHub Link: https://github.com/TABBY-ARUH/cybersec-Ai-Agent
+Total Score: 11/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+
+
+================================================================================
+
+PROJECT 8: TheoJustin/sunshinev2
+------------------------------------------------------------
+GitHub Link: https://github.com/TheoJustin/sunshinev2
+Total Score: 12/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 9: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 10: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 11: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 12: sarthakbahal/supply-chain
+------------------------------------------------------------
+GitHub Link: https://github.com/sarthakbahal/supply-chain
+Total Score: 6/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 3/5
+
+
+================================================================================
+
+PROJECT 13: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 14: Mina-Ibrahim-Mina/Renewables-Vault
+------------------------------------------------------------
+GitHub Link: https://github.com/Mina-Ibrahim-Mina/Renewables-Vault.git
+Total Score: 10/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 2/5
+
+
+================================================================================
+
+PROJECT 15: Arthur-Fialho/WCHL25-ScholarFlow
+------------------------------------------------------------
+GitHub Link: https://github.com/Arthur-Fialho/WCHL25-ScholarFlow
+Total Score: 11/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+
+
+================================================================================
+
+PROJECT 16: DcodeBlock/DcodeBlock_
+------------------------------------------------------------
+GitHub Link: https://github.com/DcodeBlock/DcodeBlock_
+Total Score: 4/15
+README Installation: 1/5
+README Quality: 2/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 17: petrakol/blockxpand-icp
+------------------------------------------------------------
+GitHub Link: https://github.com/petrakol/blockxpand-icp
+Total Score: 12/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 18: sirrauf/KuSehat-Web3
+------------------------------------------------------------
+GitHub Link: https://github.com/sirrauf/KuSehat-Web3
+Total Score: 11/15
+README Installation: 4/5
+README Quality: 3/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 19: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 20: Muggzie76/ic-dates
+------------------------------------------------------------
+GitHub Link: https://github.com/Muggzie76/ic-dates
+Total Score: 9/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 21: https://github.com/sindtext
+------------------------------------------------------------
+GitHub Link: https://github.com/sindtext
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 22: ZeyaRabani/BIT10
+------------------------------------------------------------
+GitHub Link: https://github.com/ZeyaRabani/BIT10
+Total Score: 10/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 3/5
+
+
+================================================================================
+
+PROJECT 23: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 24: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 25: Warmarth/MasteryMakers
+------------------------------------------------------------
+GitHub Link: https://github.com/Warmarth/MasteryMakers.git
+Total Score: 8/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 26: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 27: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 28: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 29: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 30: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 31: DB0SZ1/Coreon-AI
+------------------------------------------------------------
+GitHub Link: https://github.com/DB0SZ1/Coreon-AI.git
+Total Score: 4/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 32: aliscie2/oDoc
+------------------------------------------------------------
+GitHub Link: https://github.com/aliscie2/oDoc
+Total Score: 12/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 33: FLUX-APP-LAB/flux
+------------------------------------------------------------
+GitHub Link: https://github.com/FLUX-APP-LAB/flux
+Total Score: 12/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 34: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 35: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 36: Infoundr/infoundr-site
+------------------------------------------------------------
+GitHub Link: https://github.com/Infoundr/infoundr-site
+Total Score: 12/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 37: muslimalfatih/collective-impact
+------------------------------------------------------------
+GitHub Link: https://github.com/muslimalfatih/collective-impact
+Total Score: 8/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 38: luke-devel/signed-trade-frontend
+------------------------------------------------------------
+GitHub Link: https://github.com/luke-devel/signed-trade-frontend
+Total Score: 4/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 39: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 40: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 41: Kanha122/Revenue-Rescue
+------------------------------------------------------------
+GitHub Link: https://github.com/Kanha122/Revenue-Rescue.git
+Total Score: 8/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 42: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 43: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 44: doyler29/P2PFinance---Personal-Decentralized-Finance
+------------------------------------------------------------
+GitHub Link: https://github.com/doyler29/P2PFinance---Personal-Decentralized-Finance
+Total Score: 8/15
+README Installation: 1/5
+README Quality: 4/5
+Commit Activity: 3/5
+
+
+================================================================================
+
+PROJECT 45: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 46: vporton/icp-package-manager
+------------------------------------------------------------
+GitHub Link: https://github.com/vporton/icp-package-manager
+Total Score: 9/15
+README Installation: 2/5
+README Quality: 3/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 47: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 48: ethicaldao/ethicalaidao
+------------------------------------------------------------
+GitHub Link: https://github.com/ethicaldao/ethicalaidao
+Total Score: 9/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 49: sardariuss/dsonance
+------------------------------------------------------------
+GitHub Link: https://github.com/sardariuss/dsonance
+Total Score: 11/15
+README Installation: 4/5
+README Quality: 3/5
+Commit Activity: 4/5
+
+
+================================================================================
+
+PROJECT 50: https://github.com/zk-game-dao
+------------------------------------------------------------
+GitHub Link: https://github.com/zk-game-dao
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 51: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 52: ArnavLabh/GreenScan-Hack4Nature-Hackathon
+------------------------------------------------------------
+GitHub Link: https://github.com/ArnavLabh/GreenScan-Hack4Nature-Hackathon
+Total Score: 9/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+
+
+================================================================================
+
+PROJECT 53: LintDAO/pricelint
+------------------------------------------------------------
+GitHub Link: https://github.com/LintDAO/pricelint
+Total Score: 10/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 3/5
+
+
+================================================================================
+
+PROJECT 54: https://github.com/LotusWallet
+------------------------------------------------------------
+GitHub Link: https://github.com/LotusWallet
+Total Score: 0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+
+
+================================================================================
+
+PROJECT 55: franRappazzini/PayPeer
+------------------------------------------------------------
+GitHub Link: https://github.com/franRappazzini/PayPeer
+Total Score: 9/15
+README Installation: 1/5
+README Quality: 4/5
+Commit Activity: 4/5
+
+
+================================================================================
+
