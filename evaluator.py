@@ -355,6 +355,47 @@ class ICPProjectEvaluator:
             print(f"Error evaluating Candid interface: {e}")
             return 0, f"Error during evaluation: {e}"
 
+    def find_all_candid_files(self, owner: str, repo_name: str) -> list:
+        """Recursively find all .did files in the repo using the GitHub API."""
+        try:
+            repo = self.github.get_repo(f"{owner}/{repo_name}")
+            branch = repo.default_branch
+            tree = repo.get_git_tree(sha=branch, recursive=True)
+            did_files = [f.path for f in tree.tree if f.path.endswith('.did')]
+            return did_files
+        except Exception as e:
+            print(f"Error finding Candid files for {owner}/{repo_name}: {e}")
+            return []
+
+    def get_candid_file_content(self, repo, path: str) -> str:
+        try:
+            file_content = repo.get_contents(path)
+            return file_content.decoded_content.decode('utf-8')
+        except Exception as e:
+            print(f"Error fetching Candid file content at {path}: {e}")
+            return None
+
+    def evaluate_all_candid_interfaces(self, owner: str, repo_name: str) -> tuple:
+        """Find and evaluate all .did files, return aggregated score and all comments."""
+        try:
+            repo = self.github.get_repo(f"{owner}/{repo_name}")
+            did_files = self.find_all_candid_files(owner, repo_name)
+            if not did_files:
+                return 0, "No Candid (.did) file found in the repository."
+            scores = []
+            comments = []
+            for path in did_files:
+                content = self.get_candid_file_content(repo, path)
+                score, comment = self.evaluate_candid_interface(content)
+                scores.append(score)
+                comments.append(f"File: {path}\nScore: {score}\nComments: {comment}")
+            avg_score = round(sum(scores) / len(scores), 2) if scores else 0
+            all_comments = "\n\n".join(comments)
+            return avg_score, all_comments
+        except Exception as e:
+            print(f"Error evaluating all Candid interfaces: {e}")
+            return 0, f"Error during evaluation: {e}"
+
     def evaluate_project(self, repo_url: str) -> Dict:
         print(f"Evaluating: {repo_url}")
         
@@ -364,7 +405,6 @@ class ICPProjectEvaluator:
             # Get project data
             readme_content = self.get_readme_content(owner, repo_name)
             commits = self.get_commit_history(owner, repo_name)
-            candid_content = self.find_candid_file(owner, repo_name)
             
             # Evaluate README
             readme_installation_score, readme_installation_comments = self.evaluate_readme_installation(readme_content)
@@ -373,8 +413,8 @@ class ICPProjectEvaluator:
             # Evaluate commit activity
             commit_score, commit_comments = self.evaluate_commit_activity(commits)
             
-            # Evaluate Candid interface
-            candid_api_score, candid_api_comments = self.evaluate_candid_interface(candid_content)
+            # Evaluate all Candid interfaces
+            candid_api_score, candid_api_comments = self.evaluate_all_candid_interfaces(owner, repo_name)
             
             # Calculate total score (add candid_api_score)
             total_score = readme_installation_score + readme_quality_score + commit_score + candid_api_score
