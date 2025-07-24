@@ -311,78 +311,56 @@ class ICPProjectEvaluator:
             print(f"Error finding Candid file for {owner}/{repo_name}: {e}")
             return None
 
-    def evaluate_candid_interface(self, candid_content: str) -> tuple:
-        """Evaluate a Candid interface using the LLM."""
+    def evaluate_candid_interface_score_and_short(self, candid_content: str, filename: str) -> tuple:
+        """Short evaluation of a Candid interface using the LLM, returning a score and a short comment."""
         if not candid_content:
-            return 0, "No Candid (.did) file found in the repository."
-        
+            return 0, f"File: {filename}\nScore: 0\nComment: No Candid (.did) file content found."
         # Truncate very large Candid files to avoid token limits
-        max_content_length = 3000  # characters
+        max_content_length = 2000
         if len(candid_content) > max_content_length:
             candid_content = candid_content[:max_content_length] + "\n\n[Content truncated due to size]"
         prompt = f"""
-        You are an expert ICP developer reviewing a Candid interface for a canister.
+        You are an expert ICP developer. Review the following Candid interface and provide:
+        - A score from 1-5 (see rubric below)
+        - A short statement (1-2 sentences) on whether it looks reasonable and follows best practices.
 
         Candid Interface:
         {candid_content}
 
-        Evaluate the following aspects:
-        1. Function naming: Are function names clear and descriptive?
-        2. Type definitions: Are types well-defined and appropriate?
-        3. Error handling: Are errors handled explicitly with proper types?
-        4. Interface design: Is the interface minimal and well-structured?
-
-        Rate the API design on a scale from 1-5:
+        Rubric:
         5 - Excellent: Clear, well-documented, follows best practices
         4 - Good: Generally well-designed with minor issues
         3 - Fair: Functional but could be improved
         2 - Poor: Has significant design issues
         1 - Very Poor: Poorly designed or incomplete
 
-        You MUST respond in this exact format:
-        Score: [number 1-5]
-        Comments: [small explanation of your evaluation]
-
-        Example response:
-        Score: 4
-        Comments: The interface shows good design with clear function names like 'transfer' and 'get_balance'. Types are well-defined using 'Nat' for amounts and 'Principal' for addresses. However, error handling could be improved with more specific error types.
+        Respond in this format:
+        File: {filename}
+        Score: <number 1-5>
+        Comment: <your short statement>
         """
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
-            response_text = response.content
-            
-
-            
-            lines = response_text.split('\n')
+            response_text = response.content.strip()
             score = 0
-            comments = ""
-            
-            for line in lines:
-                if line.startswith('Score:'):
+            comment = ""
+            # Parse score and comment from response
+            for line in response_text.split('\n'):
+                if line.lower().startswith('score:'):
                     try:
-                        score = int(line.split(':')[1].strip())
+                        score = int(line.split(':', 1)[1].strip())
                     except Exception:
                         score = 0
-                elif line.startswith('Comments:'):
-                    comments = line.split(':', 1)[1].strip()
-            
-            # If we didn't find comments in the expected format, try to extract from the response
-            if not comments:
-                # Look for any text after "Comments:" or try to extract meaningful content
-                if 'Comments:' in response_text:
-                    comments = response_text.split('Comments:', 1)[1].strip()
-                else:
-                    # If no structured response, use the entire response as comments
-                    comments = response_text.strip()
-                    if comments:
-                        comments = f"Evaluation: {comments}"
-                    else:
-                        comments = "No comments provided."
-            
-            return score, comments
+                elif line.lower().startswith('comment:'):
+                    comment = line.split(':', 1)[1].strip()
+            # Fallback if LLM doesn't follow format
+            if not comment:
+                comment = response_text
+            formatted = f"File: {filename}\nScore: {score}\nComment: {comment}"
+            return score, formatted
         except Exception as e:
-            print(f"Error evaluating Candid interface: {e}")
-            return 0, f"Error during evaluation: {e}"
+            print(f"Error evaluating Candid interface (score+short) for {filename}: {e}")
+            return 0, f"File: {filename}\nScore: 0\nComment: Error during evaluation: {e}"
 
     def find_all_candid_files(self, owner: str, repo_name: str) -> list:
         """Recursively find all .did files in the repo using the GitHub API."""
@@ -405,7 +383,7 @@ class ICPProjectEvaluator:
             return None
 
     def evaluate_all_candid_interfaces(self, owner: str, repo_name: str) -> tuple:
-        """Find and evaluate all .did files, return aggregated score and all comments."""
+        """Find and evaluate all .did files, return average score and all short comments as a single string."""
         try:
             repo = self.github.get_repo(f"{owner}/{repo_name}")
             did_files = self.find_all_candid_files(owner, repo_name)
@@ -415,9 +393,9 @@ class ICPProjectEvaluator:
             comments = []
             for path in did_files:
                 content = self.get_candid_file_content(repo, path)
-                score, comment = self.evaluate_candid_interface(content)
+                score, comment = self.evaluate_candid_interface_score_and_short(content, path)
                 scores.append(score)
-                comments.append(f"File: {path}\nScore: {score}\nComments: {comment}")
+                comments.append(comment)
             avg_score = round(sum(scores) / len(scores), 2) if scores else 0
             all_comments = "\n\n".join(comments)
             return avg_score, all_comments
