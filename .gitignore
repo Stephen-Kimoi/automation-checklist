@@ -2,6 +2,7 @@
 .env
 config.env
 .specstory/
+.cursorindexingignore
 
 # Python
 __pycache__/
