@@ -311,18 +311,15 @@ class ICPProjectEvaluator:
             print(f"Error finding Candid file for {owner}/{repo_name}: {e}")
             return None
 
-    def evaluate_candid_interface_score_and_short(self, candid_content: str, filename: str) -> tuple:
-        """Short evaluation of a Candid interface using the LLM, returning a score and a short comment."""
+    def evaluate_candid_interface_score(self, candid_content: str) -> int:
+        """Evaluate a Candid interface and return just the score."""
         if not candid_content:
-            return 0, f"File: {filename}\nScore: 0\nComment: No Candid (.did) file content found."
-        # Truncate very large Candid files to avoid token limits
-        max_content_length = 2000
+            return 0
+        max_content_length = 1000
         if len(candid_content) > max_content_length:
-            candid_content = candid_content[:max_content_length] + "\n\n[Content truncated due to size]"
-        prompt = f"""
-        You are an expert ICP developer. Review the following Candid interface and provide:
-        - A score from 1-5 (see rubric below)
-        - A short statement (1-2 sentences) on whether it looks reasonable and follows best practices.
+            candid_content = candid_content[:max_content_length] + " [truncated]"
+        prompt = f'''
+        You are an expert ICP developer. Review the following Candid interface and provide a score from 1-5.
 
         Candid Interface:
         {candid_content}
@@ -334,33 +331,20 @@ class ICPProjectEvaluator:
         2 - Poor: Has significant design issues
         1 - Very Poor: Poorly designed or incomplete
 
-        Respond in this format:
-        File: {filename}
-        Score: <number 1-5>
-        Comment: <your short statement>
-        """
+        Respond with only the score (1-5):
+        '''
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
             response_text = response.content.strip()
-            score = 0
-            comment = ""
-            # Parse score and comment from response
-            for line in response_text.split('\n'):
-                if line.lower().startswith('score:'):
-                    try:
-                        score = int(line.split(':', 1)[1].strip())
-                    except Exception:
-                        score = 0
-                elif line.lower().startswith('comment:'):
-                    comment = line.split(':', 1)[1].strip()
-            # Fallback if LLM doesn't follow format
-            if not comment:
-                comment = response_text
-            formatted = f"File: {filename}\nScore: {score}\nComment: {comment}"
-            return score, formatted
+            import re
+            match = re.search(r'\b([1-5])\b', response_text)
+            if match:
+                return int(match.group(1))
+            else:
+                return 0
         except Exception as e:
-            print(f"Error evaluating Candid interface (score+short) for {filename}: {e}")
-            return 0, f"File: {filename}\nScore: 0\nComment: Error during evaluation: {e}"
+            print(f"Error evaluating Candid interface score: {e}")
+            return 0
 
     def find_all_candid_files(self, owner: str, repo_name: str) -> list:
         """Recursively find all .did files in the repo using the GitHub API."""
@@ -383,25 +367,51 @@ class ICPProjectEvaluator:
             return None
 
     def evaluate_all_candid_interfaces(self, owner: str, repo_name: str) -> tuple:
-        """Find and evaluate all .did files, return average score and all short comments as a single string."""
+        """Find and evaluate all .did files, return average score and a single short comment."""
         try:
             repo = self.github.get_repo(f"{owner}/{repo_name}")
             did_files = self.find_all_candid_files(owner, repo_name)
             if not did_files:
-                return 0, "No Candid (.did) file found in the repository."
+                return 0, "no candid interfaces found"
+            
             scores = []
-            comments = []
-            for path in did_files:
+            all_content = ""
+            for idx, path in enumerate(did_files, 1):
                 content = self.get_candid_file_content(repo, path)
-                score, comment = self.evaluate_candid_interface_score_and_short(content, path)
-                scores.append(score)
-                comments.append(comment)
+                if content:
+                    score = self.evaluate_candid_interface_score(content)
+                    scores.append(score)
+                    all_content += f"\n--- Interface {idx} ---\n{content[:500]}"  # First 500 chars of each
+            
             avg_score = round(sum(scores) / len(scores), 2) if scores else 0
-            all_comments = "\n\n".join(comments)
-            return avg_score, all_comments
+            
+            # Generate a single short comment for all interfaces
+            if all_content:
+                comment_prompt = f'''
+                You are an expert ICP developer. Review these Candid interfaces and provide a single short sentence (max 15 words) describing the overall quality and any key issues.
+
+                Candid Interfaces:
+                {all_content}
+
+                Respond with only one short sentence:
+                '''
+                try:
+                    response = self.llm.invoke([HumanMessage(content=comment_prompt)])
+                    comment = response.content.strip()
+                    # Clean up the comment to ensure it's short
+                    comment = ' '.join(comment.split()[:15])  # Max 15 words
+                    if not comment.endswith(('.', '!', '?')):
+                        comment += '.'
+                except Exception as e:
+                    print(f"Error generating Candid comment: {e}")
+                    comment = f"Found {len(did_files)} Candid interfaces with average score {avg_score}."
+            else:
+                comment = "No Candid interfaces found."
+            
+            return avg_score, comment
         except Exception as e:
             print(f"Error evaluating all Candid interfaces: {e}")
-            return 0, f"Error during evaluation: {e}"
+            return 0, "error evaluating candid interfaces"
 
     def evaluate_project(self, repo_url: str) -> Dict:
         print(f"Evaluating: {repo_url}")
