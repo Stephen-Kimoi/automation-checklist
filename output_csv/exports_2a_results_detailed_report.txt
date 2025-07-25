@@ -1,0 +1,2444 @@
+================================================================================
+ICP PROJECT EVALUATION REPORT
+================================================================================
+
+Evaluation Date: 2025-07-25 08:25:45
+Hackathon Period: 2025-07-01 to 2025-07-21
+Total Projects Evaluated: 199
+
+SUMMARY STATISTICS
+----------------------------------------
+Average Total Score: 7.82/15
+Average README Installation Score: 2.68/5
+Average README Quality Score: 2.73/5
+Average Commit Activity Score: 1.01/5
+Average Candid API Score: 1.41/5
+
+TOP 5 PROJECTS BY TOTAL SCORE
+----------------------------------------
+1. Yohanpau/DueMinder - Score: 16.0/15
+   GitHub: https://github.com/Yohanpau/DueMinder.git
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 4/5
+   Candid API: 4.0/5
+
+2. nurcahyapriantoro/Agrilends - Score: 15.0/15
+   GitHub: https://github.com/nurcahyapriantoro/Agrilends
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 3/5
+   Candid API: 4.0/5
+
+3. WCHL25/transkripin - Score: 15.0/15
+   GitHub: https://github.com/WCHL25/transkripin
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 3/5
+   Candid API: 4.0/5
+
+4. DZ-Ramzy/hack_icp - Score: 15.0/15
+   GitHub: https://github.com/DZ-Ramzy/hack_icp
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 3/5
+   Candid API: 4.0/5
+
+5. Bonded2/Bonded-App - Score: 15.0/15
+   GitHub: https://github.com/Bonded2/Bonded-App
+   README Installation: 4/5
+   README Quality: 4/5
+   Commit Activity: 3/5
+   Candid API: 4.0/5
+
+DETAILED PROJECT EVALUATIONS
+================================================================================
+
+PROJECT 1: keyban-io/sdk-js
+------------------------------------------------------------
+GitHub Link: https://github.com/keyban-io/sdk-js
+Total Score: 8.0/15
+README Installation: 4/5
+README Quality: 3/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 2: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 3: Kalicharan4104/Decentralized-Document-Storage
+------------------------------------------------------------
+GitHub Link: https://github.com/Kalicharan4104/Decentralized-Document-Storage
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 4: VaibhavRaina/Cheetah
+------------------------------------------------------------
+GitHub Link: https://github.com/VaibhavRaina/Cheetah
+Total Score: 12.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 5: StevenYan2ww/ChainClear
+------------------------------------------------------------
+GitHub Link: https://github.com/StevenYan2ww/ChainClear
+Total Score: 4.0/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 6: nguyenha055/block-academia
+------------------------------------------------------------
+GitHub Link: https://github.com/nguyenha055/block-academia
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 7: rasyidMuhammad12/dident
+------------------------------------------------------------
+GitHub Link: https://github.com/rasyidMuhammad12/dident.git
+Total Score: 8.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 8: Sa-hil-09/Peer-to-peer-ridesharing
+------------------------------------------------------------
+GitHub Link: https://github.com/Sa-hil-09/Peer-to-peer-ridesharing
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 9: neilaadenin/verifolio-dina-verified
+------------------------------------------------------------
+GitHub Link: https://github.com/neilaadenin/verifolio-dina-verified
+Total Score: 9.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 2/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 10: neilaadenin/verifolio-dina-verified
+------------------------------------------------------------
+GitHub Link: https://github.com/neilaadenin/verifolio-dina-verified
+Total Score: 9.0/15
+README Installation: 2/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 11: bunta216/ZK-based-Resume-Verifier
+------------------------------------------------------------
+GitHub Link: https://github.com/bunta216/ZK-based-Resume-Verifier
+Total Score: 12.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 12: Aditya-galaxy/DeVite
+------------------------------------------------------------
+GitHub Link: https://github.com/Aditya-galaxy/DeVite
+Total Score: 4.0/15
+README Installation: 1/5
+README Quality: 2/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 13: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 14: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 15: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 16: nurcahyapriantoro/Agrilends
+------------------------------------------------------------
+GitHub Link: https://github.com/nurcahyapriantoro/Agrilends
+Total Score: 15.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 17: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 18: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 19: digitull/SocialWave
+------------------------------------------------------------
+GitHub Link: https://github.com/digitull/SocialWave/
+Total Score: 7.0/15
+README Installation: 3/5
+README Quality: 3/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 20: Sammungai254/sokoni-smart-shopper-kenya
+------------------------------------------------------------
+GitHub Link: https://github.com/Sammungai254/sokoni-smart-shopper-kenya
+Total Score: 9.0/15
+README Installation: 3/5
+README Quality: 3/5
+Commit Activity: 3/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 21: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 22: pandapooh28/decentralised-learning-app
+------------------------------------------------------------
+GitHub Link: https://github.com/pandapooh28/decentralised-learning-app
+Total Score: 13.5/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.5/5
+
+
+================================================================================
+
+PROJECT 23: sashunchik/Empart
+------------------------------------------------------------
+GitHub Link: https://github.com/sashunchik/Empart
+Total Score: 7.0/15
+README Installation: 2/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 24: Almirayasmn/Squad-Token
+------------------------------------------------------------
+GitHub Link: https://github.com/Almirayasmn/Squad-Token
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 25: Swati00Rai/Decentralized-Smart-Parking-System-Using-Blockchain-and-IoT
+------------------------------------------------------------
+GitHub Link: https://github.com/Swati00Rai/Decentralized-Smart-Parking-System-Using-Blockchain-and-IoT
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 26: Vanderhuman/smart-fitness
+------------------------------------------------------------
+GitHub Link: https://github.com/Vanderhuman/smart-fitness
+Total Score: 8.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 27: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 28: singh050505/InsureChain-Decentralized-Micro-Insurance-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/singh050505/InsureChain-Decentralized-Micro-Insurance-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 29: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 30: shankar3777/TravelTrace-Blockchain-Based-Travel-History-Rewards-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/shankar3777/TravelTrace-Blockchain-Based-Travel-History-Rewards-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 31: Indrajeet-Badhel/H.U.M.A.N.E
+------------------------------------------------------------
+GitHub Link: https://github.com/Indrajeet-Badhel/H.U.M.A.N.E
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 32: tonmatt/BitLend-
+------------------------------------------------------------
+GitHub Link: https://github.com/tonmatt/BitLend-.git
+Total Score: 5.0/15
+README Installation: 2/5
+README Quality: 2/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 33: AmaanSayyad/apt-casino-motoko
+------------------------------------------------------------
+GitHub Link: https://github.com/AmaanSayyad/apt-casino-motoko
+Total Score: 5.0/15
+README Installation: 4/5
+README Quality: 0/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 34: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 35: parth9394/Eventify-Decentralized-Event-Ticketing-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/parth9394/Eventify-Decentralized-Event-Ticketing-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 36: https://github.com/roadpatrol
+------------------------------------------------------------
+GitHub Link: https://github.com/roadpatrol
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 37: raj123-max/Decentralized-ATS-Compatible-Resume-Checker
+------------------------------------------------------------
+GitHub Link: https://github.com/raj123-max/Decentralized-ATS-Compatible-Resume-Checker
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 38: om060606/GreenTrust-Blockchain-Based-Carbon-Credits-Marketplace
+------------------------------------------------------------
+GitHub Link: https://github.com/om060606/GreenTrust-Blockchain-Based-Carbon-Credits-Marketplace
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 39: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 40: Madhu-Human-on-Earth/icp-network
+------------------------------------------------------------
+GitHub Link: https://github.com/Madhu-Human-on-Earth/icp-network
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 41: WCHL25/transkripin
+------------------------------------------------------------
+GitHub Link: https://github.com/WCHL25/transkripin
+Total Score: 15.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 42: sharma1174/DecentraReview-Transparent-Consumer-Review-Reputation-System.
+------------------------------------------------------------
+GitHub Link: https://github.com/sharma1174/DecentraReview-Transparent-Consumer-Review-Reputation-System.
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 43: mang200/JobChain-Decentralized-Employment-History-Ledger.
+------------------------------------------------------------
+GitHub Link: https://github.com/mang200/JobChain-Decentralized-Employment-History-Ledger.
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 44: vivek10090/ArtBlock-Decentralized-NFT-Marketplace-for-Emerging-Artists
+------------------------------------------------------------
+GitHub Link: https://github.com/vivek10090/ArtBlock-Decentralized-NFT-Marketplace-for-Emerging-Artists
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 45: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 46: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 47: FidelinaArteaga/magreste-icp
+------------------------------------------------------------
+GitHub Link: https://github.com/FidelinaArteaga/magreste-icp
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 48: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 49: nguyenminhsang66/quill-and-coin
+------------------------------------------------------------
+GitHub Link: https://github.com/nguyenminhsang66/quill-and-coin
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 50: cifgaertn/Chain-Champs-Project
+------------------------------------------------------------
+GitHub Link: https://github.com/cifgaertn/Chain-Champs-Project
+Total Score: 6.0/15
+README Installation: 2/5
+README Quality: 3/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 51: ktxso/perfectmatch
+------------------------------------------------------------
+GitHub Link: https://github.com/ktxso/perfectmatch
+Total Score: 8.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 52: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 53: sorbadek/peerverse_final_submission
+------------------------------------------------------------
+GitHub Link: https://github.com/sorbadek/peerverse_final_submission
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 54: navvwd/quantum-svm-anemia
+------------------------------------------------------------
+GitHub Link: https://github.com/navvwd/quantum-svm-anemia
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 55: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 56: syndisc/WCHL
+------------------------------------------------------------
+GitHub Link: https://github.com/syndisc/WCHL
+Total Score: 11.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 57: link/is
+------------------------------------------------------------
+GitHub Link: https://github.com/link/is/coming
+Total Score: 4.0/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 58: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 59: ayai12/StarDropCodes
+------------------------------------------------------------
+GitHub Link: https://github.com/ayai12/StarDropCodes
+Total Score: 4.0/15
+README Installation: 1/5
+README Quality: 2/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 60: geobricex/GreenPointsICP
+------------------------------------------------------------
+GitHub Link: https://github.com/geobricex/GreenPointsICP
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 61: alexjou/vibechain
+------------------------------------------------------------
+GitHub Link: https://github.com/alexjou/vibechain
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 62: https://github.com/perkovivan
+------------------------------------------------------------
+GitHub Link: https://github.com/perkovivan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 63: https://github.com/markov122/
+------------------------------------------------------------
+GitHub Link: https://github.com/markov122/
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 64: DZ-Ramzy/hack_icp
+------------------------------------------------------------
+GitHub Link: https://github.com/DZ-Ramzy/hack_icp
+Total Score: 15.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 65: Aboodtt404/BloomChain
+------------------------------------------------------------
+GitHub Link: https://github.com/Aboodtt404/BloomChain
+Total Score: 4.0/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 66: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 67: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 68: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 69: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 70: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 71: https://github.com/aarif-123/
+------------------------------------------------------------
+GitHub Link: https://github.com/aarif-123/
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 72: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 73: https://github.com/srinu191206
+------------------------------------------------------------
+GitHub Link: https://github.com/srinu191206
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 74: ayai12/smartformai-form-flow
+------------------------------------------------------------
+GitHub Link: https://github.com/ayai12/smartformai-form-flow/
+Total Score: 5.0/15
+README Installation: 2/5
+README Quality: 2/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 75: Sneha21062003/chainclear-supplychain
+------------------------------------------------------------
+GitHub Link: https://github.com/Sneha21062003/chainclear-supplychain
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 76: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 77: VishalVermaa01/verdictXR
+------------------------------------------------------------
+GitHub Link: https://github.com/VishalVermaa01/verdictXR
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 78: vrajnandak/ICP---WCHL---Sol-Shift
+------------------------------------------------------------
+GitHub Link: https://github.com/vrajnandak/ICP---WCHL---Sol-Shift
+Total Score: 4.0/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 79: Bonded2/Bonded-App
+------------------------------------------------------------
+GitHub Link: https://github.com/Bonded2/Bonded-App
+Total Score: 15.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 80: HyperAfnan/de-CouncilX
+------------------------------------------------------------
+GitHub Link: https://github.com/HyperAfnan/de-CouncilX
+Total Score: 8.0/15
+README Installation: 1/5
+README Quality: 2/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 81: ImitationGameLabs/gaia
+------------------------------------------------------------
+GitHub Link: https://github.com/ImitationGameLabs/gaia
+Total Score: 10.0/15
+README Installation: 1/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 82: Srishti-Ahuja14/LegalSetu
+------------------------------------------------------------
+GitHub Link: https://github.com/Srishti-Ahuja14/LegalSetu
+Total Score: 8.0/15
+README Installation: 2/5
+README Quality: 4/5
+Commit Activity: 2/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 83: mukta138/ChainMed-Blockchain-Based-Pharmaceutical-Supply-Tracker
+------------------------------------------------------------
+GitHub Link: https://github.com/mukta138/ChainMed-Blockchain-Based-Pharmaceutical-Supply-Tracker
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 84: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 85: alexshelkov/exectokens
+------------------------------------------------------------
+GitHub Link: https://github.com/alexshelkov/exectokens
+Total Score: 6.0/15
+README Installation: 4/5
+README Quality: 0/5
+Commit Activity: 2/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 86: Tomeku-Development/ICP-ChargeX
+------------------------------------------------------------
+GitHub Link: https://github.com/Tomeku-Development/ICP-ChargeX
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 87: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 88: singh092/AgriBlock-Smart-Agriculture-Crop-Traceability-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/singh092/AgriBlock-Smart-Agriculture-Crop-Traceability-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 89: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 90: feril23/Jurnal-DApp
+------------------------------------------------------------
+GitHub Link: https://github.com/feril23/Jurnal-DApp.git
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 91: rozaqabdul656/super-duper-guacamole
+------------------------------------------------------------
+GitHub Link: https://github.com/rozaqabdul656/super-duper-guacamole
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 92: sunali999/SkillNest-Decentralized-Skill-Validation-Freelance-Marketplace
+------------------------------------------------------------
+GitHub Link: https://github.com/sunali999/SkillNest-Decentralized-Skill-Validation-Freelance-Marketplace
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 93: ritul1999/EcoWatt-Peer-to-Peer-Renewable-Energy-Trading-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/ritul1999/EcoWatt-Peer-to-Peer-Renewable-Energy-Trading-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 94: sampathedke/ICP-Project
+------------------------------------------------------------
+GitHub Link: https://github.com/sampathedke/ICP-Project
+Total Score: 15.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 95: mimansha009/Supply-Chain-Management-System
+------------------------------------------------------------
+GitHub Link: https://github.com/mimansha009/Supply-Chain-Management-System
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 96: Asdiqaat/VaultStamp
+------------------------------------------------------------
+GitHub Link: https://github.com/Asdiqaat/VaultStamp
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 97: lecamduong/xperio
+------------------------------------------------------------
+GitHub Link: https://github.com/lecamduong/xperio
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 98: olsemeno/alfaAPY
+------------------------------------------------------------
+GitHub Link: https://github.com/olsemeno/alfaAPY
+Total Score: 14.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 99: Techniciann9ne/Pragmatik
+------------------------------------------------------------
+GitHub Link: https://github.com/Techniciann9ne/Pragmatik
+Total Score: 5.0/15
+README Installation: 1/5
+README Quality: 3/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 100: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 101: Zemiy/Rock-Paper-Scissors-Challenger
+------------------------------------------------------------
+GitHub Link: https://github.com/Zemiy/Rock-Paper-Scissors-Challenger
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 102: aceralg/Gaming-website-using-frontend
+------------------------------------------------------------
+GitHub Link: https://github.com/aceralg/Gaming-website-using-frontend
+Total Score: 7.0/15
+README Installation: 2/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 103: bypptech/holo-chat-cockpit
+------------------------------------------------------------
+GitHub Link: https://github.com/bypptech/holo-chat-cockpit
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 104: TusharSaini999/HackIndia-Spark-9-2025-Code-Hackers
+------------------------------------------------------------
+GitHub Link: https://github.com/TusharSaini999/HackIndia-Spark-9-2025-Code-Hackers
+Total Score: 7.0/15
+README Installation: 2/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 105: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 106: suyash242004/AI-DSA-Coach
+------------------------------------------------------------
+GitHub Link: https://github.com/suyash242004/AI-DSA-Coach
+Total Score: 11.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 107: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 108: Prabhatmaurya3239/Decentralized-AD-Network
+------------------------------------------------------------
+GitHub Link: https://github.com/Prabhatmaurya3239/Decentralized-AD-Network
+Total Score: 10.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 2/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 109: RexVire1/ICPBlinks
+------------------------------------------------------------
+GitHub Link: https://github.com/RexVire1/ICPBlinks
+Total Score: 4.0/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 110: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 111: phamhaih/meta-connect
+------------------------------------------------------------
+GitHub Link: https://github.com/phamhaih/meta-connect
+Total Score: 7.0/15
+README Installation: 2/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 112: shrikant19909/StreamFair-Decentralized-Content-Streaming-and-Monetization
+------------------------------------------------------------
+GitHub Link: https://github.com/shrikant19909/StreamFair-Decentralized-Content-Streaming-and-Monetization
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 113: HackathonCodeCrafters/Vote_Verse
+------------------------------------------------------------
+GitHub Link: https://github.com/HackathonCodeCrafters/Vote_Verse
+Total Score: 14.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 114: vuhong696/nft-lease-hub
+------------------------------------------------------------
+GitHub Link: https://github.com/vuhong696/nft-lease-hub
+Total Score: 11.67/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 2.67/5
+
+
+================================================================================
+
+PROJECT 115: brncop1995/FundFlow-Transparent-Blockchain-Crowdfunding-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/brncop1995/FundFlow-Transparent-Blockchain-Crowdfunding-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 116: luonghongdat/crypto-gifts
+------------------------------------------------------------
+GitHub Link: https://github.com/luonghongdat/crypto-gifts
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 117: naiti1008/MediLedger-Patient-Controlled-Health-Record-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/naiti1008/MediLedger-Patient-Controlled-Health-Record-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 118: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 119: nguyenphuc35/immutable-soul-nft
+------------------------------------------------------------
+GitHub Link: https://github.com/nguyenphuc35/immutable-soul-nft
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 120: bharti636/DataVault-ICP-Powered-Decentralized-Cloud-Storage
+------------------------------------------------------------
+GitHub Link: https://github.com/bharti636/DataVault-ICP-Powered-Decentralized-Cloud-Storage
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 121: bigale/agentledger
+------------------------------------------------------------
+GitHub Link: https://github.com/bigale/agentledger/tree/master
+Total Score: 6.0/15
+README Installation: 2/5
+README Quality: 3/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 122: Mercatura-Developers-Team/Mercx
+------------------------------------------------------------
+GitHub Link: https://github.com/Mercatura-Developers-Team/Mercx.git
+Total Score: 14.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 2/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 123: maithil017/BlockBazaar-Secure-Peer-to-Peer-Marketplace
+------------------------------------------------------------
+GitHub Link: https://github.com/maithil017/BlockBazaar-Secure-Peer-to-Peer-Marketplace
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 124: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 125: hitesh5400/TrackEase-Immutable-Supply-Chain-Provenance-Solution
+------------------------------------------------------------
+GitHub Link: https://github.com/hitesh5400/TrackEase-Immutable-Supply-Chain-Provenance-Solution
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 126: nguyentuanthuc/token-cast
+------------------------------------------------------------
+GitHub Link: https://github.com/nguyentuanthuc/token-cast
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 127: sushil554/VoteTrust-Transparent-Voting-System-Built-on-ICP
+------------------------------------------------------------
+GitHub Link: https://github.com/sushil554/VoteTrust-Transparent-Voting-System-Built-on-ICP
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 128: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 129: tayde1111/SocialVerse-A-Blockchain-Powered-Decentralized-Social-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/tayde1111/SocialVerse-A-Blockchain-Powered-Decentralized-Social-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 130: hoanletien/ez-yield
+------------------------------------------------------------
+GitHub Link: https://github.com/hoanletien/ez-yield
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 131: abhilesh59/CrediChain-Secure-Blockchain-Credential-Verification
+------------------------------------------------------------
+GitHub Link: https://github.com/abhilesh59/CrediChain-Secure-Blockchain-Credential-Verification
+Total Score: 13.5/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.5/5
+
+
+================================================================================
+
+PROJECT 132: ritesh30622/Sustainable-Energy-Tokenization-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/ritesh30622/Sustainable-Energy-Tokenization-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 133: bachnthanh/rate-star
+------------------------------------------------------------
+GitHub Link: https://github.com/bachnthanh/rate-star
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 134: KrishnaNaik13/Decentralized-Voting-System
+------------------------------------------------------------
+GitHub Link: https://github.com/KrishnaNaik13/Decentralized-Voting-System
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 135: pandit4899/Decentralized-Content-Streaming-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/pandit4899/Decentralized-Content-Streaming-Platform
+Total Score: 13.5/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.5/5
+
+
+================================================================================
+
+PROJECT 136: https://github.com/LukaB99
+------------------------------------------------------------
+GitHub Link: https://github.com/LukaB99
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 137: nguyenminhkhai98/chronox
+------------------------------------------------------------
+GitHub Link: https://github.com/nguyenminhkhai98/chronox
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 138: https://github.com/pankajpatil212
+------------------------------------------------------------
+GitHub Link: https://github.com/pankajpatil212
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 139: Sakshi-Sahu1/--NFT-Marketplace-
+------------------------------------------------------------
+GitHub Link: https://github.com/Sakshi-Sahu1/--NFT-Marketplace-/tree/main
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 140: myst-adiTya07/Decentralised-Crowdfunding-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/myst-adiTya07/Decentralised-Crowdfunding-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 141: CharClub/candid-curio
+------------------------------------------------------------
+GitHub Link: https://github.com/CharClub/candid-curio
+Total Score: 12.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 142: amit212524/Decentralized-Cloud-Storage-Solution
+------------------------------------------------------------
+GitHub Link: https://github.com/amit212524/Decentralized-Cloud-Storage-Solution
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 143: VandanaAhirwar989/-Blockchain-Marriage-Contract
+------------------------------------------------------------
+GitHub Link: https://github.com/VandanaAhirwar989/-Blockchain-Marriage-Contract
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 144: Cybugg/GameGrid-Blockchain
+------------------------------------------------------------
+GitHub Link: https://github.com/Cybugg/GameGrid-Blockchain
+Total Score: 10.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 2/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 145: DeepikaGattani/Multi-Sig-Wallet
+------------------------------------------------------------
+GitHub Link: https://github.com/DeepikaGattani/Multi-Sig-Wallet
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 146: KaranRocky/Decentralized-learning-platform
+------------------------------------------------------------
+GitHub Link: https://github.com/KaranRocky/Decentralized-learning-platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 147: nthuanh/dapp-auction-house
+------------------------------------------------------------
+GitHub Link: https://github.com/nthuanh/dapp-auction-house
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 148: jyotiverma-uidesign/Blockchain-Quiz-App
+------------------------------------------------------------
+GitHub Link: https://github.com/jyotiverma-uidesign/Blockchain-Quiz-App
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 149: khan007786/Peer-to-Peer-Decentralized-Marketplace
+------------------------------------------------------------
+GitHub Link: https://github.com/khan007786/Peer-to-Peer-Decentralized-Marketplace
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 150: https://github.com/YANSHdiv
+------------------------------------------------------------
+GitHub Link: https://github.com/YANSHdiv
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 151: shetou07/Muv_in
+------------------------------------------------------------
+GitHub Link: https://github.com/shetou07/Muv_in
+Total Score: 12.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 152: SafeGiantJacket/carbon-ledger
+------------------------------------------------------------
+GitHub Link: https://github.com/SafeGiantJacket/carbon-ledger
+Total Score: 15.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 4/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 153: sanskriti-mehra/solidity-DEBUGGER-UI
+------------------------------------------------------------
+GitHub Link: https://github.com/sanskriti-mehra/solidity-DEBUGGER-UI
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 154: Kalpana-45/Basic-Lottery-Game
+------------------------------------------------------------
+GitHub Link: https://github.com/Kalpana-45/Basic-Lottery-Game
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 155: https://github.com/niteshmewada65-arch
+------------------------------------------------------------
+GitHub Link: https://github.com/niteshmewada65-arch
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 156: Pranavv213/ICP-WHCHL
+------------------------------------------------------------
+GitHub Link: https://github.com/Pranavv213/ICP-WHCHL
+Total Score: 10.0/15
+README Installation: 1/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 157: nguyenngoct477/unified-wallet-gateway
+------------------------------------------------------------
+GitHub Link: https://github.com/nguyenngoct477/unified-wallet-gateway
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 158: meekailyusufzai/Decentralized-Lending-Protocol
+------------------------------------------------------------
+GitHub Link: https://github.com/meekailyusufzai/Decentralized-Lending-Protocol
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 159: thakuramit11/Time-lock-wallet
+------------------------------------------------------------
+GitHub Link: https://github.com/thakuramit11/Time-lock-wallet
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 160: Gurleenkaur138/Blockchain-Explorer
+------------------------------------------------------------
+GitHub Link: https://github.com/Gurleenkaur138/Blockchain-Explorer
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 161: tranvu111/yuku-zone
+------------------------------------------------------------
+GitHub Link: https://github.com/tranvu111/yuku-zone
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 162: https://github.com/WCHL-DataMatrix
+------------------------------------------------------------
+GitHub Link: https://github.com/WCHL-DataMatrix
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 163: FawazKhan17/Cross-Chain-Bridge
+------------------------------------------------------------
+GitHub Link: https://github.com/FawazKhan17/Cross-Chain-Bridge
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 164: https://github.com/vaibhav1881ai
+------------------------------------------------------------
+GitHub Link: https://github.com/vaibhav1881ai
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 165: RifqiAnshariR/wchl-project
+------------------------------------------------------------
+GitHub Link: https://github.com/RifqiAnshariR/wchl-project.git
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 166: umesh000000/Supply-Chain-Provenance-Tracker
+------------------------------------------------------------
+GitHub Link: https://github.com/umesh000000/Supply-Chain-Provenance-Tracker
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 167: divin3circle/optic
+------------------------------------------------------------
+GitHub Link: https://github.com/divin3circle/optic
+Total Score: 9.0/15
+README Installation: 2/5
+README Quality: 3/5
+Commit Activity: 4/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 168: Tamanna-Sharma8/Chainlink-Oracle-Integration
+------------------------------------------------------------
+GitHub Link: https://github.com/Tamanna-Sharma8/Chainlink-Oracle-Integration
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 169: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 170: zubeen08/Token-Vesting-Scheduler
+------------------------------------------------------------
+GitHub Link: https://github.com/zubeen08/Token-Vesting-Scheduler
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 171: ajeet2222/Transparent-Voting-and-Governance-System
+------------------------------------------------------------
+GitHub Link: https://github.com/ajeet2222/Transparent-Voting-and-Governance-System
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 172: qutubuddin45/banking-app
+------------------------------------------------------------
+GitHub Link: https://github.com/qutubuddin45/banking-app
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 173: Mohitahirwar7440/Access-Controlled-Document-Vault
+------------------------------------------------------------
+GitHub Link: https://github.com/Mohitahirwar7440/Access-Controlled-Document-Vault
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 174: buunguyendinh/move-mint
+------------------------------------------------------------
+GitHub Link: https://github.com/buunguyendinh/move-mint
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 175: dubey786986/Blockchain-based-Social-Media-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/dubey786986/Blockchain-based-Social-Media-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 176: Rahulsahu03/Simple-Marketplace
+------------------------------------------------------------
+GitHub Link: https://github.com/Rahulsahu03/Simple-Marketplace
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 177: Mohit8269/Decentralized-Notepad
+------------------------------------------------------------
+GitHub Link: https://github.com/Mohit8269/Decentralized-Notepad
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 178: fareen-mansuri/fareen-mansuri--DAO-Membership-App
+------------------------------------------------------------
+GitHub Link: https://github.com/fareen-mansuri/fareen-mansuri--DAO-Membership-App
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 179: Yohanpau/DueMinder
+------------------------------------------------------------
+GitHub Link: https://github.com/Yohanpau/DueMinder.git
+Total Score: 16.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 180: rajesh324851/Decentralized-Academic-Credential-Verification-Platform
+------------------------------------------------------------
+GitHub Link: https://github.com/rajesh324851/Decentralized-Academic-Credential-Verification-Platform
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 181: https://github.com/NIKHIL867-M
+------------------------------------------------------------
+GitHub Link: https://github.com/NIKHIL867-M
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 182: Brammy611/WCHLSentinel
+------------------------------------------------------------
+GitHub Link: https://github.com/Brammy611/WCHLSentinel
+Total Score: 8.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 183: muchai254/PersonaPulse
+------------------------------------------------------------
+GitHub Link: https://github.com/muchai254/PersonaPulse
+Total Score: 15.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 3/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 184: riyqnn/Medical
+------------------------------------------------------------
+GitHub Link: https://github.com/riyqnn/Medical
+Total Score: 10.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 2/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 185: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 186: pal974518/Token-Vesting-Contract
+------------------------------------------------------------
+GitHub Link: https://github.com/pal974518/Token-Vesting-Contract
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 187: vihangoc/decentralized-oracle-hub
+------------------------------------------------------------
+GitHub Link: https://github.com/vihangoc/decentralized-oracle-hub
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 188: https://github.com/ai-api-booster
+------------------------------------------------------------
+GitHub Link: https://github.com/ai-api-booster
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 189: Niharika-Amadala13/Decentralized-Freelance-Marketplace-with-Escrow-using-ICP
+------------------------------------------------------------
+GitHub Link: https://github.com/Niharika-Amadala13/Decentralized-Freelance-Marketplace-with-Escrow-using-ICP
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
+PROJECT 190: research-ag/hosty-live-fe
+------------------------------------------------------------
+GitHub Link: https://github.com/research-ag/hosty-live-fe
+Total Score: 8.0/15
+README Installation: 3/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 191: hoangkimminh98/agri-chain-protocol
+------------------------------------------------------------
+GitHub Link: https://github.com/hoangkimminh98/agri-chain-protocol
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 192: chainrooks/askala_baseapp
+------------------------------------------------------------
+GitHub Link: https://github.com/chainrooks/askala_baseapp
+Total Score: 12.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 4/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 193: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 194: BeGods/ICP-HACKATHON
+------------------------------------------------------------
+GitHub Link: https://github.com/BeGods/ICP-HACKATHON.git
+Total Score: 4.0/15
+README Installation: 3/5
+README Quality: 0/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 195: nan
+------------------------------------------------------------
+GitHub Link: nan
+Total Score: 0.0/15
+README Installation: 0/5
+README Quality: 0/5
+Commit Activity: 0/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 196: nguyenphuc35/immutable-soul-nft
+------------------------------------------------------------
+GitHub Link: https://github.com/nguyenphuc35/immutable-soul-nft
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 197: AlexD-Great/TrueYou
+------------------------------------------------------------
+GitHub Link: https://github.com/AlexD-Great/TrueYou.git
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 198: hosyvinh308/aether-works
+------------------------------------------------------------
+GitHub Link: https://github.com/hosyvinh308/aether-works
+Total Score: 9.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 0.0/5
+
+
+================================================================================
+
+PROJECT 199: tangentveil/ICP-freelance
+------------------------------------------------------------
+GitHub Link: https://github.com/tangentveil/ICP-freelance
+Total Score: 13.0/15
+README Installation: 4/5
+README Quality: 4/5
+Commit Activity: 1/5
+Candid API: 4.0/5
+
+
+================================================================================
+
