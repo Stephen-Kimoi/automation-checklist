@@ -344,9 +344,13 @@ class ICPProjectEvaluator:
             # Add scoring breakdown at the top
             f.write("SCORING BREAKDOWN\n")
             f.write("-" * 40 + "\n")
-            f.write(f"README Documentation Score: {results_df['readme_documentation_score'].mean():.2f}/5\n")
-            f.write(f"Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/3\n")
-            f.write(f"Total Score: {results_df['total_score'].mean():.2f}/8\n\n")
+            f.write("readme_documentation_score (out of 5)\n")
+            f.write("commit_activity_score (out of 3)\n")
+            f.write("total_score (out of 8)\n")
+            f.write("-" * 40 + "\n")
+            f.write(f"Average README Documentation Score: {results_df['readme_documentation_score'].mean():.2f}/5\n")
+            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/3\n")
+            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/8\n\n")
             
             print('Writing summary statistics...')
             f.write("SUMMARY STATISTICS\n")
