@@ -52,9 +52,9 @@ def main():
         print("EVALUATION SUMMARY")
         print("="*50)
         print(f"Total projects evaluated: {len(results)}")
-        print(f"Average total score: {results['total_score'].mean():.2f}/8")
-        print(f"Average README documentation score: {results['readme_documentation_score'].mean():.2f}/5")
-        print(f"Average commit activity score: {results['commit_activity_score'].mean():.2f}/3")
+        print(f"README Documentation Score: {results['readme_documentation_score'].mean():.2f}/5")
+        print(f"Commit Activity Score: {results['commit_activity_score'].mean():.2f}/3")
+        print(f"Total Score: {results['total_score'].mean():.2f}/8")
         
         print("\nTop 3 Projects by Total Score:")
         

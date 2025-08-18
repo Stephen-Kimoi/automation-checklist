@@ -341,6 +341,13 @@ class ICPProjectEvaluator:
             f.write(f"Hackathon Period: {self.hackathon_start.strftime('%Y-%m-%d')} to {self.hackathon_end.strftime('%Y-%m-%d')}\n")
             f.write(f"Total Projects Evaluated: {len(results_df)}\n\n")
             
+            # Add scoring breakdown at the top
+            f.write("SCORING BREAKDOWN\n")
+            f.write("-" * 40 + "\n")
+            f.write(f"README Documentation Score: {results_df['readme_documentation_score'].mean():.2f}/5\n")
+            f.write(f"Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/3\n")
+            f.write(f"Total Score: {results_df['total_score'].mean():.2f}/8\n\n")
+            
             print('Writing summary statistics...')
             f.write("SUMMARY STATISTICS\n")
             f.write("-" * 40 + "\n")
