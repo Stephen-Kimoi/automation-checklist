@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Dict, List, Tuple
 from github import Github
 from langchain_groq import ChatGroq
@@ -104,37 +104,39 @@ class ICPProjectEvaluator:
             print(f"Error fetching commits for {owner}/{repo_name}: {e}")
             return []
     
-    def evaluate_readme_quality(self, readme_content: str) -> tuple:
-        """Evaluate README for grammatical quality and structure, using chunking if needed."""
+    def evaluate_readme_documentation(self, readme_content: str) -> tuple:
+        """Evaluate README for documentation quality including installation, setup, and general documentation."""
         chunks = self.chunk_text(readme_content)
         score = 0
         comments = ""
+        
         for chunk in chunks:
             prompt = f"""
-            You are an expert technical writer evaluating a project's README file for clarity, structure, and grammatical quality.
+            You are an expert technical writer evaluating a project's README file for comprehensive documentation quality.
             
             README Content:
             {chunk}
             
-            Task: Rate the clarity and structure of this README on a scale from 1-5.
+            Task: Rate the documentation quality on a scale from 1-5.
             
             Scoring Criteria:
-            5 - Excellent: Well-structured, clear, professional writing with good formatting
-            4 - Good: Generally clear with minor structural or grammatical issues
-            3 - Fair: Understandable but could benefit from better organization
-            2 - Poor: Unclear structure, multiple grammatical errors
-            1 - Very Poor: Poorly written, difficult to understand, major issues
+            5 - Excellent: Strong documentation including setup instructions (for local dev), general project description, integration guide (if applicable), and contribution guidelines
+            4 - Good: Good documentation with most key elements present but could be more detailed
+            3 - Fair: Basic documentation present but missing some important elements
+            2 - Poor: Limited documentation with significant gaps
+            1 - Very Poor: Minimal or no documentation
             
             Consider:
-            - Grammar and spelling
-            - Logical structure and flow
-            - Use of headers and formatting
-            - Clarity of explanations
-            - Professional presentation
+            - Setup instructions for local development
+            - General project description
+            - Integration instructions (if applicable)
+            - Contribution guidelines
+            - Overall clarity and structure
+            - Grammar and formatting
             
             Respond in this exact format:
             Score: [1-5]
-            Comments: [Your detailed explanation. If you cannot assess, say so explicitly.]
+            Comments: [Your detailed explanation focusing on whether it includes setup instructions, project description, integration guide, and contribution guidelines. If you cannot assess, say so explicitly.]
             """
             try:
                 response = self.llm.invoke([HumanMessage(content=prompt)])
@@ -148,270 +150,112 @@ class ICPProjectEvaluator:
                             score = 0
                     elif line.startswith('Comments:'):
                         comments = line.split(':', 1)[1].strip()
-                if comments and comments.lower() != 'no quality assessment provided.':
+                if comments and comments.lower() != 'no documentation assessment provided.':
                     break
             except Exception as e:
-                print(f"Error evaluating README quality: {e}")
+                print(f"Error evaluating README documentation: {e}")
                 continue
         if not comments:
-            comments = "No quality assessment provided."
+            comments = "No documentation assessment provided."
         return score, comments
 
-    def evaluate_readme_installation(self, readme_content: str) -> tuple:
-        """Evaluate README for installation steps, using section extraction and chunking."""
-        section = self.extract_installation_section(readme_content)
-        if section:
-            content_to_evaluate = section
+    def analyze_weekly_commits(self, commits: list) -> tuple:
+        """Analyze commit activity by week and generate weekly summaries."""
+        if not commits:
+            return 0, "No commits found during hackathon period.", []
+        
+        # Filter commits to hackathon period
+        hackathon_commits = [c for c in commits if self.hackathon_start <= c['date'] <= self.hackathon_end]
+        
+        if not hackathon_commits:
+            return 0, "No commits found during hackathon period.", []
+        
+        # Group commits by week
+        weekly_commits = {}
+        current_date = self.hackathon_start
+        while current_date <= self.hackathon_end:
+            week_start = current_date
+            week_end = current_date + timedelta(days=6)
+            week_key = week_start.strftime('%Y-%m-%d')
+            
+            week_commits = [c for c in hackathon_commits if week_start <= c['date'] <= week_end]
+            weekly_commits[week_key] = week_commits
+            
+            current_date += timedelta(days=7)
+        
+        # Calculate score based on weekly activity
+        total_weeks = len(weekly_commits)
+        weeks_with_commits = sum(1 for commits in weekly_commits.values() if commits)
+        weeks_with_multiple_commits = sum(1 for commits in weekly_commits.values() if len(commits) >= 2)
+        
+        # Scoring system: 0-3 scale
+        if weeks_with_commits == 0:
+            score = 0
+            score_description = "0 - no commits"
+        elif weeks_with_multiple_commits >= total_weeks * 0.8:  # 80% of weeks have 2+ commits
+            score = 3
+            score_description = "3 - Commits every week"
+        elif weeks_with_commits >= total_weeks * 0.5:  # 50% of weeks have commits
+            score = 2
+            score_description = "2 - Commits every other week"
         else:
-            # Fallback: chunk README and search for installation steps in each chunk
-            chunks = self.chunk_text(readme_content)
-            found = None
-            for chunk in chunks:
-                if re.search(r'install|setup|getting started', chunk, re.IGNORECASE):
-                    found = chunk
-                    break
-            content_to_evaluate = found if found else readme_content[:3500]
+            score = 1
+            score_description = "1 - 1 or 2 commits"
+        
+        # Generate weekly summaries
+        weekly_summaries = []
+        for week_start, week_commits in weekly_commits.items():
+            if week_commits:
+                # Use LLM to summarize what was built/improved that week
+                commit_messages = [c['message'] for c in week_commits]
+                summary = self.generate_weekly_summary(commit_messages, week_start)
+                weekly_summaries.append(f"Week of {week_start}: {summary}")
+        
+        return score, score_description, weekly_summaries
+    
+    def generate_weekly_summary(self, commit_messages: list, week_start: str) -> str:
+        """Generate a summary of what was built/improved in a given week based on commit messages."""
+        if not commit_messages:
+            return "No commits this week"
+        
+        # Limit to last 10 commit messages to avoid token limits
+        recent_messages = commit_messages[-10:]
+        
         prompt = f"""
-        You are an expert technical reviewer evaluating a project's README file for installation instructions.
+        You are analyzing commit messages from a development week to summarize what features were built or improved.
         
-        README Content:
-        {content_to_evaluate}
+        Week starting: {week_start}
+        Commit messages:
+        {chr(10).join([f"- {msg}" for msg in recent_messages])}
         
-        Task: Evaluate whether this README includes clear installation steps and assign a score from 1-5.
+        Task: Provide a concise summary (max 2 sentences) of what was built or improved this week based on the commit messages.
+        Focus on the main features, improvements, or changes that were implemented.
         
-        Scoring Criteria:
-        5 - Excellent: Clear step-by-step installation guide with all dependencies listed
-        4 - Good: Installation steps present but could be more detailed
-        3 - Fair: Basic installation info but missing some details
-        2 - Poor: Vague or incomplete installation instructions
-        1 - Very Poor: No installation instructions or completely unclear
+        If the commits are unclear or don't show meaningful development, say "Minor updates and fixes".
         
-        Consider:
-        - Are there step-by-step installation instructions?
-        - Are dependencies clearly listed?
-        - Are there any prerequisites mentioned?
-        - Is the installation process easy to follow?
-        
-        If the README provides a basic overview of how to run the project, that is sufficient for a score of 3 or above. Do not be overly critical if the basics are present.
-        
-        Respond in this exact format:
-        Score: [1-5]
-        Comments: [Your detailed explanation. If there are no installation steps, say so explicitly.]
+        Respond with only the summary:
         """
+        
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
-            response_text = response.content
-            
-            # Parse response
-            lines = response_text.split('\n')
-            score = 0
-            comments = ""
-            
-            for line in lines:
-                if line.startswith('Score:'):
-                    try:
-                        score = int(line.split(':')[1].strip())
-                    except Exception:
-                        score = 0
-                elif line.startswith('Comments:'):
-                    comments = line.split(':', 1)[1].strip()
-            # Post-process: If basics are present, remove excessive nitpicking
-            if score >= 3 and 'missing' in comments.lower() and 'basic' in comments.lower():
-                comments = "The README provides a basic overview of how to run the project, which is sufficient."
-            if not comments:
-                comments = "No installation steps found."
-            return score, comments
+            summary = response.content.strip()
+            return summary if summary else "Minor updates and fixes"
         except Exception as e:
-            print(f"Error evaluating README installation: {e}")
-            return 0, f"Error during evaluation: {e}"
+            print(f"Error generating weekly summary: {e}")
+            return "Minor updates and fixes"
 
     def evaluate_commit_activity(self, commits: list) -> tuple:
-        """Evaluate commit activity during hackathon period."""
-        if not commits:
-            return 1, "No commits found during hackathon period."
-        # Only use commits in the hackathon period
-        hackathon_commits = [c for c in commits if self.hackathon_start <= c['date'] <= self.hackathon_end]
-        if not hackathon_commits:
-            return 1, "No commits found during hackathon period."
-        prompt = f"""
-        You are evaluating a project's commit activity during a hackathon period.
+        """Evaluate commit activity during hackathon period with new weekly scoring system."""
+        score, score_description, weekly_summaries = self.analyze_weekly_commits(commits)
         
-        Hackathon Period: {self.hackathon_start.strftime('%Y-%m-%d')} to {self.hackathon_end.strftime('%Y-%m-%d')}
+        # Combine score description with weekly summaries
+        comments = f"{score_description}. "
+        if weekly_summaries:
+            comments += "Weekly development summary: " + "; ".join(weekly_summaries)
+        else:
+            comments += "No weekly development activity to summarize."
         
-        Commit Data:
-        Total commits during hackathon: {len(hackathon_commits)}
-        
-        Recent commit messages (last 5):
-        {[c['message'][:100] + '...' if len(c['message']) > 100 else c['message'] for c in hackathon_commits[:5]]}
-        
-        Task: Evaluate the commit activity and assign a score from 1-5.
-        
-        Scoring Criteria:
-        5 - Excellent: Active development with meaningful commits throughout hackathon
-        4 - Good: Regular commits with good development activity
-        3 - Fair: Some commits but could be more active
-        2 - Poor: Very few commits or mostly minor changes
-        1 - Very Poor: No commits during hackathon period
-        
-        Consider:
-        - Number of commits during hackathon period
-        - Quality of commit messages
-        - Consistency of development activity
-        
-        Respond in this exact format:
-        Score: [1-5]
-        Comments: [Your detailed explanation. If there are no commits, say so explicitly.]
-        """
-        try:
-            response = self.llm.invoke([HumanMessage(content=prompt)])
-            response_text = response.content
-            
-            # Parse response
-            lines = response_text.split('\n')
-            score = 0
-            comments = ""
-            
-            for line in lines:
-                if line.startswith('Score:'):
-                    try:
-                        score = int(line.split(':')[1].strip())
-                    except Exception:
-                        score = 0
-                elif line.startswith('Comments:'):
-                    comments = line.split(':', 1)[1].strip()
-            if not comments:
-                comments = "No commits during hackathon period."
-            return score, comments
-        except Exception as e:
-            print(f"Error evaluating commit activity: {e}")
-            return 0, f"Error during evaluation: {e}"
-    
-    def find_candid_file(self, owner: str, repo_name: str) -> str:
-        """Try to find a .did file in the repo using the GitHub API."""
-        try:
-            repo = self.github.get_repo(f"{owner}/{repo_name}")
-            contents = repo.get_contents("")
-            # Search root and common subdirs
-            candidates = [c for c in contents if c.name.endswith('.did')]
-            if not candidates:
-                # Check common subdirs
-                for subdir in ['backend', 'canisters', 'src']:
-                    try:
-                        sub_contents = repo.get_contents(subdir)
-                        candidates += [c for c in sub_contents if c.name.endswith('.did')]
-                    except Exception:
-                        continue
-            if candidates:
-                # Return the content of the first .did file found
-                did_file = candidates[0]
-                return did_file.decoded_content.decode('utf-8')
-            else:
-                return None
-        except Exception as e:
-            print(f"Error finding Candid file for {owner}/{repo_name}: {e}")
-            return None
-
-    def evaluate_candid_interface_score(self, candid_content: str) -> int:
-        """Evaluate a Candid interface and return just the score."""
-        if not candid_content:
-            return 0
-        max_content_length = 1000
-        if len(candid_content) > max_content_length:
-            candid_content = candid_content[:max_content_length] + " [truncated]"
-        prompt = f'''
-        You are an expert ICP developer. Review the following Candid interface and provide a score from 1-5.
-
-        Candid Interface:
-        {candid_content}
-
-        Rubric:
-        5 - Excellent: Clear, well-documented, follows best practices
-        4 - Good: Generally well-designed with minor issues
-        3 - Fair: Functional but could be improved
-        2 - Poor: Has significant design issues
-        1 - Very Poor: Poorly designed or incomplete
-
-        Respond with only the score (1-5):
-        '''
-        try:
-            response = self.llm.invoke([HumanMessage(content=prompt)])
-            response_text = response.content.strip()
-            import re
-            match = re.search(r'\b([1-5])\b', response_text)
-            if match:
-                return int(match.group(1))
-            else:
-                return 0
-        except Exception as e:
-            print(f"Error evaluating Candid interface score: {e}")
-            return 0
-
-    def find_all_candid_files(self, owner: str, repo_name: str) -> list:
-        """Recursively find all .did files in the repo using the GitHub API."""
-        try:
-            repo = self.github.get_repo(f"{owner}/{repo_name}")
-            branch = repo.default_branch
-            tree = repo.get_git_tree(sha=branch, recursive=True)
-            did_files = [f.path for f in tree.tree if f.path.endswith('.did')]
-            return did_files
-        except Exception as e:
-            print(f"Error finding Candid files for {owner}/{repo_name}: {e}")
-            return []
-
-    def get_candid_file_content(self, repo, path: str) -> str:
-        try:
-            file_content = repo.get_contents(path)
-            return file_content.decoded_content.decode('utf-8')
-        except Exception as e:
-            print(f"Error fetching Candid file content at {path}: {e}")
-            return None
-
-    def evaluate_all_candid_interfaces(self, owner: str, repo_name: str) -> tuple:
-        """Find and evaluate all .did files, return average score and a single short comment."""
-        try:
-            repo = self.github.get_repo(f"{owner}/{repo_name}")
-            did_files = self.find_all_candid_files(owner, repo_name)
-            if not did_files:
-                return 0, "no candid interfaces found"
-            
-            scores = []
-            all_content = ""
-            for idx, path in enumerate(did_files, 1):
-                content = self.get_candid_file_content(repo, path)
-                if content:
-                    score = self.evaluate_candid_interface_score(content)
-                    scores.append(score)
-                    all_content += f"\n--- Interface {idx} ---\n{content[:500]}"  # First 500 chars of each
-            
-            avg_score = round(sum(scores) / len(scores), 2) if scores else 0
-            
-            # Generate a single short comment for all interfaces
-            if all_content:
-                comment_prompt = f'''
-                You are an expert ICP developer. Review these Candid interfaces and provide a single short sentence (max 15 words) describing the overall quality and any key issues.
-
-                Candid Interfaces:
-                {all_content}
-
-                Respond with only one short sentence:
-                '''
-                try:
-                    response = self.llm.invoke([HumanMessage(content=comment_prompt)])
-                    comment = response.content.strip()
-                    # Clean up the comment to ensure it's short
-                    comment = ' '.join(comment.split()[:15])  # Max 15 words
-                    if not comment.endswith(('.', '!', '?')):
-                        comment += '.'
-                except Exception as e:
-                    print(f"Error generating Candid comment: {e}")
-                    comment = f"Found {len(did_files)} Candid interfaces with average score {avg_score}."
-            else:
-                comment = "No Candid interfaces found."
-            
-            return avg_score, comment
-        except Exception as e:
-            print(f"Error evaluating all Candid interfaces: {e}")
-            return 0, "error evaluating candid interfaces"
+        return score, comments
 
     def evaluate_project(self, repo_url: str) -> Dict:
         print(f"Evaluating: {repo_url}")
@@ -423,31 +267,23 @@ class ICPProjectEvaluator:
             readme_content = self.get_readme_content(owner, repo_name)
             commits = self.get_commit_history(owner, repo_name)
             
-            # Evaluate README
-            readme_installation_score, readme_installation_comments = self.evaluate_readme_installation(readme_content)
-            readme_quality_score, readme_quality_comments = self.evaluate_readme_quality(readme_content)
+            # Evaluate README documentation (merged installation and quality)
+            readme_documentation_score, readme_documentation_comments = self.evaluate_readme_documentation(readme_content)
             
-            # Evaluate commit activity
+            # Evaluate commit activity with new weekly scoring
             commit_score, commit_comments = self.evaluate_commit_activity(commits)
             
-            # Evaluate all Candid interfaces
-            candid_api_score, candid_api_comments = self.evaluate_all_candid_interfaces(owner, repo_name)
-            
-            # Calculate total score (add candid_api_score)
-            total_score = readme_installation_score + readme_quality_score + commit_score + candid_api_score
+            # Calculate total score (removed candid_api_score)
+            total_score = readme_documentation_score + commit_score
             
             return {
                 'project_name': f"{owner}/{repo_name}",
                 'github_link': repo_url,
-                'readme_installation_score': readme_installation_score,
-                'readme_quality_score': readme_quality_score,
+                'readme_documentation_score': readme_documentation_score,
                 'commit_activity_score': commit_score,
-                'candid_api_score': candid_api_score,
                 'total_score': total_score,
-                'readme_installation_comments': readme_installation_comments,
-                'readme_quality_comments': readme_quality_comments,
-                'commit_activity_comments': commit_comments,
-                'candid_api_comments': candid_api_comments
+                'readme_documentation_comments': readme_documentation_comments,
+                'commit_activity_comments': commit_comments
             }
             
         except Exception as e:
@@ -455,15 +291,11 @@ class ICPProjectEvaluator:
             return {
                 'project_name': repo_url,
                 'github_link': repo_url,
-                'readme_installation_score': 0,
-                'readme_quality_score': 0,
+                'readme_documentation_score': 0,
                 'commit_activity_score': 0,
-                'candid_api_score': 0,
                 'total_score': 0,
-                'readme_installation_comments': f"Error during evaluation: {e}",
-                'readme_quality_comments': f"Error during evaluation: {e}",
-                'commit_activity_comments': f"Error during evaluation: {e}",
-                'candid_api_comments': f"Error during evaluation: {e}"
+                'readme_documentation_comments': f"Error during evaluation: {e}",
+                'commit_activity_comments': f"Error during evaluation: {e}"
             }
     
     def evaluate_projects_from_csv(self, input_csv_path: str, output_csv_path: str, generate_report: bool = True):
@@ -512,23 +344,19 @@ class ICPProjectEvaluator:
             print('Writing summary statistics...')
             f.write("SUMMARY STATISTICS\n")
             f.write("-" * 40 + "\n")
-            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/15\n")
-            f.write(f"Average README Installation Score: {results_df['readme_installation_score'].mean():.2f}/5\n")
-            f.write(f"Average README Quality Score: {results_df['readme_quality_score'].mean():.2f}/5\n")
-            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/5\n")
-            f.write(f"Average Candid API Score: {results_df['candid_api_score'].mean():.2f}/5\n\n")
+            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/8\n")
+            f.write(f"Average README Documentation Score: {results_df['readme_documentation_score'].mean():.2f}/5\n")
+            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/3\n\n")
             
             print('Writing top performers...')
             top_projects = results_df.nlargest(5, 'total_score')
             f.write("TOP 5 PROJECTS BY TOTAL SCORE\n")
             f.write("-" * 40 + "\n")
             for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
-                f.write(f"{idx}. {project['project_name']} - Score: {project['total_score']}/15\n")
+                f.write(f"{idx}. {project['project_name']} - Score: {project['total_score']}/8\n")
                 f.write(f"   GitHub: {project['github_link']}\n")
-                f.write(f"   README Installation: {project['readme_installation_score']}/5\n")
-                f.write(f"   README Quality: {project['readme_quality_score']}/5\n")
-                f.write(f"   Commit Activity: {project['commit_activity_score']}/5\n")
-                f.write(f"   Candid API: {project['candid_api_score']}/5\n\n")
+                f.write(f"   README Documentation: {project['readme_documentation_score']}/5\n")
+                f.write(f"   Commit Activity: {project['commit_activity_score']}/3\n\n")
             
             print('Writing detailed project evaluations...')
             f.write("DETAILED PROJECT EVALUATIONS\n")
@@ -538,41 +366,15 @@ class ICPProjectEvaluator:
                 f.write(f"PROJECT {idx}: {project['project_name']}\n")
                 f.write("-" * 60 + "\n")
                 f.write(f"GitHub Link: {project['github_link']}\n")
-                f.write(f"Total Score: {project['total_score']}/15\n")
-                f.write(f"README Installation: {project['readme_installation_score']}/5\n")
-                f.write(f"README Quality: {project['readme_quality_score']}/5\n")
-                f.write(f"Commit Activity: {project['commit_activity_score']}/5\n")
-                f.write(f"Candid API: {project['candid_api_score']}/5\n\n")
+                f.write(f"Total Score: {project['total_score']}/8\n")
+                f.write(f"README Documentation: {project['readme_documentation_score']}/5\n")
+                f.write(f"Commit Activity: {project['commit_activity_score']}/3\n\n")
                 
-                print('Parsing and formatting comments...')
-                comments = project['readme_installation_comments']
-                if 'README Installation:' in comments:
-                    parts = comments.split('README Installation:')
-                    if len(parts) > 1:
-                        readme_install = parts[1].split('README Quality:')[0].strip()
-                        f.write("README Installation Evaluation:\n")
-                        f.write(f"  {readme_install}\n\n")
+                f.write("README Documentation Evaluation:\n")
+                f.write(f"  {project['readme_documentation_comments']}\n\n")
                 
-                if 'README Quality:' in comments:
-                    parts = comments.split('README Quality:')
-                    if len(parts) > 1:
-                        readme_quality = parts[1].split('Commit Activity:')[0].strip()
-                        f.write("README Quality Evaluation:\n")
-                        f.write(f"  {readme_quality}\n\n")
-                
-                if 'Commit Activity:' in comments:
-                    parts = comments.split('Commit Activity:')
-                    if len(parts) > 1:
-                        commit_activity = parts[1].strip()
-                        f.write("Commit Activity Evaluation:\n")
-                        f.write(f"  {commit_activity}\n\n")
-                
-                if 'Candid API:' in comments:
-                    parts = comments.split('Candid API:')
-                    if len(parts) > 1:
-                        candid_api = parts[1].strip()
-                        f.write("Candid API Evaluation:\n")
-                        f.write(f"  {candid_api}\n\n")
+                f.write("Commit Activity Evaluation:\n")
+                f.write(f"  {project['commit_activity_comments']}\n\n")
                 
                 f.write("\n" + "=" * 80 + "\n\n")
         

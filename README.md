@@ -1,5 +1,19 @@
 # Automated Evaluation System
 
+## Overview
+
+This system evaluates ICP projects based on two main criteria:
+
+1. **README Documentation Quality (5 points)**: Evaluates whether the README includes setup instructions (for local dev), general project description, integration guide (if applicable), and contribution guidelines.
+
+2. **Commit Activity (3 points)**: Analyzes weekly commit patterns during the hackathon period:
+   - 0 points: No commits
+   - 1 point: 1 or 2 commits total
+   - 2 points: Commits every other week
+   - 3 points: Commits every week (with 2+ commits per week)
+
+The system also generates weekly summaries of what features were built or improved based on commit messages.
+
 ## Installation
 
 Install dependencies:
@@ -59,4 +73,14 @@ Running full evaluation script with
 ```bash
 python main.py sample_input.csv results.csv
 ``` 
+
+## Input CSV Format
+
+The input CSV should contain a `repo_url` column with GitHub repository URLs to evaluate.
+
+## Output
+
+The system generates:
+- A CSV file with evaluation results
+- A detailed text report with project-by-project analysis and weekly development summaries
 

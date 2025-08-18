@@ -2,7 +2,7 @@
 """
 ICP Project Evaluation System - Main Script
 
-This script evaluates ICP projects based on README quality and commit activity.
+This script evaluates ICP projects based on README documentation quality and commit activity.
 """
 
 import argparse
@@ -52,16 +52,15 @@ def main():
         print("EVALUATION SUMMARY")
         print("="*50)
         print(f"Total projects evaluated: {len(results)}")
-        print(f"Average total score: {results['total_score'].mean():.2f}")
-        print(f"Average README installation score: {results['readme_installation_score'].mean():.2f}")
-        print(f"Average README quality score: {results['readme_quality_score'].mean():.2f}")
-        print(f"Average commit activity score: {results['commit_activity_score'].mean():.2f}")
+        print(f"Average total score: {results['total_score'].mean():.2f}/8")
+        print(f"Average README documentation score: {results['readme_documentation_score'].mean():.2f}/5")
+        print(f"Average commit activity score: {results['commit_activity_score'].mean():.2f}/3")
         
         print("\nTop 3 Projects by Total Score:")
         
         top_projects = results.nlargest(3, 'total_score')
         for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
-            print(f"{idx}. {project['project_name']} - Score: {project['total_score']}")
+            print(f"{idx}. {project['project_name']} - Score: {project['total_score']}/8")
         
         print(f"\nResults saved to: {output_path}")
         
