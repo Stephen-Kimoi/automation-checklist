@@ -117,7 +117,11 @@ class ICPProjectEvaluator:
             diff_summary = []
             total_lines = 0
             
-            for file_change in files:
+            # Convert PaginatedList to regular list to get length
+            files_list = list(files)
+            print(f"  Analyzing commit {commit_sha[:8]} - {len(files_list)} files changed")
+            
+            for file_change in files_list:
                 filename = file_change.filename
                 status = file_change.status  # 'added', 'removed', 'modified', 'renamed'
                 
@@ -152,7 +156,9 @@ class ICPProjectEvaluator:
                     diff_summary.append("... [diff truncated due to size limit]")
                     break
             
-            return '\n'.join(diff_summary)
+            result = '\n'.join(diff_summary)
+            print(f"  Diff summary length: {len(result.split())} words")
+            return result
             
         except Exception as e:
             print(f"Error fetching diff for commit {commit_sha}: {e}")
@@ -279,6 +285,10 @@ class ICPProjectEvaluator:
         # Filter commits to hackathon period
         hackathon_commits = [c for c in commits if self.hackathon_start <= c['date'] <= self.hackathon_end]
         
+        print(f"  Total commits: {len(commits)}")
+        print(f"  Hackathon period: {self.hackathon_start} to {self.hackathon_end}")
+        print(f"  Commits in hackathon period: {len(hackathon_commits)}")
+        
         if not hackathon_commits:
             return 0, "No commits found during hackathon period.", []
         
@@ -292,6 +302,9 @@ class ICPProjectEvaluator:
             
             week_commits = [c for c in hackathon_commits if week_start <= c['date'] <= week_end]
             weekly_commits[week_key] = week_commits
+            
+            if week_commits:
+                print(f"  Week {week_key}: {len(week_commits)} commits")
             
             current_date += timedelta(days=7)
         
@@ -329,36 +342,78 @@ class ICPProjectEvaluator:
         if not weekly_commits:
             return "No commits this week"
         
-        # Get the initial file state for context
-        initial_state = self.get_initial_file_state(owner, repo_name)
+        try:
+            # Get the initial file state for context
+            initial_state = self.get_initial_file_state(owner, repo_name)
+            
+            # Get the detailed file changes for this week
+            weekly_changes = self.get_weekly_file_changes(owner, repo_name, weekly_commits)
+            
+            # Check if the total prompt would be too long for the LLM
+            total_prompt_length = len(initial_state.split()) + len(weekly_changes.split()) + 200  # 200 for prompt template
+            
+            if total_prompt_length > 3000:  # If too long, fall back to commit message analysis
+                return self.generate_weekly_summary_from_commits(weekly_commits, week_start)
+            
+            prompt = f"""
+            You are analyzing actual file changes from a development week to summarize what features were built or improved.
+            
+            Week starting: {week_start}
+            
+            Initial File State (before hackathon):
+            {initial_state}
+            
+            File Changes and Diffs for this week:
+            {weekly_changes}
+            
+            Task: Provide a concise summary (max 3 sentences) of what was built or improved this week based on the actual file changes.
+            Focus on:
+            - New features added
+            - Existing features modified or improved
+            - Files added, deleted, or renamed
+            - The overall impact of the changes
+            - How the changes relate to the initial state
+            
+            If the changes are unclear or don't show meaningful development, say "Minor updates and fixes".
+            
+            Respond with only the summary:
+            """
+            
+            response = self.llm.invoke([HumanMessage(content=prompt)])
+            summary = response.content.strip()
+            return summary if summary else "Minor updates and fixes"
+            
+        except Exception as e:
+            print(f"Error generating weekly summary: {e}")
+            return self.generate_weekly_summary_from_commits(weekly_commits, week_start)
+
+    def generate_weekly_summary_from_commits(self, weekly_commits: list, week_start: str) -> str:
+        """Generate a summary based on commit messages when diff analysis is too long."""
+        if not weekly_commits:
+            return "No commits this week"
         
-        # Get the detailed file changes for this week
-        weekly_changes = self.get_weekly_file_changes(owner, repo_name, weekly_commits)
+        # Extract commit messages
+        commit_messages = [commit['message'] for commit in weekly_commits]
         
-        # If the changes are too long, truncate them
-        if len(weekly_changes.split('\n')) > 2000:
-            weekly_changes = '\n'.join(weekly_changes.split('\n')[:2000]) + "\n... [truncated due to size limit]"
+        # Limit to last 15 commit messages to avoid token limits
+        recent_messages = commit_messages[-15:]
         
         prompt = f"""
-        You are analyzing actual file changes from a development week to summarize what features were built or improved.
+        You are analyzing commit messages from a development week to summarize what features were built or improved.
         
         Week starting: {week_start}
+        Number of commits: {len(weekly_commits)}
         
-        Initial File State (before hackathon):
-        {initial_state}
+        Recent commit messages:
+        {chr(10).join([f"- {msg}" for msg in recent_messages])}
         
-        File Changes and Diffs for this week:
-        {weekly_changes}
-        
-        Task: Provide a concise summary (max 3 sentences) of what was built or improved this week based on the actual file changes.
+        Task: Provide a concise summary (max 3 sentences) of what was built or improved this week based on the commit messages.
         Focus on:
         - New features added
         - Existing features modified or improved
-        - Files added, deleted, or renamed
         - The overall impact of the changes
-        - How the changes relate to the initial state
         
-        If the changes are unclear or don't show meaningful development, say "Minor updates and fixes".
+        If the commits are unclear or don't show meaningful development, say "Minor updates and fixes".
         
         Respond with only the summary:
         """
@@ -368,7 +423,7 @@ class ICPProjectEvaluator:
             summary = response.content.strip()
             return summary if summary else "Minor updates and fixes"
         except Exception as e:
-            print(f"Error generating weekly summary: {e}")
+            print(f"Error in commit message analysis: {e}")
             return "Minor updates and fixes"
 
     def evaluate_commit_activity(self, owner: str, repo_name: str, commits: list) -> tuple:
