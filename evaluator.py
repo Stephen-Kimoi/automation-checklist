@@ -104,6 +104,118 @@ class ICPProjectEvaluator:
             print(f"Error fetching commits for {owner}/{repo_name}: {e}")
             return []
     
+    def get_commit_diff(self, owner: str, repo_name: str, commit_sha: str) -> str:
+        """Get the diff for a specific commit, with a limit of 2000 lines."""
+        try:
+            repo = self.github.get_repo(f"{owner}/{repo_name}")
+            commit = repo.get_commit(commit_sha)
+            
+            # Get the files changed in this commit
+            files = commit.files
+            
+            # Build a summary of changes
+            diff_summary = []
+            total_lines = 0
+            
+            for file_change in files:
+                filename = file_change.filename
+                status = file_change.status  # 'added', 'removed', 'modified', 'renamed'
+                
+                if status == 'added':
+                    diff_summary.append(f"ADDED: {filename}")
+                    if hasattr(file_change, 'additions') and hasattr(file_change, 'deletions'):
+                        diff_summary.append(f"  Lines: +{file_change.additions} -{file_change.deletions}")
+                elif status == 'removed':
+                    diff_summary.append(f"DELETED: {filename}")
+                elif status == 'modified':
+                    diff_summary.append(f"MODIFIED: {filename}")
+                    if hasattr(file_change, 'additions') and hasattr(file_change, 'deletions'):
+                        diff_summary.append(f"  Lines: +{file_change.additions} -{file_change.deletions}")
+                    
+                    # Get the actual diff content (patch)
+                    if hasattr(file_change, 'patch') and file_change.patch:
+                        patch_content = file_change.patch
+                        # Limit to first 50 lines of patch to avoid overwhelming
+                        patch_lines = patch_content.split('\n')[:50]
+                        diff_summary.append("  Changes:")
+                        diff_summary.extend([f"    {line}" for line in patch_lines])
+                        total_lines += len(patch_lines)
+                        
+                        if len(patch_lines) == 50:
+                            diff_summary.append("    ... [patch truncated]")
+                elif status == 'renamed':
+                    old_filename = getattr(file_change, 'previous_filename', 'unknown')
+                    diff_summary.append(f"RENAMED: {old_filename} -> {filename}")
+                
+                # Check if we're approaching the 2000 line limit
+                if total_lines > 1800:  # Leave some buffer
+                    diff_summary.append("... [diff truncated due to size limit]")
+                    break
+            
+            return '\n'.join(diff_summary)
+            
+        except Exception as e:
+            print(f"Error fetching diff for commit {commit_sha}: {e}")
+            return f"Error fetching diff: {e}"
+
+    def get_weekly_file_changes(self, owner: str, repo_name: str, weekly_commits: list) -> str:
+        """Get a summary of file changes for a week's worth of commits."""
+        if not weekly_commits:
+            return "No commits this week"
+        
+        weekly_changes = []
+        total_diff_lines = 0
+        
+        for commit in weekly_commits:
+            commit_sha = commit['sha']
+            commit_message = commit['message']
+            
+            weekly_changes.append(f"\nCommit: {commit_sha[:8]} - {commit_message}")
+            
+            # Get the diff for this commit
+            diff_content = self.get_commit_diff(owner, repo_name, commit_sha)
+            
+            if diff_content:
+                weekly_changes.append("File Changes:")
+                weekly_changes.append(diff_content)
+                total_diff_lines += len(diff_content.split('\n'))
+                
+                # Check if we're approaching the 2000 line limit
+                if total_diff_lines > 1800:
+                    weekly_changes.append("\n... [weekly summary truncated due to size limit]")
+                    break
+        
+        return '\n'.join(weekly_changes)
+
+    def get_initial_file_state(self, owner: str, repo_name: str) -> str:
+        """Get the initial state of files at the start of the hackathon period."""
+        try:
+            repo = self.github.get_repo(f"{owner}/{repo_name}")
+            
+            # Get the commit at the start of the hackathon period
+            commits = repo.get_commits(sha=repo.default_branch, until=self.hackathon_start)
+            if commits:
+                initial_commit = commits[0]  # Most recent commit before hackathon start
+                
+                # Get the tree of files at that commit
+                tree = repo.get_git_tree(sha=initial_commit.sha, recursive=True)
+                
+                # Build a summary of the initial file structure
+                file_summary = []
+                for item in tree.tree:
+                    if item.type == 'blob':  # File
+                        file_summary.append(f"FILE: {item.path}")
+                    elif item.type == 'tree':  # Directory
+                        file_summary.append(f"DIR: {item.path}/")
+                
+                return f"Initial state at {initial_commit.commit.author.date.strftime('%Y-%m-%d')}:\n" + '\n'.join(file_summary[:100])  # Limit to first 100 files
+            else:
+                return "Could not determine initial file state"
+                
+        except Exception as e:
+            print(f"Error getting initial file state for {owner}/{repo_name}: {e}")
+            return f"Error getting initial file state: {e}"
+    
     def evaluate_readme_documentation(self, readme_content: str) -> tuple:
         """Evaluate README for documentation quality including installation, setup, and general documentation."""
         chunks = self.chunk_text(readme_content)
@@ -159,7 +271,7 @@ class ICPProjectEvaluator:
             comments = "No documentation assessment provided."
         return score, comments
 
-    def analyze_weekly_commits(self, commits: list) -> tuple:
+    def analyze_weekly_commits(self, owner: str, repo_name: str, commits: list) -> tuple:
         """Analyze commit activity by week and generate weekly summaries."""
         if not commits:
             return 0, "No commits found during hackathon period.", []
@@ -206,32 +318,47 @@ class ICPProjectEvaluator:
         weekly_summaries = []
         for week_start, week_commits in weekly_commits.items():
             if week_commits:
-                # Use LLM to summarize what was built/improved that week
-                commit_messages = [c['message'] for c in week_commits]
-                summary = self.generate_weekly_summary(commit_messages, week_start)
+                # Use LLM to summarize what was built/improved that week based on actual file changes
+                summary = self.generate_weekly_summary(owner, repo_name, week_commits, week_start)
                 weekly_summaries.append(f"Week of {week_start}: {summary}")
         
         return score, score_description, weekly_summaries
     
-    def generate_weekly_summary(self, commit_messages: list, week_start: str) -> str:
-        """Generate a summary of what was built/improved in a given week based on commit messages."""
-        if not commit_messages:
+    def generate_weekly_summary(self, owner: str, repo_name: str, weekly_commits: list, week_start: str) -> str:
+        """Generate a summary of what was built/improved in a given week based on actual file changes."""
+        if not weekly_commits:
             return "No commits this week"
         
-        # Limit to last 10 commit messages to avoid token limits
-        recent_messages = commit_messages[-10:]
+        # Get the initial file state for context
+        initial_state = self.get_initial_file_state(owner, repo_name)
+        
+        # Get the detailed file changes for this week
+        weekly_changes = self.get_weekly_file_changes(owner, repo_name, weekly_commits)
+        
+        # If the changes are too long, truncate them
+        if len(weekly_changes.split('\n')) > 2000:
+            weekly_changes = '\n'.join(weekly_changes.split('\n')[:2000]) + "\n... [truncated due to size limit]"
         
         prompt = f"""
-        You are analyzing commit messages from a development week to summarize what features were built or improved.
+        You are analyzing actual file changes from a development week to summarize what features were built or improved.
         
         Week starting: {week_start}
-        Commit messages:
-        {chr(10).join([f"- {msg}" for msg in recent_messages])}
         
-        Task: Provide a concise summary (max 2 sentences) of what was built or improved this week based on the commit messages.
-        Focus on the main features, improvements, or changes that were implemented.
+        Initial File State (before hackathon):
+        {initial_state}
         
-        If the commits are unclear or don't show meaningful development, say "Minor updates and fixes".
+        File Changes and Diffs for this week:
+        {weekly_changes}
+        
+        Task: Provide a concise summary (max 3 sentences) of what was built or improved this week based on the actual file changes.
+        Focus on:
+        - New features added
+        - Existing features modified or improved
+        - Files added, deleted, or renamed
+        - The overall impact of the changes
+        - How the changes relate to the initial state
+        
+        If the changes are unclear or don't show meaningful development, say "Minor updates and fixes".
         
         Respond with only the summary:
         """
@@ -244,9 +371,9 @@ class ICPProjectEvaluator:
             print(f"Error generating weekly summary: {e}")
             return "Minor updates and fixes"
 
-    def evaluate_commit_activity(self, commits: list) -> tuple:
+    def evaluate_commit_activity(self, owner: str, repo_name: str, commits: list) -> tuple:
         """Evaluate commit activity during hackathon period with new weekly scoring system."""
-        score, score_description, weekly_summaries = self.analyze_weekly_commits(commits)
+        score, score_description, weekly_summaries = self.analyze_weekly_commits(owner, repo_name, commits)
         
         # Combine score description with weekly summaries
         comments = f"{score_description}. "
@@ -254,7 +381,7 @@ class ICPProjectEvaluator:
             comments += "Weekly development summary: " + "; ".join(weekly_summaries)
         else:
             comments += "No weekly development activity to summarize."
-        
+            
         return score, comments
 
     def evaluate_project(self, repo_url: str) -> Dict:
@@ -271,7 +398,7 @@ class ICPProjectEvaluator:
             readme_documentation_score, readme_documentation_comments = self.evaluate_readme_documentation(readme_content)
             
             # Evaluate commit activity with new weekly scoring
-            commit_score, commit_comments = self.evaluate_commit_activity(commits)
+            commit_score, commit_comments = self.evaluate_commit_activity(owner, repo_name, commits)
             
             # Calculate total score (removed candid_api_score)
             total_score = readme_documentation_score + commit_score
