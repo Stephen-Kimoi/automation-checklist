@@ -342,6 +342,10 @@ class ICPProjectEvaluator:
         if not weekly_commits:
             return "No commits this week"
         
+        # If there are many commits, use batched approach
+        if len(weekly_commits) > 5:
+            return self.generate_batched_weekly_summary(owner, repo_name, weekly_commits, week_start)
+        
         try:
             # Get the initial file state for context
             initial_state = self.get_initial_file_state(owner, repo_name)
@@ -386,6 +390,50 @@ class ICPProjectEvaluator:
         except Exception as e:
             print(f"Error generating weekly summary: {e}")
             return self.generate_weekly_summary_from_commits(weekly_commits, week_start)
+
+    def generate_batched_weekly_summary(self, owner: str, repo_name: str, weekly_commits: list, week_start: str) -> str:
+        """Generate a summary by processing commits in smaller batches to avoid context limits."""
+        if not weekly_commits:
+            return "No commits this week"
+        
+        # Process commits in batches of 5
+        batch_size = 5
+        summaries = []
+        
+        for i in range(0, len(weekly_commits), batch_size):
+            batch = weekly_commits[i:i + batch_size]
+            batch_summary = self.generate_weekly_summary_from_commits(batch, week_start)
+            summaries.append(batch_summary)
+        
+        # If we have multiple batch summaries, combine them
+        if len(summaries) > 1:
+            combined_prompt = f"""
+            You are combining multiple summaries from a development week into one cohesive summary.
+            
+            Week starting: {week_start}
+            Number of commits: {len(weekly_commits)}
+            
+            Batch summaries:
+            {chr(10).join([f"Batch {i+1}: {summary}" for i, summary in enumerate(summaries)])}
+            
+            Task: Combine these batch summaries into one concise summary (max 3 sentences) of what was built or improved this week.
+            Focus on:
+            - New features added
+            - Existing features modified or improved
+            - The overall impact of the changes
+            
+            Respond with only the combined summary:
+            """
+            
+            try:
+                response = self.llm.invoke([HumanMessage(content=combined_prompt)])
+                combined_summary = response.content.strip()
+                return combined_summary if combined_summary else summaries[0]  # Fallback to first batch summary
+            except Exception as e:
+                print(f"Error combining batch summaries: {e}")
+                return summaries[0]  # Fallback to first batch summary
+        else:
+            return summaries[0]
 
     def generate_weekly_summary_from_commits(self, weekly_commits: list, week_start: str) -> str:
         """Generate a summary based on commit messages when diff analysis is too long."""
