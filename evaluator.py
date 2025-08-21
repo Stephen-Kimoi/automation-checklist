@@ -604,74 +604,84 @@ class ICPProjectEvaluator:
         
         # Process projects in batches
         for batch_num in range(processed_count // batch_size, (total_projects + batch_size - 1) // batch_size):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, total_projects)
-            
-            print(f"\n{'='*60}")
-            print(f"Processing Batch {batch_num + 1}: Projects {start_idx + 1}-{end_idx} of {total_projects}")
-            print(f"Progress: {processed_count}/{total_projects} ({processed_count/total_projects*100:.1f}%)")
-            print(f"{'='*60}")
-            
-            batch_results = []
-            batch_df = df.iloc[start_idx:end_idx]
-            
-            for idx, row in batch_df.iterrows():
-                repo_url = row['repo_url']
-                print(f"Evaluating project {idx + 1}/{total_projects}: {repo_url}")
+            try:
+                start_idx = batch_num * batch_size
+                end_idx = min(start_idx + batch_size, total_projects)
                 
-                try:
-                    result = self.evaluate_project(repo_url)
-                    batch_results.append(result)
-                    processed_count += 1
-                    
-                    # Print progress within batch
-                    batch_progress = len(batch_results)
-                    print(f"  ✓ Completed {batch_progress}/{len(batch_df)} in current batch")
-                    
-                except Exception as e:
-                    print(f"  ✗ Error evaluating {repo_url}: {e}")
-                    # Add error result
-                    error_result = {
-                        'project_name': repo_url,
-                        'github_link': repo_url,
-                        'readme_documentation_score': 0,
-                        'commit_activity_score': 0,
-                        'total_score': 0,
-                        'readme_documentation_comments': f"Error during evaluation: {e}",
-                        'commit_activity_comments': f"Error during evaluation: {e}"
-                    }
-                    batch_results.append(error_result)
-                    processed_count += 1
-            
-            # Save batch results
-            batch_df_results = pd.DataFrame(batch_results)
-            batch_filename = f"batch_{batch_num + 1:03d}_results.csv"
-            batch_path = os.path.join(output_dir, batch_filename)
-            
-            print(f"Saving batch results to: {batch_path}")
-            batch_df_results.to_csv(batch_path, index=False)
-            
-            # Add to all results
-            all_results.extend(batch_results)
-            
-            # Save combined results so far
-            combined_df = pd.DataFrame(all_results)
-            combined_filename = f"combined_results_{processed_count}_projects.csv"
-            combined_path = os.path.join(output_dir, combined_filename)
-            
-            print(f"Saving combined results to: {combined_path}")
-            combined_df.to_csv(combined_path, index=False)
-            
-            # Generate batch report if requested
-            if generate_report:
-                batch_report_path = batch_path.replace('.csv', '_detailed_report.txt')
-                self.create_detailed_report(batch_df_results, batch_report_path)
+                print(f"\n{'='*60}")
+                print(f"Processing Batch {batch_num + 1}: Projects {start_idx + 1}-{end_idx} of {total_projects}")
+                print(f"Progress: {processed_count}/{total_projects} ({processed_count/total_projects*100:.1f}%)")
+                print(f"{'='*60}")
                 
-                # Also update combined report
-                combined_report_path = combined_path.replace('.csv', '_detailed_report.txt')
-                self.create_detailed_report(combined_df, combined_report_path)
-            
-            print(f"Batch {batch_num + 1} completed. Total processed: {processed_count}/{total_projects}")
+                batch_results = []
+                batch_df = df.iloc[start_idx:end_idx]
+                
+                for idx, row in batch_df.iterrows():
+                    repo_url = row['repo_url']
+                    print(f"Evaluating project {idx + 1}/{total_projects}: {repo_url}")
+                    
+                    try:
+                        result = self.evaluate_project(repo_url)
+                        batch_results.append(result)
+                        processed_count += 1
+                        
+                        # Print progress within batch
+                        batch_progress = len(batch_results)
+                        print(f"  ✓ Completed {batch_progress}/{len(batch_df)} in current batch")
+                        
+                    except Exception as e:
+                        print(f"  ✗ Error evaluating {repo_url}: {e}")
+                        # Add error result
+                        error_result = {
+                            'project_name': repo_url,
+                            'github_link': repo_url,
+                            'readme_documentation_score': 0,
+                            'commit_activity_score': 0,
+                            'total_score': 0,
+                            'readme_documentation_comments': f"Error during evaluation: {e}",
+                            'commit_activity_comments': f"Error during evaluation: {e}"
+                        }
+                        batch_results.append(error_result)
+                        processed_count += 1
+                
+                # Save batch results
+                batch_df_results = pd.DataFrame(batch_results)
+                batch_filename = f"batch_{batch_num + 1:03d}_results.csv"
+                batch_path = os.path.join(output_dir, batch_filename)
+                
+                print(f"Saving batch results to: {batch_path}")
+                batch_df_results.to_csv(batch_path, index=False)
+                
+                # Add to all results
+                all_results.extend(batch_results)
+                
+                # Save combined results so far
+                combined_df = pd.DataFrame(all_results)
+                combined_filename = f"combined_results_{processed_count}_projects.csv"
+                combined_path = os.path.join(output_dir, combined_filename)
+                
+                print(f"Saving combined results to: {combined_path}")
+                combined_df.to_csv(combined_path, index=False)
+                
+                # Generate batch report if requested
+                if generate_report:
+                    try:
+                        batch_report_path = os.path.join(output_dir, f"batch_{batch_num + 1:03d}_detailed_report.txt")
+                        self.create_detailed_report(batch_df_results, batch_report_path)
+                        
+                        # Also update combined report
+                        combined_report_path = os.path.join(output_dir, f"combined_results_{processed_count}_projects_detailed_report.txt")
+                        self.create_detailed_report(combined_df, combined_report_path)
+                    except Exception as e:
+                        print(f"Warning: Could not generate detailed report for batch {batch_num + 1}: {e}")
+                        print("Continuing with batch processing...")
+                
+                print(f"Batch {batch_num + 1} completed. Total processed: {processed_count}/{total_projects}")
+                
+            except Exception as e:
+                print(f"Error processing batch {batch_num + 1}: {e}")
+                print("Continuing with next batch...")
+                continue
         
         # Final combined results
         final_results_df = pd.DataFrame(all_results)
@@ -686,8 +696,11 @@ class ICPProjectEvaluator:
         final_results_df.to_csv(final_output_path, index=False)
         
         if generate_report:
-            final_report_path = final_output_path.replace('.csv', '_detailed_report.txt')
-            self.create_detailed_report(final_results_df, final_report_path)
+            try:
+                final_report_path = os.path.join(output_dir, "final_results_detailed_report.txt")
+                self.create_detailed_report(final_results_df, final_report_path)
+            except Exception as e:
+                print(f"Warning: Could not generate final detailed report: {e}")
         
         return final_output_path
     
