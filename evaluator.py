@@ -8,6 +8,11 @@ from langchain.schema import HumanMessage
 from dotenv import load_dotenv
 import re
 import glob
+import time
+
+class RateLimitError(Exception):
+    """Custom exception for GitHub API rate limiting."""
+    pass
 
 load_dotenv()
 
@@ -34,6 +39,31 @@ class ICPProjectEvaluator:
         print("Initializing hackathon period...")
         self.hackathon_start = datetime(2025, 7, 1, tzinfo=timezone.utc)
         self.hackathon_end = datetime(2025, 7, 21, tzinfo=timezone.utc)
+        
+        # Check GitHub API rate limit status
+        self._check_github_rate_limit()
+    
+    def _check_github_rate_limit(self):
+        """Check and display current GitHub API rate limit status."""
+        try:
+            rate_limit = self.github.get_rate_limit()
+            core_limit = rate_limit.core
+            search_limit = rate_limit.search
+            
+            print(f"GitHub API Rate Limit Status:")
+            print(f"  Core API: {core_limit.remaining}/{core_limit.limit} requests remaining")
+            print(f"  Search API: {search_limit.remaining}/{search_limit.limit} requests remaining")
+            
+            if core_limit.remaining < 100:
+                print(f"  ⚠️  Warning: Low API requests remaining!")
+                print(f"  ⏰  Core API resets at: {core_limit.reset}")
+            
+            if core_limit.remaining < 50:
+                print(f"  🚨 Critical: Very low API requests remaining!")
+                print(f"  Consider waiting for rate limit reset or using a different token")
+                
+        except Exception as e:
+            print(f"Warning: Could not check GitHub API rate limit: {e}")
     
     def extract_repo_info(self, repo_url: str) -> Tuple[str, str]:
         """Extract owner and repo name from GitHub URL."""
@@ -487,6 +517,20 @@ class ICPProjectEvaluator:
             
         return score, comments
 
+    def _is_rate_limit_error(self, error_msg: str) -> bool:
+        """Check if the error is a rate limiting error."""
+        rate_limit_indicators = [
+            "401", "Bad credentials",
+            "403", "rate limit",
+            "rate limit exceeded",
+            "API rate limit",
+            "too many requests",
+            "quota exceeded"
+        ]
+        
+        error_lower = error_msg.lower()
+        return any(indicator.lower() in error_lower for indicator in rate_limit_indicators)
+    
     def evaluate_project(self, repo_url: str) -> Dict:
         print(f"Evaluating: {repo_url}")
         
@@ -517,6 +561,12 @@ class ICPProjectEvaluator:
             }
             
         except Exception as e:
+            error_msg = str(e)
+            
+            # Check for rate limiting errors
+            if self._is_rate_limit_error(error_msg):
+                raise RateLimitError(f"GitHub API rate limit exceeded for {repo_url}: {error_msg}")
+            
             print(f"Error evaluating project {repo_url}: {e}")
             return {
                 'project_name': repo_url,
@@ -628,6 +678,55 @@ class ICPProjectEvaluator:
                         # Print progress within batch
                         batch_progress = len(batch_results)
                         print(f"  ✓ Completed {batch_progress}/{len(batch_df)} in current batch")
+                        
+                        # Check rate limit status every 10 projects
+                        if batch_progress % 10 == 0:
+                            self._check_github_rate_limit()
+                        
+                    except RateLimitError as e:
+                        print(f"\n{'!'*80}")
+                        print(f"🚨 RATE LIMIT ERROR DETECTED! 🚨")
+                        print(f"{'!'*80}")
+                        print(f"GitHub API rate limit exceeded for project: {repo_url}")
+                        print(f"Error details: {e}")
+                        print(f"\nCurrent batch progress: {len(batch_results)}/{len(batch_df)} projects completed")
+                        print(f"Total progress: {processed_count}/{total_projects} projects completed")
+                        print(f"\nRecommendations:")
+                        print(f"1. Check your GitHub token validity and permissions")
+                        print(f"2. Wait for rate limits to reset (usually 1 hour)")
+                        print(f"3. Use a different GitHub token if available")
+                        print(f"4. Resume processing later with: --resume-from {os.path.join(output_dir, f'combined_results_{processed_count}_projects.csv')}")
+                        print(f"\n{'!'*80}")
+                        
+                        # Save current progress before stopping
+                        if batch_results:
+                            batch_df_results = pd.DataFrame(batch_results)
+                            batch_filename = f"batch_{batch_num + 1:03d}_results.csv"
+                            batch_path = os.path.join(output_dir, batch_filename)
+                            batch_df_results.to_csv(batch_path, index=False)
+                            
+                            # Save combined results so far
+                            all_results.extend(batch_results)
+                            combined_df = pd.DataFrame(all_results)
+                            combined_filename = f"combined_results_{processed_count}_projects.csv"
+                            combined_path = os.path.join(output_dir, combined_filename)
+                            combined_df.to_csv(combined_path, index=False)
+                            
+                            print(f"\nProgress saved to: {combined_path}")
+                        
+                        # Ask user if they want to wait for rate limit reset
+                        print(f"\nWould you like to:")
+                        print(f"1. Wait for rate limit reset (recommended)")
+                        print(f"2. Stop processing and resume later")
+                        print(f"3. Continue with limited evaluation (may fail)")
+                        
+                        # For now, we'll stop processing but save progress
+                        # In a future version, we could add interactive waiting
+                        print(f"\nProcessing stopped due to rate limiting.")
+                        print(f"Progress saved. Resume later with:")
+                        print(f"python main.py {input_csv_path} {output_dir} --batch-mode --resume-from {combined_path}")
+                        
+                        raise e  # Re-raise to stop processing
                         
                     except Exception as e:
                         print(f"  ✗ Error evaluating {repo_url}: {e}")

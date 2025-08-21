@@ -2,9 +2,9 @@
 ICP PROJECT EVALUATION REPORT
 ================================================================================
 
-Evaluation Date: 2025-08-20 14:49:26
+Evaluation Date: 2025-08-21 11:00:54
 Hackathon Period: 2025-08-01 to 2025-08-23
-Total Projects Evaluated: 5
+Total Projects Evaluated: 12
 
 SCORING BREAKDOWN
 ----------------------------------------
@@ -12,122 +12,234 @@ readme_documentation_score (out of 5)
 commit_activity_score (out of 3)
 total_score (out of 8)
 ----------------------------------------
-Average README Documentation Score: 0.00/5
-Average Commit Activity Score: 0.00/3
-Average Total Score: 0.00/8
+Average README Documentation Score: 2.83/5
+Average Commit Activity Score: 0.83/3
+Average Total Score: 3.67/8
 
 SUMMARY STATISTICS
 ----------------------------------------
-Average Total Score: 0.00/8
-Average README Documentation Score: 0.00/5
-Average Commit Activity Score: 0.00/3
+Average Total Score: 3.67/8
+Average README Documentation Score: 2.83/5
+Average Commit Activity Score: 0.83/3
 
 TOP 5 PROJECTS BY TOTAL SCORE
 ----------------------------------------
-1. https://github.com/ZeyaRabani/BIT10 - Score: 0/8
-   GitHub: https://github.com/ZeyaRabani/BIT10
-   README Documentation: 0/5
-   Commit Activity: 0/3
-
-2. https://github.com/aliscie2/oDoc - Score: 0/8
+1. aliscie2/oDoc - Score: 6/8
    GitHub: https://github.com/aliscie2/oDoc
-   README Documentation: 0/5
-   Commit Activity: 0/3
+   README Documentation: 4/5
+   Commit Activity: 2/3
 
-3. https://github.com/muslimalfatih/collective-impact - Score: 0/8
+2. infoundr/infoundr-site - Score: 6/8
+   GitHub: https://github.com/infoundr/infoundr-site/
+   README Documentation: 4/5
+   Commit Activity: 2/3
+
+3. TABBY-ARUH/cybersec-Ai-Agent - Score: 5/8
+   GitHub: https://github.com/TABBY-ARUH/cybersec-Ai-Agent
+   README Documentation: 4/5
+   Commit Activity: 1/3
+
+4. ZeyaRabani/BIT10 - Score: 5/8
+   GitHub: https://github.com/ZeyaRabani/BIT10
+   README Documentation: 3/5
+   Commit Activity: 2/3
+
+5. muslimalfatih/collective-impact - Score: 5/8
    GitHub: https://github.com/muslimalfatih/collective-impact
-   README Documentation: 0/5
-   Commit Activity: 0/3
-
-4. https://github.com/vporton/icp-package-manager - Score: 0/8
-   GitHub: https://github.com/vporton/icp-package-manager
-   README Documentation: 0/5
-   Commit Activity: 0/3
-
-5. LintDAO/pricelint - Score: 0/8
-   GitHub: https://github.com/LintDAO/pricelint
-   README Documentation: 0/5
-   Commit Activity: 0/3
+   README Documentation: 3/5
+   Commit Activity: 2/3
 
 DETAILED PROJECT EVALUATIONS
 ================================================================================
 
-PROJECT 1: https://github.com/ZeyaRabani/BIT10
+PROJECT 1: TABBY-ARUH/cybersec-Ai-Agent
 ------------------------------------------------------------
-GitHub Link: https://github.com/ZeyaRabani/BIT10
-Total Score: 0/8
-README Documentation: 0/5
-Commit Activity: 0/3
+GitHub Link: https://github.com/TABBY-ARUH/cybersec-Ai-Agent
+Total Score: 5/8
+README Documentation: 4/5
+Commit Activity: 1/3
 
 README Documentation Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
+  The README file for the CyberSec AI Agent project has a good overall structure and includes a clear project description, highlighting its key features, capabilities, and impact on the ICP ecosystem. The file also provides a list of team members, a demo video, and a section on impact, which helps to give readers a comprehensive understanding of the project.
 
 Commit Activity Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-08-15: The main feature added this week is an enhanced README.md file, which provides a comprehensive overview of the CyberSec AI Agent project, including its features, team, demo video, and impact on the ICP ecosystem. The update also includes improved documentation and formatting.
 
 
 ================================================================================
 
-PROJECT 2: https://github.com/aliscie2/oDoc
+PROJECT 2: sarthakbahal/supply-chain
 ------------------------------------------------------------
-GitHub Link: https://github.com/aliscie2/oDoc
+GitHub Link: https://github.com/sarthakbahal/supply-chain
 Total Score: 0/8
 README Documentation: 0/5
 Commit Activity: 0/3
 
 README Documentation Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
-
-Commit Activity Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
-
-
-================================================================================
-
-PROJECT 3: https://github.com/muslimalfatih/collective-impact
-------------------------------------------------------------
-GitHub Link: https://github.com/muslimalfatih/collective-impact
-Total Score: 0/8
-README Documentation: 0/5
-Commit Activity: 0/3
-
-README Documentation Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
-
-Commit Activity Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
-
-
-================================================================================
-
-PROJECT 4: https://github.com/vporton/icp-package-manager
-------------------------------------------------------------
-GitHub Link: https://github.com/vporton/icp-package-manager
-Total Score: 0/8
-README Documentation: 0/5
-Commit Activity: 0/3
-
-README Documentation Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
-
-Commit Activity Evaluation:
-  Error during evaluation: cannot access local variable 'initial_state' where it is not associated with a value
-
-
-================================================================================
-
-PROJECT 5: LintDAO/pricelint
-------------------------------------------------------------
-GitHub Link: https://github.com/LintDAO/pricelint
-Total Score: 0/8
-README Documentation: 0/5
-Commit Activity: 0/3
-
-README Documentation Evaluation:
-  The README file provides a good overview of the project, its features, and its technical architecture. However, it lacks some essential elements that would make it a comprehensive documentation. Specifically, there is no setup instructions for local development, which is crucial for developers who want to contribute to the project. Additionally, there is no integration guide for integrating PriceLint with other systems or services.
+  No documentation assessment provided.
 
 Commit Activity Evaluation:
   No commits found during hackathon period.. No weekly development activity to summarize.
+
+
+================================================================================
+
+PROJECT 3: Arthur-Fialho/WCHL25-ScholarFlow
+------------------------------------------------------------
+GitHub Link: https://github.com/Arthur-Fialho/WCHL25-ScholarFlow
+Total Score: 4/8
+README Documentation: 4/5
+Commit Activity: 0/3
+
+README Documentation Evaluation:
+  The README file is well-organized and includes a clear project overview, a comprehensive description of the MVP core features, and a mention of the technologies used. It also provides steps for setting up and running the project locally, which is a significant plus.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+
+================================================================================
+
+PROJECT 4: petrakol/blockxpand-icp
+------------------------------------------------------------
+GitHub Link: https://github.com/petrakol/blockxpand-icp
+Total Score: 0/8
+README Documentation: 0/5
+Commit Activity: 0/3
+
+README Documentation Evaluation:
+  No documentation assessment provided.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+
+================================================================================
+
+PROJECT 5: Muggzie76/ic-dates
+------------------------------------------------------------
+GitHub Link: https://github.com/Muggzie76/ic-dates
+Total Score: 3/8
+README Documentation: 3/5
+Commit Activity: 0/3
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, including its purpose, features, and structure. It also includes installation instructions, which is a significant plus. However, the documentation falls short in some areas. For example, there is no clear explanation of how to contribute to the project, which is an important aspect for any open-source project. Additionally, the README could benefit from more detail on the setup instructions, especially for those new to the Internet Computer Protocol (ICP). The instructions are mostly geared towards those who already have a good understanding of DFX and Node.js. Furthermore, the README could be improved in terms of structure and clarity. Some sections, such as "Development" and "Deployment," could be combined or rearranged to make the flow of information smoother. Lastly, a brief introduction to the Internet Computer Protocol and its relevance to the project would be helpful in providing context for readers who are new to the technology.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+
+================================================================================
+
+PROJECT 6: ZeyaRabani/BIT10
+------------------------------------------------------------
+GitHub Link: https://github.com/ZeyaRabani/BIT10
+Total Score: 5/8
+README Documentation: 3/5
+Commit Activity: 2/3
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, including its concept, problem statement, and solution. It also includes a section on features, code structure, and tech stack. However, it lacks some important elements, such as setup instructions for local development, detailed explanations of the code structure, and contribution guidelines.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-08-01: This week, the development team updated the pricing logic for two specific features (BIT10.TOP and BIT10.MEME) and improved the swap page UI. No new features were added, but the existing pricing logic was modified, and the swap page UI was improved.; Week of 2025-08-08: This week, the development team added a new BIT10 Investment Calculator feature, which includes a calendar component, date picker, and comparison section. The team also updated the UI for the home page, added a new route for BIT10 comparison data, and made various modifications to existing features. Overall, the changes aim to enhance the user experience and provide a more comprehensive investment analysis tool.; Week of 2025-08-15: This week, the development team focused on updating the README.md file and adding canister code for the Testnet DEX. This new feature enables experimentation and testing of the DEX on a testnet environment. The overall impact is an enhancement to the project's infrastructure for testing and development purposes.
+
+
+================================================================================
+
+PROJECT 7: aliscie2/oDoc
+------------------------------------------------------------
+GitHub Link: https://github.com/aliscie2/oDoc
+Total Score: 6/8
+README Documentation: 4/5
+Commit Activity: 2/3
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, including a general description, technical details, and instructions for getting started. The project description is concise and provides a clear understanding of what oDoc is and what it aims to achieve.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-08-01: This week, 30 commits were made, introducing new features such as PWA install popup, Oisy integration, staging network environment variables, ICRC-103 allowances, and TransferGuard, as well as enhancing existing features like onboarding flow, agreement view, and wallet functionality. Improvements were also made to the deployment process, continuous integration workflow, and testing framework. Overall, these changes enhance the user experience, add new functionality, and improve the efficiency and security of the platform.; Week of 2025-08-08: This week, the development team added a new ProgressiveTutorialDesktop component to guide users through creating a promise, and also enhanced the job matching algorithm and UI to improve the overall job search experience. Additionally, existing features such as AI chat, user profile, and wallet were refactored and improved with better maintainability, type safety, and UI components, while minor updates were made to notification handling, styles, and typography. Overall, these changes aim to provide a more seamless and user-friendly experience for job seekers and maintainers.; Week of 2025-08-15: This week, significant improvements were made to the chat bot's functionality, organization, and readability with new features like AI credits, posts module, and job matching tests, as well as enhancements to existing features such as message handling, undo functionality, calendar, and jobs modules. Additionally, the codebase was refactored, rendering issues were fixed, and several performance optimizations were made to improve the user experience and deployment efficiency. Overall, the changes aim to enhance the chat bot's functionality, organization, and performance, providing a better user experience and more efficient job matching system.
+
+
+================================================================================
+
+PROJECT 8: muslimalfatih/collective-impact
+------------------------------------------------------------
+GitHub Link: https://github.com/muslimalfatih/collective-impact
+Total Score: 5/8
+README Documentation: 3/5
+Commit Activity: 2/3
+
+README Documentation Evaluation:
+  This README file is decent, but it falls short in some areas. It provides setup instructions for local development, which is a great start. However, it lacks a general project description, integration instructions, and contribution guidelines. The setup instruction is concise and clear, but it would be more helpful if it included any necessary dependencies, configurations, or other details required for local development. The structure and grammar are good, making it easy to read. Overall, while it meets some of the basic requirements, it could be more comprehensive and detailed.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-08-08: This week, the project was migrated to React Vite and the Internet Computer Protocol (ICP) was introduced. The project's UI was completely rewritten, and new features such as DAO governance, donation-based crowdfunding, and transparent impact tracking were added. The overall impact of the changes is a significant overhaul of the project's architecture and features, with a focus on decentralization and community-driven decision-making.; Week of 2025-08-15: This week, the development team made significant progress in migrating the project to React Vite and revamping the user interface design to a new design. Specifically, two new features were added: the project's migration to React Vite and the improved UI design. These changes will likely have a noticeable impact on the usability and appearance of the site, making it more modern and user-friendly.
+
+
+================================================================================
+
+PROJECT 9: vporton/icp-package-manager
+------------------------------------------------------------
+GitHub Link: https://github.com/vporton/icp-package-manager
+Total Score: 4/8
+README Documentation: 3/5
+Commit Activity: 1/3
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, its purpose, and its features. It also includes links to additional resources such as the project documentation and a feature comparison with other ways to install apps. However, it lacks setup instructions for local development and contribution guidelines. The file also jumps abruptly from describing the project to discussing the economic breakdown, which disrupts the flow of information. Additionally, some sections, such as the description of the Payments Wallet, feel like separate documents within the README file, which makes it harder to follow. Overall, the documentation is basic and could be more detailed and organized.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-08-01: This week, the development team made significant improvements to the codebase, focusing on refining existing features and resolving usability issues. New features added include a copy button to the principal display, while existing features were modified or improved, such as the wallet backend and frontend canister, payment popup, and userCycleBalance feature. The overall impact of the changes is an improved codebase with enhanced organization, reduced duplication, and improved stability and usability.
+
+
+================================================================================
+
+PROJECT 10: LintDAO/pricelint
+------------------------------------------------------------
+GitHub Link: https://github.com/LintDAO/pricelint
+Total Score: 3/8
+README Documentation: 3/5
+Commit Activity: 0/3
+
+README Documentation Evaluation:
+  The README file provides a good general overview of the project, its goals, and its features. However, it lacks setup instructions for local development, integration instructions (if applicable), and contribution guidelines. The file is well-structured and easy to read, with clear headings and concise paragraphs. Grammar and formatting are also well-preserved.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+
+================================================================================
+
+PROJECT 11: franRappazzini/PayPeer
+------------------------------------------------------------
+GitHub Link: https://github.com/franRappazzini/PayPeer
+Total Score: 3/8
+README Documentation: 3/5
+Commit Activity: 0/3
+
+README Documentation Evaluation:
+  The README file provides a good general overview of the PayPeer project, its features, and technical aspects. However, it falls short in providing setup instructions for local development, integration instructions, and contribution guidelines. The file is well-structured, and the content is clear and concise, making it easy to understand the project's goals and technical capabilities. However, it lacks essential details that would make it more comprehensive and useful for developers, testers, and contributors.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+
+================================================================================
+
+PROJECT 12: infoundr/infoundr-site
+------------------------------------------------------------
+GitHub Link: https://github.com/infoundr/infoundr-site/
+Total Score: 6/8
+README Documentation: 4/5
+Commit Activity: 2/3
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project and its setup process. It includes step-by-step instructions for local development, which is excellent. The file also provides information on the project structure, which is clear and well-organized. However, I would like to see more details on the project description, backend architecture, and security considerations. The comment about the backend architecture is brief and lacks depth, which is not sufficient for a project of this complexity. Additionally, there is no clear section on contribution guidelines, which can be important for collaborating with others. Overall, the documentation is good, but can be improved by providing more context and details on key project aspects.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-08-01: This week, the development team added new features for accelerator roles and AI conversation data viewing, while improving existing features such as the email service with enhanced security and functionality, and the team member invite section with new logic for accelerator roles. Additionally, the platform's usability was enhanced with the removal of pagination and integration of accelerator invites. Overall, these changes significantly improve the platform's functionality, usability, and security.; Week of 2025-08-08: This week, the development team made several improvements to the administration platform, website, and bot, including new features like a "coming soon" section in the usage documentation, enhanced documentation infrastructure, and new starter code for Discord. They also modified or improved existing features, such as the navigation bar, landing page, and bot functionality, with a focus on usability, functionality, and overall user experience. These changes aim to enhance the overall functionality and accessibility of the application, as well as provide more informative content to visitors and improve the bot's appearance and functionality.
 
 
 ================================================================================
