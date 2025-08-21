@@ -20,6 +20,12 @@ def main():
                        help='Hackathon end date (YYYY-MM-DD)')
     parser.add_argument('--no-report', action='store_true',
                        help='Skip generating detailed report (CSV only)')
+    parser.add_argument('--batch-mode', action='store_true',
+                       help='Enable batch processing mode for large datasets')
+    parser.add_argument('--batch-percentage', type=float, default=10.0,
+                       help='Percentage of total projects to process per batch (default: 10%%)')
+    parser.add_argument('--resume-from', type=str,
+                       help='Path to resume from a previous batch (for batch mode)')
     
     args = parser.parse_args()
     
@@ -46,29 +52,50 @@ def main():
         
         print(f"Starting evaluation of projects from: {input_path}")
         
-        results = evaluator.evaluate_projects_from_csv(input_path, output_path, generate_report=not args.no_report)
-        
-        print("\n" + "="*50)
-        print("EVALUATION SUMMARY")
-        print("="*50)
-        print("SCORING BREAKDOWN:")
-        print("  readme_documentation_score (out of 5)")
-        print("  commit_activity_score (out of 3)")
-        print("  total_score (out of 8)")
-        print("="*50)
-        print(f"Total projects evaluated: {len(results)}")
-        print(f"Average scores:")
-        print(f"  readme_documentation_score: {results['readme_documentation_score'].mean():.2f}")
-        print(f"  commit_activity_score: {results['commit_activity_score'].mean():.2f}")
-        print(f"  total_score: {results['total_score'].mean():.2f}")
-        
-        print("\nTop 3 Projects by Total Score:")
-        
-        top_projects = results.nlargest(3, 'total_score')
-        for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
-            print(f"{idx}. {project['project_name']} - Score: {project['total_score']}/8")
-        
-        print(f"\nResults saved to: {output_path}")
+        if args.batch_mode:
+            # Use batch processing mode
+            print(f"BATCH MODE ENABLED - Processing in batches of {args.batch_percentage}%% of total projects")
+            
+            # For batch mode, output_path should be a directory
+            if not output_path.endswith('/'):
+                output_path = output_path + '/'
+            
+            results_path = evaluator.evaluate_projects_in_batches(
+                input_path, 
+                output_path, 
+                batch_percentage=args.batch_percentage,
+                generate_report=not args.no_report,
+                resume_from=args.resume_from
+            )
+            
+            print(f"\nBatch processing completed! Final results saved to: {results_path}")
+            
+        else:
+            # Use original single-batch mode
+            print("Using standard evaluation mode (all projects at once)")
+            results = evaluator.evaluate_projects_from_csv(input_path, output_path, generate_report=not args.no_report)
+            
+            print("\n" + "="*50)
+            print("EVALUATION SUMMARY")
+            print("="*50)
+            print("SCORING BREAKDOWN:")
+            print("  readme_documentation_score (out of 5)")
+            print("  commit_activity_score (out of 3)")
+            print("  total_score (out of 8)")
+            print("="*50)
+            print(f"Total projects evaluated: {len(results)}")
+            print(f"Average scores:")
+            print(f"  readme_documentation_score: {results['readme_documentation_score'].mean():.2f}")
+            print(f"  commit_activity_score: {results['commit_activity_score'].mean():.2f}")
+            print(f"  total_score: {results['total_score'].mean():.2f}")
+            
+            print("\nTop 3 Projects by Total Score:")
+            
+            top_projects = results.nlargest(3, 'total_score')
+            for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
+                print(f"{idx}. {project['project_name']} - Score: {project['total_score']}/8")
+            
+            print(f"\nResults saved to: {output_path}")
         
     except Exception as e:
         print(f"Error: {e}")

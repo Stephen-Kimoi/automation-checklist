@@ -560,6 +560,137 @@ class ICPProjectEvaluator:
         
         return results_df
     
+    def evaluate_projects_in_batches(self, input_csv_path: str, output_dir: str, batch_percentage: float = 10.0, 
+                                   generate_report: bool = True, resume_from: str = None):
+        """
+        Evaluate projects in batches and save results incrementally.
+        
+        Args:
+            input_csv_path: Path to input CSV file
+            output_dir: Directory to save batch results
+            batch_percentage: Percentage of total projects to process per batch (default: 10%)
+            generate_report: Whether to generate detailed reports
+            resume_from: Path to resume from a previous batch (optional)
+        
+        Returns:
+            Path to final combined results file
+        """
+        print('Reading input CSV...')
+        df = pd.read_csv(input_csv_path)
+        
+        if 'repo_url' not in df.columns:
+            raise ValueError("Input CSV must contain a 'repo_url' column")
+        
+        total_projects = len(df)
+        batch_size = max(1, int(total_projects * (batch_percentage / 100.0)))
+        
+        print(f"Total projects: {total_projects}")
+        print(f"Batch size: {batch_size} projects ({batch_percentage}% of total)")
+        print(f"Number of batches: {(total_projects + batch_size - 1) // batch_size}")
+        
+        # Create output directory if it doesn't exist
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Initialize or load existing results
+        all_results = []
+        processed_count = 0
+        
+        if resume_from and os.path.exists(resume_from):
+            print(f"Resuming from previous results: {resume_from}")
+            existing_df = pd.read_csv(resume_from)
+            all_results = existing_df.to_dict('records')
+            processed_count = len(all_results)
+            print(f"Already processed: {processed_count} projects")
+        
+        # Process projects in batches
+        for batch_num in range(processed_count // batch_size, (total_projects + batch_size - 1) // batch_size):
+            start_idx = batch_num * batch_size
+            end_idx = min(start_idx + batch_size, total_projects)
+            
+            print(f"\n{'='*60}")
+            print(f"Processing Batch {batch_num + 1}: Projects {start_idx + 1}-{end_idx} of {total_projects}")
+            print(f"Progress: {processed_count}/{total_projects} ({processed_count/total_projects*100:.1f}%)")
+            print(f"{'='*60}")
+            
+            batch_results = []
+            batch_df = df.iloc[start_idx:end_idx]
+            
+            for idx, row in batch_df.iterrows():
+                repo_url = row['repo_url']
+                print(f"Evaluating project {idx + 1}/{total_projects}: {repo_url}")
+                
+                try:
+                    result = self.evaluate_project(repo_url)
+                    batch_results.append(result)
+                    processed_count += 1
+                    
+                    # Print progress within batch
+                    batch_progress = len(batch_results)
+                    print(f"  ✓ Completed {batch_progress}/{len(batch_df)} in current batch")
+                    
+                except Exception as e:
+                    print(f"  ✗ Error evaluating {repo_url}: {e}")
+                    # Add error result
+                    error_result = {
+                        'project_name': repo_url,
+                        'github_link': repo_url,
+                        'readme_documentation_score': 0,
+                        'commit_activity_score': 0,
+                        'total_score': 0,
+                        'readme_documentation_comments': f"Error during evaluation: {e}",
+                        'commit_activity_comments': f"Error during evaluation: {e}"
+                    }
+                    batch_results.append(error_result)
+                    processed_count += 1
+            
+            # Save batch results
+            batch_df_results = pd.DataFrame(batch_results)
+            batch_filename = f"batch_{batch_num + 1:03d}_results.csv"
+            batch_path = os.path.join(output_dir, batch_filename)
+            
+            print(f"Saving batch results to: {batch_path}")
+            batch_df_results.to_csv(batch_path, index=False)
+            
+            # Add to all results
+            all_results.extend(batch_results)
+            
+            # Save combined results so far
+            combined_df = pd.DataFrame(all_results)
+            combined_filename = f"combined_results_{processed_count}_projects.csv"
+            combined_path = os.path.join(output_dir, combined_filename)
+            
+            print(f"Saving combined results to: {combined_path}")
+            combined_df.to_csv(combined_path, index=False)
+            
+            # Generate batch report if requested
+            if generate_report:
+                batch_report_path = batch_path.replace('.csv', '_detailed_report.txt')
+                self.create_detailed_report(batch_df_results, batch_report_path)
+                
+                # Also update combined report
+                combined_report_path = combined_path.replace('.csv', '_detailed_report.txt')
+                self.create_detailed_report(combined_df, combined_report_path)
+            
+            print(f"Batch {batch_num + 1} completed. Total processed: {processed_count}/{total_projects}")
+        
+        # Final combined results
+        final_results_df = pd.DataFrame(all_results)
+        final_output_path = os.path.join(output_dir, "final_results.csv")
+        
+        print(f"\n{'='*60}")
+        print("ALL BATCHES COMPLETED!")
+        print(f"Total projects evaluated: {len(all_results)}")
+        print(f"Final results saved to: {final_output_path}")
+        print(f"{'='*60}")
+        
+        final_results_df.to_csv(final_output_path, index=False)
+        
+        if generate_report:
+            final_report_path = final_output_path.replace('.csv', '_detailed_report.txt')
+            self.create_detailed_report(final_results_df, final_report_path)
+        
+        return final_output_path
+    
     def create_detailed_report(self, results_df: pd.DataFrame, report_path: str):
         """Create a detailed, readable report from evaluation results."""
         with open(report_path, 'w') as f:
