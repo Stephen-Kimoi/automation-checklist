@@ -202,6 +202,106 @@ class ICPProjectEvaluator:
             
         return ""
     
+    def get_dfx_json_content(self, owner: str, repo_name: str) -> bool:
+        """Check if dfx.json file exists in the repository with comprehensive search."""
+        try:
+            repo = self.github.get_repo(f"{owner}/{repo_name}")
+            
+            # First try the standard GitHub API method (root directory only)
+            try:
+                dfx_file = repo.get_contents("dfx.json")
+                if dfx_file.type == "file":
+                    print(f"  ✓ Found dfx.json in root directory")
+                    return True
+            except Exception:
+                print(f"  → No dfx.json found in root, searching subdirectories...")
+                pass
+            
+            # If root dfx.json not found, search common locations
+            common_paths = [
+                'src/dfx.json',
+                'config/dfx.json',
+                'configs/dfx.json',
+                'canister/dfx.json',
+                'canisters/dfx.json',
+                'icp/dfx.json',
+                'backend/dfx.json',
+                'frontend/dfx.json'
+            ]
+            
+            for path in common_paths:
+                try:
+                    file = repo.get_contents(path)
+                    if file.type == "file":
+                        print(f"  ✓ Found dfx.json at: {path}")
+                        return True
+                except Exception:
+                    continue
+            
+            # If still not found, do a comprehensive recursive search (limited depth)
+            print(f"  → Performing comprehensive search...")
+            found = self._search_dfx_json_recursive(repo)
+            if found:
+                return True
+                
+            print(f"  ✗ No dfx.json file found anywhere in repository")
+            return False
+            
+        except Exception as e:
+            print(f"Error searching for dfx.json in {owner}/{repo_name}: {e}")
+            return False
+    
+    def _search_dfx_json_recursive(self, repo, path="", max_depth=3, current_depth=0) -> bool:
+        """Recursively search for dfx.json files with depth limit to avoid API rate limiting."""
+        if current_depth >= max_depth:
+            return False
+            
+        try:
+            contents = repo.get_contents(path)
+            if not isinstance(contents, list):
+                contents = [contents]
+                
+            # First pass: look for dfx.json files in current directory
+            for content in contents:
+                if content.type == "file" and content.name.lower() == "dfx.json":
+                    print(f"  ✓ Found dfx.json at: {content.path}")
+                    return True
+            
+            # Second pass: search subdirectories (limited depth)
+            for content in contents:
+                if content.type == "dir":
+                    # Skip directories starting with @ or .
+                    if content.name.startswith('.') or content.name.startswith('@'):
+                        continue
+                    
+                    # Skip common directories that are unlikely to contain dfx.json
+                    skip_dirs = {
+                        'lib',
+                        'node_modules', 
+                        'assets',
+                        'static',
+                        'dist',
+                        'build',
+                        'target',
+                        '__pycache__',
+                        'artifacts',
+                        'vendor',
+                        'docs',
+                        'documentation',
+                        'test',
+                        'tests'
+                    }
+                    if content.name.lower() not in skip_dirs:
+                        result = self._search_dfx_json_recursive(repo, content.path, max_depth, current_depth + 1)
+                        if result:
+                            return True
+                            
+        except Exception as e:
+            # Silently continue on errors to avoid spam, but could log for debugging
+            pass
+            
+        return False
+
     def get_commit_history(self, owner: str, repo_name: str) -> list:
         """Fetch commit history during hackathon period from the default branch only."""
         try:
@@ -394,6 +494,19 @@ class ICPProjectEvaluator:
                 continue
         if not comments:
             comments = "No documentation assessment provided."
+        return score, comments
+
+    def evaluate_dfx_json_presence(self, owner: str, repo_name: str) -> tuple:
+        """Evaluate if dfx.json file is present in the repository."""
+        has_dfx_json = self.get_dfx_json_content(owner, repo_name)
+        
+        if has_dfx_json:
+            score = 1
+            comments = "dfx.json file found - indicates ICP/Dfinity project structure"
+        else:
+            score = 0
+            comments = "No dfx.json file found - may not be using standard ICP/Dfinity development tools"
+        
         return score, comments
 
     def analyze_weekly_commits(self, owner: str, repo_name: str, commits: list) -> tuple:
@@ -636,17 +749,22 @@ class ICPProjectEvaluator:
             # Evaluate commit activity with new weekly scoring
             commit_score, commit_comments = self.evaluate_commit_activity(owner, repo_name, commits)
             
-            # Calculate total score (removed candid_api_score)
-            total_score = readme_documentation_score + commit_score
+            # Evaluate dfx.json presence
+            dfx_json_score, dfx_json_comments = self.evaluate_dfx_json_presence(owner, repo_name)
+            
+            # Calculate total score (readme_documentation + commit_activity + dfx_json)
+            total_score = readme_documentation_score + commit_score + dfx_json_score
             
             return {
                 'project_name': f"{owner}/{repo_name}",
                 'github_link': repo_url,
                 'readme_documentation_score': readme_documentation_score,
                 'commit_activity_score': commit_score,
+                'dfx_json_score': dfx_json_score,
                 'total_score': total_score,
                 'readme_documentation_comments': readme_documentation_comments,
-                'commit_activity_comments': commit_comments
+                'commit_activity_comments': commit_comments,
+                'dfx_json_comments': dfx_json_comments
             }
             
         except Exception as e:
@@ -662,9 +780,11 @@ class ICPProjectEvaluator:
                 'github_link': repo_url,
                 'readme_documentation_score': 0,
                 'commit_activity_score': 0,
+                'dfx_json_score': 0,
                 'total_score': 0,
                 'readme_documentation_comments': f"Error during evaluation: {e}",
-                'commit_activity_comments': f"Error during evaluation: {e}"
+                'commit_activity_comments': f"Error during evaluation: {e}",
+                'dfx_json_comments': f"Error during evaluation: {e}"
             }
     
     def evaluate_projects_from_csv(self, input_csv_path: str, output_csv_path: str, generate_report: bool = True):
@@ -825,9 +945,11 @@ class ICPProjectEvaluator:
                             'github_link': repo_url,
                             'readme_documentation_score': 0,
                             'commit_activity_score': 0,
+                            'dfx_json_score': 0,
                             'total_score': 0,
                             'readme_documentation_comments': f"Error during evaluation: {e}",
-                            'commit_activity_comments': f"Error during evaluation: {e}"
+                            'commit_activity_comments': f"Error during evaluation: {e}",
+                            'dfx_json_comments': f"Error during evaluation: {e}"
                         }
                         batch_results.append(error_result)
                         processed_count += 1
@@ -908,28 +1030,32 @@ class ICPProjectEvaluator:
             f.write("-" * 40 + "\n")
             f.write("readme_documentation_score (out of 5)\n")
             f.write("commit_activity_score (out of 3)\n")
-            f.write("total_score (out of 8)\n")
+            f.write("dfx_json_score (out of 1)\n")
+            f.write("total_score (out of 9)\n")
             f.write("-" * 40 + "\n")
             f.write(f"Average README Documentation Score: {results_df['readme_documentation_score'].mean():.2f}/5\n")
             f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/3\n")
-            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/8\n\n")
+            f.write(f"Average dfx.json Score: {results_df['dfx_json_score'].mean():.2f}/1\n")
+            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/9\n\n")
             
             print('Writing summary statistics...')
             f.write("SUMMARY STATISTICS\n")
             f.write("-" * 40 + "\n")
-            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/8\n")
+            f.write(f"Average Total Score: {results_df['total_score'].mean():.2f}/9\n")
             f.write(f"Average README Documentation Score: {results_df['readme_documentation_score'].mean():.2f}/5\n")
-            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/3\n\n")
+            f.write(f"Average Commit Activity Score: {results_df['commit_activity_score'].mean():.2f}/3\n")
+            f.write(f"Average dfx.json Score: {results_df['dfx_json_score'].mean():.2f}/1\n\n")
             
             print('Writing top performers...')
             top_projects = results_df.nlargest(5, 'total_score')
             f.write("TOP 5 PROJECTS BY TOTAL SCORE\n")
             f.write("-" * 40 + "\n")
             for idx, (_, project) in enumerate(top_projects.iterrows(), 1):
-                f.write(f"{idx}. {project['project_name']} - Score: {project['total_score']}/8\n")
+                f.write(f"{idx}. {project['project_name']} - Score: {project['total_score']}/9\n")
                 f.write(f"   GitHub: {project['github_link']}\n")
                 f.write(f"   README Documentation: {project['readme_documentation_score']}/5\n")
-                f.write(f"   Commit Activity: {project['commit_activity_score']}/3\n\n")
+                f.write(f"   Commit Activity: {project['commit_activity_score']}/3\n")
+                f.write(f"   dfx.json Present: {project['dfx_json_score']}/1\n\n")
             
             print('Writing detailed project evaluations...')
             f.write("DETAILED PROJECT EVALUATIONS\n")
@@ -939,15 +1065,19 @@ class ICPProjectEvaluator:
                 f.write(f"PROJECT {idx}: {project['project_name']}\n")
                 f.write("-" * 60 + "\n")
                 f.write(f"GitHub Link: {project['github_link']}\n")
-                f.write(f"Total Score: {project['total_score']}/8\n")
+                f.write(f"Total Score: {project['total_score']}/9\n")
                 f.write(f"README Documentation: {project['readme_documentation_score']}/5\n")
-                f.write(f"Commit Activity: {project['commit_activity_score']}/3\n\n")
+                f.write(f"Commit Activity: {project['commit_activity_score']}/3\n")
+                f.write(f"dfx.json Present: {project['dfx_json_score']}/1\n\n")
                 
                 f.write("README Documentation Evaluation:\n")
                 f.write(f"  {project['readme_documentation_comments']}\n\n")
                 
                 f.write("Commit Activity Evaluation:\n")
                 f.write(f"  {project['commit_activity_comments']}\n\n")
+                
+                f.write("dfx.json Evaluation:\n")
+                f.write(f"  {project['dfx_json_comments']}\n\n")
                 
                 f.write("\n" + "=" * 80 + "\n\n")
         
