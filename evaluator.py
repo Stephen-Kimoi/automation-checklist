@@ -103,15 +103,104 @@ class ICPProjectEvaluator:
         return chunks
 
     def get_readme_content(self, owner: str, repo_name: str) -> str:
-        """Fetch README content from GitHub repository."""
+        """Fetch README content from GitHub repository with comprehensive search."""
         try:
             repo = self.github.get_repo(f"{owner}/{repo_name}")
-            readme = repo.get_readme()
-            content = readme.decoded_content.decode('utf-8')
-            return content
+            
+            # First try the standard GitHub API method (root directory only)
+            try:
+                readme = repo.get_readme()
+                content = readme.decoded_content.decode('utf-8')
+                print(f"  ✓ Found README in root directory")
+                return content
+            except Exception:
+                print(f"  → No README found in root, searching subdirectories...")
+                pass
+            
+            # If root README not found, search common documentation locations
+            common_paths = [
+                'docs/README.md',
+                'docs/readme.md', 
+                'documentation/README.md',
+                'Documentation/README.md',
+                'src/README.md',
+                'README/README.md',
+                'doc/README.md'
+            ]
+            
+            for path in common_paths:
+                try:
+                    file = repo.get_contents(path)
+                    if file.type == "file":
+                        content = file.decoded_content.decode('utf-8')
+                        print(f"  ✓ Found README at: {path}")
+                        return content
+                except Exception:
+                    continue
+            
+            # If still not found, do a comprehensive recursive search (limited depth)
+            print(f"  → Performing comprehensive search...")
+            content = self._search_readme_recursive(repo)
+            if content:
+                return content
+                
+            print(f"  ✗ No README file found anywhere in repository")
+            return ""
+            
         except Exception as e:
             print(f"Error fetching README for {owner}/{repo_name}: {e}")
             return ""
+    
+    def _search_readme_recursive(self, repo, path="", max_depth=3, current_depth=0) -> str:
+        """Recursively search for README files with depth limit to avoid API rate limiting."""
+        if current_depth >= max_depth:
+            return ""
+            
+        try:
+            contents = repo.get_contents(path)
+            if not isinstance(contents, list):
+                contents = [contents]
+                
+            # First pass: look for README files in current directory
+            for content in contents:
+                if content.type == "file" and "readme" in content.name.lower():
+                    try:
+                        file_content = content.decoded_content.decode('utf-8')
+                        print(f"  ✓ Found README at: {content.path}")
+                        return file_content
+                    except Exception:
+                        continue
+            
+            # Second pass: search subdirectories (limited depth)
+            for content in contents:
+                if content.type == "dir":
+                    # Skip directories starting with @ or .
+                    if content.name.startswith('.') or content.name.startswith('@'):
+                        continue
+                    
+                    # Skip common directories that are unlikely to contain main README
+                    skip_dirs = {
+                        'lib',
+                        'node_modules', 
+                        'assets',
+                        'static',
+                        'dist',
+                        'build',
+                        'target',
+                        '__pycache__',
+                        'artifacts',
+                        'vendor'
+                    }
+                    if content.name.lower() not in skip_dirs:
+                        result = self._search_readme_recursive(repo, content.path, max_depth, current_depth + 1)
+                        if result:
+                            return result
+                            
+        except Exception as e:
+            # Silently continue on errors to avoid spam, but could log for debugging
+            pass
+            
+        return ""
     
     def get_commit_history(self, owner: str, repo_name: str) -> list:
         """Fetch commit history during hackathon period from the default branch only."""
