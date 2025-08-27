@@ -1,0 +1,242 @@
+================================================================================
+ICP PROJECT EVALUATION REPORT
+================================================================================
+
+Evaluation Date: 2025-08-27 11:09:13
+Hackathon Period: 2025-08-01 to 2025-08-23
+Total Projects Evaluated: 9
+
+SCORING BREAKDOWN
+----------------------------------------
+readme_documentation_score (out of 5)
+commit_activity_score (out of 3)
+dfx_json_score (out of 1)
+total_score (out of 9)
+----------------------------------------
+Average README Documentation Score: 3.78/5
+Average Commit Activity Score: 0.67/3
+Average dfx.json Score: 1.00/1
+Average Total Score: 5.44/9
+
+SUMMARY STATISTICS
+----------------------------------------
+Average Total Score: 5.44/9
+Average README Documentation Score: 3.78/5
+Average Commit Activity Score: 0.67/3
+Average dfx.json Score: 1.00/1
+
+TOP 5 PROJECTS BY TOTAL SCORE
+----------------------------------------
+1. Chymezy/deCentra - Score: 7/9
+   GitHub: https://github.com/Chymezy/deCentra.git
+   README Documentation: 4/5
+   Commit Activity: 2/3
+   dfx.json Present: 1/1
+
+2. phongdylan18/secure-id - Score: 6/9
+   GitHub: https://github.com/phongdylan18/secure-id
+   README Documentation: 4/5
+   Commit Activity: 1/3
+   dfx.json Present: 1/1
+
+3. cultureic/ckPayment - Score: 6/9
+   GitHub: https://github.com/cultureic/ckPayment
+   README Documentation: 4/5
+   Commit Activity: 1/3
+   dfx.json Present: 1/1
+
+4. mohtashimnawaz/satoshiflow - Score: 6/9
+   GitHub: https://github.com/mohtashimnawaz/satoshiflow
+   README Documentation: 4/5
+   Commit Activity: 1/3
+   dfx.json Present: 1/1
+
+5. akhilsolomon/Art_Co-ownership - Score: 5/9
+   GitHub: https://github.com/akhilsolomon/Art_Co-ownership.git
+   README Documentation: 4/5
+   Commit Activity: 0/3
+   dfx.json Present: 1/1
+
+DETAILED PROJECT EVALUATIONS
+================================================================================
+
+PROJECT 1: phongdylan18/secure-id
+------------------------------------------------------------
+GitHub Link: https://github.com/phongdylan18/secure-id
+Total Score: 6/9
+README Documentation: 4/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the SecureID project, including its features, technical stack, architecture, and security model. The documentation is clear and well-structured, making it easy to follow and understand. The project description is concise and provides a good introduction to the project.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-08-15: This week, the development team updated the app title in the `index.html` file and made changes to the `README.md` file, including removing a large section on security considerations and contributing guidelines.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 2: cultureic/ckPayment
+------------------------------------------------------------
+GitHub Link: https://github.com/cultureic/ckPayment
+Total Score: 6/9
+README Documentation: 4/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, including its purpose, key features, and architecture. The diagram of the architecture overview is particularly helpful in understanding the project's structure. Additionally, the documentation mentions the availability of a frontend SDK, factory backend, and dashboard UI, which provides a good sense of the project's components.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-08-15: This week, significant updates were made to the payment infrastructure, including the addition of new features such as a complete subscription management system, comprehensive Discount Coupon system, and enhanced core payment functionality. Existing features were also improved, including the SDK architecture and documentation, frontend services, and token management. Overall, these changes enhance the application's functionality, user experience, and development experience, providing a more robust and user-friendly platform for payment and factory management.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 3: akhilsolomon/Art_Co-ownership
+------------------------------------------------------------
+GitHub Link: https://github.com/akhilsolomon/Art_Co-ownership.git
+Total Score: 5/9
+README Documentation: 4/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the ArtShare project, including its core functionality, technical features, and architecture. It also includes a "Quick Start" section that guides users through the process of setting up the project for local development, which is a significant plus.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 4: newcoder789/Hospital_Chain
+------------------------------------------------------------
+GitHub Link: https://github.com/newcoder789/Hospital_Chain
+Total Score: 4/9
+README Documentation: 3/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, including its purpose, features, and architecture. However, it lacks some important elements, such as setup instructions for local development, integration instructions, and contribution guidelines.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 5: mohtashimnawaz/satoshiflow
+------------------------------------------------------------
+GitHub Link: https://github.com/mohtashimnawaz/satoshiflow
+Total Score: 6/9
+README Documentation: 4/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the SatoshiFlow project, including its purpose, features, and technical architecture. The file is well-structured, with clear headings and concise descriptions. The use of badges and links to relevant technologies is also a nice touch.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-08-01: This week, the development team added new features such as notifications and analytics, while also overhauling and refining the dashboard. Existing features, including the dashboard and database, were improved to enhance stability and functionality. Overall, the changes resulted in a more robust and user-friendly system with enhanced features and improved performance.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 6: Fmsticks2/Chora
+------------------------------------------------------------
+GitHub Link: https://github.com/Fmsticks2/Chora
+Total Score: 5/9
+README Documentation: 4/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the ChoraAI project, including its key features, architecture, and technical requirements. It also includes installation and setup instructions for local development, which is a significant plus. The file is well-structured, and the use of badges and links to relevant documentation is helpful.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 7: mkamae/LLM-Chatbot
+------------------------------------------------------------
+GitHub Link: https://github.com/mkamae/LLM-Chatbot
+Total Score: 5/9
+README Documentation: 4/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, including its purpose and functionality. It also includes setup instructions for local development, which is a significant strength. The file explains how to deploy the project from ICP Ninja, and it provides detailed instructions for building and deploying the project from the command line.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 8: Chymezy/deCentra
+------------------------------------------------------------
+GitHub Link: https://github.com/Chymezy/deCentra.git
+Total Score: 7/9
+README Documentation: 4/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, its mission, and its features. It also includes information about the technical architecture, tech stack, and project structure. However, some sections feel a bit disconnected, and the documentation could be more detailed in certain areas.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-08-08: This week, the development team made significant progress on the deCentra social network, adding new features such as post cards, comment systems, profile displays, and like buttons, while also modifying and improving existing features with enhanced authentication, routing, and error handling. Additionally, a Tier 1 follow/unfollow system with privacy controls was implemented, and the backend canister performance was improved, as well as the feed algorithm and social features integrated into the frontend. Overall, these changes have resulted in a more comprehensive, secure, and user-friendly social platform ready to support users fighting for digital freedom and privacy.; Week of 2025-08-15: This week, the development team implemented a comprehensive profile creation flow with enhanced validation and privacy mode support. They also built a new instruction and prompt system, refactored authentication with a unified dark neumorphic theme, and improved error handling, navigation, and user profile management. The overall impact of these changes is a more secure, accessible, and user-friendly social platform with new features such as a discover page, enhanced social service integration, and type-safe authentication utilities.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 9: Rumi-Protocol/Rumi-protocol
+------------------------------------------------------------
+GitHub Link: https://github.com/Rumi-Protocol/Rumi-protocol
+Total Score: 5/9
+README Documentation: 3/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README file provides a good overview of the project, including its background, stablecoin landscape, and unique features. However, it lacks certain essential elements, such as setup instructions for local development, integration instructions, and contribution guidelines. The file is well-structured and easy to follow, but it seems to focus more on marketing and showcasing the project's advantages rather than providing practical information for developers and contributors.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-08-15: This week, the development team added support for ckbtc by introducing new logic in the `src/rumi_protocol_backend/src/main.rs` file, including new timer intervals for fetching ckbtc rates and updating protocol status calculations to incorporate ckbtc margin and timestamp. Additionally, the `UsdCkBtc` type was added to the `numeric` module. These changes improve the protocol's ability to handle ckbtc and enhance its overall functionality.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
