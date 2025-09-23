@@ -540,24 +540,39 @@ class ICPProjectEvaluator:
             
             current_date += timedelta(days=7)
         
-        # Calculate score based on weekly activity
+        # Calculate score based on actual time span of commits
         total_weeks = len(weekly_commits)
         weeks_with_commits = sum(1 for commits in weekly_commits.values() if commits)
         weeks_with_multiple_commits = sum(1 for commits in weekly_commits.values() if len(commits) >= 2)
         
-        # Scoring system: 0-3 scale
+        # Calculate actual time span of commits
+        commit_dates = [c['date'] for c in hackathon_commits]
+        if commit_dates:
+            earliest_commit = min(commit_dates)
+            latest_commit = max(commit_dates)
+            commit_span_days = (latest_commit - earliest_commit).days
+            commit_span_weeks = commit_span_days / 7.0
+            print(f"  Commit span: {commit_span_days} days ({commit_span_weeks:.1f} weeks)")
+            print(f"  From: {earliest_commit.strftime('%Y-%m-%d')} to {latest_commit.strftime('%Y-%m-%d')}")
+        else:
+            commit_span_weeks = 0
+        
+        # Scoring system: 0-3 scale based on time span and consistency
         if weeks_with_commits == 0:
             score = 0
             score_description = "0 - no commits"
-        elif weeks_with_multiple_commits >= total_weeks * 0.8:  # 80% of weeks have 2+ commits
-            score = 3
-            score_description = "3 - Commits every week"
-        elif weeks_with_commits >= total_weeks * 0.5:  # 50% of weeks have commits
-            score = 2
-            score_description = "2 - Commits every other week"
-        else:
+        elif commit_span_weeks <= 1.0:  # Commits span only one week or less
             score = 1
-            score_description = "1 - 1 or 2 commits"
+            score_description = "1 - commits for only one week"
+        elif commit_span_weeks <= 2.0:  # Commits span two weeks or less
+            score = 2
+            score_description = "2 - commits for two weeks"
+        elif weeks_with_commits >= total_weeks * 0.5:  # Commits span more than 2 weeks, check consistency
+            score = 3
+            score_description = "3 - commits for every other week"
+        else:
+            score = 2
+            score_description = "2 - commits for two weeks"
         
         # Generate weekly summaries
         weekly_summaries = []
