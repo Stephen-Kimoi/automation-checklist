@@ -1,0 +1,502 @@
+================================================================================
+ICP PROJECT EVALUATION REPORT
+================================================================================
+
+Evaluation Date: 2025-09-23 11:04:20
+Hackathon Period: 2025-09-01 to 2025-09-24
+Total Projects Evaluated: 22
+
+SCORING BREAKDOWN
+----------------------------------------
+readme_documentation_score (out of 5)
+commit_activity_score (out of 3)
+dfx_json_score (out of 1)
+total_score (out of 9)
+----------------------------------------
+Average README Documentation Score: 2.05/5
+Average Commit Activity Score: 1.14/3
+Average dfx.json Score: 0.91/1
+Average Total Score: 4.09/9
+
+SUMMARY STATISTICS
+----------------------------------------
+Average Total Score: 4.09/9
+Average README Documentation Score: 2.05/5
+Average Commit Activity Score: 1.14/3
+Average dfx.json Score: 0.91/1
+
+TOP 5 PROJECTS BY TOTAL SCORE
+----------------------------------------
+1. rahulrr-coder/karbyn - Score: 7/9
+   GitHub: https://github.com/rahulrr-coder/karbyn
+   README Documentation: 4/5
+   Commit Activity: 2/3
+   dfx.json Present: 1/1
+
+2. KaizenOrg/kaisen - Score: 6/9
+   GitHub: https://github.com/KaizenOrg/kaisen
+   README Documentation: 4/5
+   Commit Activity: 1/3
+   dfx.json Present: 1/1
+
+3. rodweleo/neuroverse-studio - Score: 6/9
+   GitHub: https://github.com/rodweleo/neuroverse-studio
+   README Documentation: 2/5
+   Commit Activity: 3/3
+   dfx.json Present: 1/1
+
+4. syahiidkamil/living-internet-protocol - Score: 6/9
+   GitHub: https://github.com/syahiidkamil/living-internet-protocol
+   README Documentation: 4/5
+   Commit Activity: 1/3
+   dfx.json Present: 1/1
+
+5. DiegoFloresWenHao/ICP_Coder - Score: 6/9
+   GitHub: https://github.com/DiegoFloresWenHao/ICP_Coder
+   README Documentation: 3/5
+   Commit Activity: 2/3
+   dfx.json Present: 1/1
+
+DETAILED PROJECT EVALUATIONS
+================================================================================
+
+PROJECT 1: KaizenOrg/kaisen
+------------------------------------------------------------
+GitHub Link: https://github.com/KaizenOrg/kaisen
+Total Score: 6/9
+README Documentation: 4/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a strong general project description, clear solution overview, and detailed core feature explanations, all well‑structured with headings, images, and a helpful table of contents. However, the excerpt does not include explicit **setup instructions for local development**, **integration guides**, or **contribution guidelines**—sections that are essential for a 5‑star rating. The presence of those sections in the table of contents suggests they may exist later in the document, but without seeing them we cannot confirm their completeness or clarity. Grammar and formatting are good, and the overall structure is logical, but the missing visible implementation details prevent a perfect score. If the omitted sections are comprehensive, the score could rise to a 5. As presented, the documentation is solid but not fully complete.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-09-22: Minor updates and fixes.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 2: rodweleo/neuroverse-studio
+------------------------------------------------------------
+GitHub Link: https://github.com/rodweleo/neuroverse-studio
+Total Score: 6/9
+README Documentation: 2/5
+Commit Activity: 3/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a decent high‑level project description (overview, background, features) and useful links to the live canisters and presentations. However, it lacks the essential practical documentation needed for developers:
+
+Commit Activity Evaluation:
+  3 - Commits every week. Weekly development summary: Week of 2025-09-01: This week added full token‑transfer support to the dashboard, including a new TokenTransferModal component, UI buttons for sending/receiving/history, and corresponding ledger canister entries (ICP and ckETH) in dfx.json. Backend canisters now expose deleteAgent and deleteTool functions, while the frontend received agent‑deletion UI, updated hooks (including a useUserDeleteAgent mutation), a loading fallback component, and numerous UI refinements (renamed routes, improved cards, badge styling, and service file renames). Together these changes expand financial interactions, give users the ability to remove agents/tools, and improve overall responsiveness and consistency of the Neuroverse Studio app.; Week of 2025-09-08: This week introduced a full document‑management backend (new Motoko types for files, vetkeys, and NFTs plus file upload/download services) and corresponding frontend services, UI components, and type definitions to handle uploading, downloading, and whitelist management. The UI was refreshed across the layout, index page, and auth button (added footer, responsive headings, redesigned hero section, and improved token‑transfer modals) and integrated ICP ledger transfers via a new `IcpLedgerCanister` utility with mutation hooks. Dependency updates added the `@dfinity/vetkeys` package and optimized the backend canister for cycles.; Week of 2025-09-15: This week we added token‑transfer functionality—including an account‑to‑account transfer hook and refined token‑formatting utilities—while enhancing agent creation with a reset function, tool selection, and tighter payment‑modal integration featuring better error handling, UI tweaks, and SEO‑focused meta‑tag updates. We also introduced the Aurora component, a customizable dynamic gradient background with adjustable color stops, amplitude, and blend properties, which was applied to the CallToAction section and the Index page along with new CSS utilities for gradient text and backgrounds. Together, these changes improve core payment workflows, streamline agent tooling, and significantly boost the site’s visual design and interactivity.; Week of 2025-09-22: This week a new HeroSection (with an Orb UI component) was added to the front‑end and the main page was refactored to use it, while the token‑transfer modal and query keys were updated for consistency. Authentication and token handling were overhauled: the code now uses `IcrcLedgerCanister` with dynamic identity/host creation, adds dev‑mode safeguards for Plug and NFID, and updates host URLs and the identity provider URL. Overall, these changes refresh the UI, tighten security, and streamline ledger interactions across the app.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 3: abya-university/abya-passport
+------------------------------------------------------------
+GitHub Link: https://github.com/abya-university/abya-passport
+Total Score: 0/9
+README Documentation: 0/5
+Commit Activity: 0/3
+dfx.json Present: 0/1
+
+README Documentation Evaluation:
+  No documentation assessment provided.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  No dfx.json file found - may not be using standard ICP/Dfinity development tools
+
+
+================================================================================
+
+PROJECT 4: rahulrr-coder/karbyn
+------------------------------------------------------------
+GitHub Link: https://github.com/rahulrr-coder/karbyn
+Total Score: 7/9
+README Documentation: 4/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a solid project description, clear motivation, and a concise overview of the platform’s purpose and key features. Setup instructions for local development are well‑covered: prerequisites, cloning, installing dependencies, starting the ICP replica, deploying canisters, and running the dev server are all listed with exact commands. The architecture section gives a quick tech stack snapshot, and the use‑case section helps readers understand potential integrations.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-08: The week focused on replacing the Web3Auth and biometric verification stack with a streamlined NFID‑based authentication system: a new NFID_AUTH_GUIDE.md was added, AuthButton and related UI components were refactored to use SimpleAuthContext, and all Web3Auth, biometric services, and related pages were removed. Additional UI improvements include new lazy‑loaded AI and chart components, migration from Next.js links to react‑router‑dom, and Vite chunk‑splitting optimizations. These changes simplify the login flow, reduce dependencies, and prepare the app for lighter, more maintainable front‑end performance.; Week of 2025-09-15: Implemented functional authentication and added Metamask-based login, enhancing the app’s user authentication capabilities.; Week of 2025-09-22: This week added backend support for NGOs and carbon‑offset claims (new NGOProfile and Claim structs) and introduced a suite of new frontend pages—Submit Project, Projects Listing, Project Details, an enhanced Marketplace, and an Admin‑panel placeholder—along with routing updates and UI components such as ClaimSubmissionForm, ProfileDropdown, and PostLoginRegistrationModal. The Header and LoginButton were refactored to display a profile dropdown for authenticated users, and the project‑submission flow was expanded with tree‑specific fields and per‑user local‑storage persistence. Together these changes extend the app from basic authentication to full NGO registration, project creation, claim handling, and marketplace interaction.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 5: Kazeth/DigiPurse
+------------------------------------------------------------
+GitHub Link: https://github.com/Kazeth/DigiPurse
+Total Score: 3/9
+README Documentation: 0/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  No documentation assessment provided.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-08: The landing page UI received an initial redesign, updating its layout and visual elements. Font changes were added to improve overall typography and readability across the application.; Week of 2025-09-15: This week the UI was refreshed: the About Us page got cleaner data formatting and a GitHub icon, while the Landing page received a new feature carousel with gradient cards, a marquee component and the Coins icon, powered by the newly added **react‑fast‑marquee** library. The Support page was enhanced with initial bot messages, saved‑chat state and extra icons for richer interaction. Overall, these changes improve visual appeal and user experience across the main frontend pages.; Week of 2025-09-22: Implemented a UI/UX redesign for the DigiTicket interface, including updated homepage elements and document count displays. Added a backend and front‑end history feature that tracks when users add or remove documents. These changes enhance the user experience and provide an audit trail for document actions.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 6: Jayesh45-master/jarvis
+------------------------------------------------------------
+GitHub Link: https://github.com/Jayesh45-master/jarvis
+Total Score: 4/9
+README Documentation: 3/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a fairly comprehensive project description, feature list, technology stack, folder layout, and fairly detailed local‑development setup steps (cloning, installing frontend and backend dependencies, creating a .env file, and how to run each part). It also includes a usage guide and a future roadmap, which are helpful for users.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 7: Ma7moud12975/ATOS-fit
+------------------------------------------------------------
+GitHub Link: https://github.com/Ma7moud12975/ATOS-fit/tree/main
+Total Score: 5/9
+README Documentation: 2/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a nice overview of the project’s purpose, key features (decentralized deployment, privacy‑first processing), technical stack, and a visual list of supported exercises. The formatting is clean and the markdown tables display correctly, which aids readability.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-08: Implemented a file‑upload feature, adding an upload interface, integrating the component into the main UI (index.jsx), and documenting the capability in the README. Minor updates and fixes were also applied, refining existing functionality and improving overall project stability.; Week of 2025-09-15: This week we renamed the Exercise Library to “Exercises,” refreshed its icons, and updated the README documentation to reflect the changes. We also delivered a series of minor updates and bug fixes across the codebase. Together, these improvements enhance visual consistency, usability, and overall stability.; Week of 2025-09-22: Minor updates and fixes
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 8: Oansa/Celestial
+------------------------------------------------------------
+GitHub Link: https://github.com/Oansa/Celestial
+Total Score: 4/9
+README Documentation: 2/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a fairly detailed general description of the project’s purpose, visual design, and authentication flow, which satisfies the “project description” criterion. However, it lacks essential documentation elements required for a higher rating:
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-09-22: Minor updates and fixes.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 9: Sid31/vram-synth
+------------------------------------------------------------
+GitHub Link: https://github.com/Sid31/vram-synth
+Total Score: 0/9
+README Documentation: 0/5
+Commit Activity: 0/3
+dfx.json Present: 0/1
+
+README Documentation Evaluation:
+  No documentation assessment provided.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  No dfx.json file found - may not be using standard ICP/Dfinity development tools
+
+
+================================================================================
+
+PROJECT 10: AlBasyaar/Web3-Skillsnap-dapp
+------------------------------------------------------------
+GitHub Link: https://github.com/AlBasyaar/Web3-Skillsnap-dapp
+Total Score: 5/9
+README Documentation: 2/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a decent high‑level project description, visual screenshots, and links to external resources (documentation, pitch deck, demo video). However, it lacks essential developer‑oriented information: there are no clear setup or installation instructions for running the project locally (the “Requirements” section is cut off), no integration or usage guide, and no contribution guidelines or code of conduct. The overall structure is fragmented, with some formatting issues (e.g., broken emoji, missing list numbering). Grammar is generally understandable but the incomplete sections and missing key elements make the documentation insufficient for developers to get started or contribute.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-01: Added Dockerfile and docker‑compose.yaml to enable containerized development and deployment. Enhanced the authentication form to create a DFINITY HttpAgent and backend actor using the logged‑in Internet Identity, exposing it via `window.skillsnap_backend`. These changes introduce backend connectivity for authenticated users and provide a reproducible Docker environment.; Week of 2025-09-08: This week added protected routing (ProtectedRoute) and introduced two new pages—Profile and Recommendation—along with updated navigation links in the Navbar and Sidebar to expose them. The authentication flow was refined (AuthForm now redirects after registration) and the PersonalityAssessmentForm was enhanced with html2canvas/file‑saver for exporting results and a corrected backend call. Together, these changes improve user access control, expand functionality, and streamline data handling.; Week of 2025-09-15: This week we delivered core functionality for AI chat, course management, and a new authentication system, complete with the necessary backend support. The UI was refined—updating the menu profile and adding dedicated sections for AI, dashboard, job, and profile—while minor clean‑ups, bug fixes, and README documentation were also completed. These enhancements introduce key features, improve user navigation, and increase overall system stability.; Week of 2025-09-22: This week the README was extensively revised: new screenshots were added, the project overview and feature list were expanded, and links (including the demo video) were corrected and reformatted. No source code files were added, removed, or changed, so the updates are documentation‑only.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 11: syahiidkamil/living-internet-protocol
+------------------------------------------------------------
+GitHub Link: https://github.com/syahiidkamil/living-internet-protocol
+Total Score: 6/9
+README Documentation: 4/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a solid overview of the Living Internet Protocol project, clearly outlining its purpose, key features, and technology stack. It includes comprehensive local development setup instructions (prerequisites, cloning, dependency installation, local replica start, canister deployment, and frontend server launch) and details on testing and deployment for both local and mainnet environments. The “How It Works” section explains the verification flow, NFT minting, and forum demo, giving readers a functional understanding of the system. A contribution link is provided, satisfying the contribution‑guidelines criterion.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-09-15: This week added three new front‑end pages—**SocialMediaDemo**, **MerchantDashboard**, and a standalone **CaptchaWidget**—and updated the main App component to route to them, including a query‑parameter “widget” mode that renders only the widget. New navigation buttons for the demo and dashboard were introduced, and the default view was switched to the demo page. These changes broaden the UI with a social‑media showcase, a merchant admin interface, and an embeddable widget, enhancing the app’s functionality beyond its original playground, forum, and marketplace pages.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 12: arincantikam26/i-GuardX
+------------------------------------------------------------
+GitHub Link: https://github.com/arincantikam26/i-GuardX
+Total Score: 1/9
+README Documentation: 0/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  No documentation assessment provided.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 13: HEFIN01/HEFIN-01
+------------------------------------------------------------
+GitHub Link: https://github.com/HEFIN01/HEFIN-01
+Total Score: 5/9
+README Documentation: 3/5
+Commit Activity: 1/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a solid project overview, clear architecture description, and fairly detailed local development/setup instructions (prerequisites, starting the replica, installing frontend dependencies, building and deploying, and how to access the app). It also outlines basic usage and future improvement ideas. However, it lacks explicit contribution guidelines (e.g., how to submit issues or pull requests) and does not give a thorough integration guide for any external services (the brief mention of MongoDB and Docker is incomplete). The formatting is a bit inconsistent (mixed heading styles, stray symbols) and could be cleaned up for better readability. Overall, the documentation covers the essential basics but misses several key elements, placing it at a “fair” level.
+
+Commit Activity Evaluation:
+  1 - 1 or 2 commits. Weekly development summary: Week of 2025-09-15: This week we established a full containerized project scaffold with a Dockerfile, docker‑compose.yml, and updated README, and migrated the backend from Node.js to an Internet Computer setup by adding dfx.json, a Motoko canister (cannister.mo/main.mo) and its interface definition (hefin.did). Legacy Node.js files were removed and a new server.js was introduced, laying the foundation for the new Motoko‑based canister. Minor updates and bug fixes were applied throughout.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 14: Ujjwal-sinha/InsureBTC
+------------------------------------------------------------
+GitHub Link: https://github.com/Ujjwal-sinha/InsureBTC
+Total Score: 2/9
+README Documentation: 1/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README contains only a brief canister URL and a list of frontend API endpoints with their parameters and return values. It lacks a general project description, any setup or installation instructions for local development, contribution guidelines, or broader integration guidance. The structure is minimal, and there are several typographical errors (e.g., “Tkes”). Overall, the documentation provides only the most basic information and does not meet any of the key criteria for a usable README.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 15: avi1967/ChainMail
+------------------------------------------------------------
+GitHub Link: https://github.com/avi1967/ChainMail.git
+Total Score: 4/9
+README Documentation: 3/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a clear and attractive project overview, feature list, screenshots, and a tech‑stack table, which gives readers a good sense of what ChainMail does and how it’s built. The formatting and grammar are generally solid, and the visual assets enhance readability.
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 16: Afarisphi/white-binder
+------------------------------------------------------------
+GitHub Link: https://github.com/Afarisphi/white-binder
+Total Score: 1/9
+README Documentation: 0/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  No documentation assessment provided.
+
+Commit Activity Evaluation:
+  0 - no commits. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 17: DiegoFloresWenHao/ICP_Coder
+------------------------------------------------------------
+GitHub Link: https://github.com/DiegoFloresWenHao/ICP_Coder
+Total Score: 6/9
+README Documentation: 3/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a solid project overview, clear prerequisites, and step‑by‑step setup instructions for creating a virtual environment, installing dependencies, configuring environment variables, and ingesting documentation and code samples. It also outlines how to start the authentication service and register a user, which covers the core local‑development workflow.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-08: Implemented Motoko documentation ingestion and indexing by adding clone_motoko_docs.py, a new motoko_docs_ingester, updating the README, and refactoring the RAG pipeline (MCP_Server and rag modules) to use a project‑root ChromaDB instance and shared base utilities. Added a persistent chat‑history feature to the API, introducing Conversation models, a SQLite conversation repository, context‑injection chain handling, and updated imports and schema initialization in api_server.py. These changes broaden the knowledge base beyond code samples and enable stateful, context‑aware conversations.; Week of 2025-09-15: This week we added a validated API‑key creation endpoint to the MCP server and introduced an automated cronjob for ingesting Motoko repositories. The MCP server was refactored and integrated with the Cursor tool, enhancing its functionality and maintainability. Additionally, the API server was refactored to prepare for future integration with the IC‑Vibe‑Coding‑Template‑Motoko, laying groundwork for new template support.; Week of 2025-09-22: The legacy MCP server files (`MCP_Server/README.md`, `mcp_server.py`, `test_mcp.py`) were removed and the project README was expanded to introduce a new MCP Server overview, updated feature list, and clearer setup instructions. The example MCP server configuration was also enhanced to include an `API_KEY` header for authentication. Overall, the week focused on cleaning up old code and improving documentation and config guidance for the MCP server.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 18: BeGods/ICP-HACKATHON
+------------------------------------------------------------
+GitHub Link: https://github.com/BeGods/ICP-HACKATHON.git
+Total Score: 5/9
+README Documentation: 2/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a decent high‑level overview of the project and a clear directory tree, which helps readers understand the overall architecture. However, it lacks essential practical information. There are no explicit setup or installation steps for getting the frontend, backend, or on‑chain components running locally, nor any guidance on required tools, environment variables, or how to use the provided scripts. Integration instructions (e.g., how to connect the game launcher to a wallet or how to deploy the canisters) are missing. There is no section on how contributors should get involved, submit pull requests, or follow coding standards. While the document is fairly well‑formatted and free of major grammatical errors, the absence of these critical sections makes it incomplete for developers and contributors. Consequently, it falls into the “Poor” category.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-01: Added a LICENSE.txt and NOTICE.txt to introduce the FrogDogGames Public License (FDGPL) for the project, and updated the README.md to include a new “License” section linking to the license file. No code or functional changes were made beyond documentation. This primarily formalizes the project's legal terms without altering existing features.; Week of 2025-09-15: This week added a new booster‑NFT claim flow and expanded cross‑collection NFT handling by introducing token‑index mapping, a BoosterInfo type, stable storage for collection canisters, and backend APIs such as debug_getTokenIndexMapping and userNFTsAllCollections. Front‑end components (NftCard, BuyNft, collection details) were refactored to use the new APIs, log token IDs, and support the booster claim, while scripts were updated to create a burner identity for testing. Together these changes improve NFT management, debugging, and introduce the booster‑NFT feature.; Week of 2025-09-22: Added a Rust‑based game‑agent canister to enable on‑chain game logic and updated the marketplace UI with a new NFT‑burn interface, enhancing token lifecycle management. Minor updates and bug fixes were also applied across the codebase. Together, these changes broaden the platform’s gaming capabilities and improve the overall user experience.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 19: research-ag/hosty-live-fe
+------------------------------------------------------------
+GitHub Link: https://github.com/research-ag/hosty-live-fe
+Total Score: 3/9
+README Documentation: 2/5
+Commit Activity: 0/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a brief project description (“template provides a minimal setup to get React working in Vite”) and a useful section on extending the ESLint configuration, including concrete code snippets. However, it lacks essential documentation elements:
+
+Commit Activity Evaluation:
+  No commits found during hackathon period.. No weekly development activity to summarize.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 20: riyqnn/Medical
+------------------------------------------------------------
+GitHub Link: https://github.com/riyqnn/Medical
+Total Score: 6/9
+README Documentation: 3/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a solid project description, outlining the problem, the solution, key features, and the tech stack. It also includes links to a demo video and pitch deck, and uses clear headings and emojis for visual structure. However, it lacks essential elements such as setup instructions for running the project locally, any integration or usage guide, and contribution guidelines. Without these, developers cannot easily get the project up and running or know how to contribute, which are critical for comprehensive documentation. Grammar and formatting are generally good, but the missing practical guidance keeps the overall quality at a “fair” level.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-01: The week’s work focused on substantially expanding and polishing the project documentation: the README was rewritten to include a richer overview, mission, problem/solution sections, demo‑video and pitch‑deck badges, a flowchart image, and detailed architecture explanations. No code files were added, removed, or altered, so the functional features of the application remain unchanged. Overall, the changes improve project presentation and clarity for users and stakeholders.; Week of 2025-09-22: Minor updates and fixes.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 21: Yohanpau/DueMinder
+------------------------------------------------------------
+GitHub Link: https://github.com/Yohanpau/DueMinder.git
+Total Score: 5/9
+README Documentation: 2/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README fragment provides some ad‑hoc setup steps (installing dependencies, creating a .env file, running the server) but lacks a clear project description, overview, or purpose. It focuses heavily on a specific PDF‑parse error and even instructs editing files inside node_modules, which is not a standard or recommended practice. There are no integration guides, contribution guidelines, or organized sections (e.g., Prerequisites, Installation, Usage). Grammar and formatting are inconsistent, with stray symbols and unclear instructions. Overall, the documentation is incomplete and poorly structured, resulting in a low rating.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-08: Implemented a new payment system by adding a `Payment` model to the Prisma schema, extending the `Bill` model with `status` and a `payments` relation, and creating a full Payment module (controller, service, DTO, tests) that’s now imported in `AppModule`. Updated the Bills service to set default bill status, include payment histories in queries, and handle related data. These changes introduce payment tracking functionality and enhance bill management throughout the backend.; Week of 2025-09-15: This week we added a History page with smooth page‑transition effects and introduced a new payment‑method workflow complete with confirmation modals, enhancing navigation and checkout functionality. We also refined existing UI components by fixing edit and delete modals, simplifying routing logic in protectedroutes.jsx, and applying spacing tweaks, animations, and various bug fixes for a more polished look and feel. These updates collectively improve user experience, streamline interactions, and increase confidence during transactions.; Week of 2025-09-22: This week we applied a series of minor updates and bug fixes throughout the codebase. Additionally, we introduced a new feature that evaluates whether a bill is paid on time, merging the Development and yohan branches to integrate this functionality and related enhancements. The changes collectively improve the billing module by adding timeliness checking while polishing existing functionality.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
+PROJECT 22: divin3circle/optic
+------------------------------------------------------------
+GitHub Link: https://github.com/divin3circle/optic
+Total Score: 6/9
+README Documentation: 3/5
+Commit Activity: 2/3
+dfx.json Present: 1/1
+
+README Documentation Evaluation:
+  The README provides a solid high‑level overview of the project – a clear description, key features, a table of contents, and sections on architecture and the “Web3 Way” concept. The structure is well‑organized and the formatting/grammar are good. However, the essential practical details are missing from the excerpt: the “Quick Start” section lists subsections (Prerequisites, Installation, Development, Troubleshooting) but no actual commands or step‑by‑step instructions are shown, and there is no contribution guide, code of conduct, or instructions for integrating the library into other projects. Because the documentation covers the project description and overall architecture but lacks the detailed setup and contribution information needed for developers to get started or contribute, it falls into the “fair” range.
+
+Commit Activity Evaluation:
+  2 - Commits every other week. Weekly development summary: Week of 2025-09-01: This week a new **JoinGroup** page and route were added, and the GroupProfile component now includes a copy‑invite‑link button that generates a shareable URL. Several hooks (user, chats, group chat messages, personal chat rooms) were enhanced with `refetchInterval` and `staleTime` settings for fresher data, and a new `useGetChatRoom` hook was introduced. A minor consistency fix was also made to an error message in `usePersonalChatRooms`.; Week of 2025-09-15: This week the chat system was extended to support media attachments: a new `mediaUrl` field was added to the message types on both the backend and frontend, the backend `send_personal_message` method now accepts an optional media URL, and a `MediaModal` component with portal rendering was introduced to display images in `MessageBubble`. The frontend now uses the `use‑file‑picker` library (added to dependencies) to select, convert, and upload images via a new `useMediaCanister` hook, clearing the media URL after sending and showing thumbnails in the chat UI. Additional tweaks include removing aggressive refetch intervals, minor UI styling updates, and console‑logging for debugging.
+
+dfx.json Evaluation:
+  dfx.json file found - indicates ICP/Dfinity project structure
+
+
+================================================================================
+
