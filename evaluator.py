@@ -33,7 +33,7 @@ class ICPProjectEvaluator:
         # Initialize Groq LLM
         self.llm = ChatGroq(
             groq_api_key=self.groq_api_key,
-            model_name="llama3-8b-8192"
+            model_name="openai/gpt-oss-120b"
         )
         
         print("Initializing hackathon period...")

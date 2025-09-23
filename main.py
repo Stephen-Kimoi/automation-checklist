@@ -14,9 +14,9 @@ def main():
     parser = argparse.ArgumentParser(description='Evaluate ICP projects from CSV file')
     parser.add_argument('input_csv', help='Path to input CSV file containing repo URLs (or filename in input_csv folder)')
     parser.add_argument('output_csv', help='Path to output CSV file for results (or filename in output_csv folder)')
-    parser.add_argument('--hackathon-start', default='2025-08-01', 
+    parser.add_argument('--hackathon-start', default='2025-09-01', 
                        help='Hackathon start date (YYYY-MM-DD)')
-    parser.add_argument('--hackathon-end', default='2025-08-27',
+    parser.add_argument('--hackathon-end', default='2025-09-24',
                        help='Hackathon end date (YYYY-MM-DD)')
     parser.add_argument('--no-report', action='store_true',
                        help='Skip generating detailed report (CSV only)')
